@@ -1,6 +1,491 @@
 {% load static %}
 {% block content %}
+<style>
+    body{
+        background: gray;
+        margin: 0;
+        padding: 0;
+        zoom: 80%
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
 
-<h1>аааа</h1>
+    .header{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+        width: 73.75%;
+        height: 100px;
+        background: var(--main-grey, #232323);
+        font-family: Fira Sans Condensed, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        position: sticky;
+        top: 10px;
+        z-index: 10;
+        border-radius: 20px;
+    }
+    .navbar{
+        margin-bottom:auto;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: 80px;
+        height: 39px;
+        width: auto;
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
+    ul{
+        gap: 20px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        list-style-type: none;
+    }
+
+    ul li{
+        width: 95px;
+
+    }
+    .logo{
+        color: var(--main-white, #F5F5F5);
+        font-family: Gropled, sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%; /* 32px */
+        margin-left: 111px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .navbar a, .about-us-link a{
+        color: var(--main-light-grey, #585858);
+        text-decoration: none;
+    }
+    .navbar a:hover, .about-us-link a:hover{
+        cursor: pointer;
+        color: var(--main-grey, #232323);
+        transition: 0.5s;
+    }
+    .main a {
+        background-color: var(--main-grey, #232323); /* Фон для 'главная' */
+        color: white; /* Цвет текста для 'главная' */
+        border-radius: 80px; /* Скругление углов для 'главная' */
+        padding: 10px 15px; /* Внутренние отступы для создания обводки */
+        display: flex; /* Использование flexbox для центрирования текста */
+        align-items: center; /* Центрирование текста по вертикали */
+        justify-content: center; /* Центрирование текста по горизонтали */
+        width: auto; /* Автоматическая ширина в зависимости от контента и padding */
+    }
+
+    /* Стили для остальных пунктов меню */
+    .navbar a {
+        font-family: "TT Fors", sans-serif;
+        color: var(--main-light-grey, #585858);
+        display: block;
+        text-align: center;
+        padding: 10px 15px; /* Одинаковые отступы для всех пунктов */
+        border-radius: 80px; /* Скругление углов для всех пунктов */
+    }
+
+    /* Стили при наведении для всех пунктов меню */
+    .navbar a:hover {
+        color: var(--main-grey, #232323);
+        background-color: white; /* Фон при наведении */
+        text-decoration: none;
+    }
+    .navbar .active a {
+
+        background-color: white; /* Фон для активного пункта меню */
+        color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
+
+    }
+    .main-page-sector{
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 20px;
+        width: 73.75%;
+        height: 686px;
+        background-image: url("static/layoyt_main.png");
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+    }
+    .main-page-text{
+        color: var(--main-white, #F5F5F5);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled,sans-serif;
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%;
+        margin-left: 79px;
+        padding-top: 80px;
+        width: 397px;
+        height: 141px;
+    }
+    .second-page-text{
+        width: 320px;
+        color: #000;
+        text-align: right;
+        /* main text */
+        font-family: TT Fors Trial Variable,sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 100%; /* 20px */
+        margin-left: auto;
+        margin-right: 80px;
+        margin-top: 285px;
+    }
+    .slider-page-block{
+        margin-top: 200px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1180px;
+        height: 527px;
+    }
+    .slider-page-block .block-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .slider-page-block .text-box {
+        position: absolute;
+        word-wrap: break-word;
+        font-family: 'TT Fors', sans-serif;
+        line-height: 18px;
+    }
+
+    .slider-page-block .text-box-1 {
+        width: 340px;
+        right: 0;
+        top: 96px;
+        color: #000;
+        font-family: TT Fors,sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 100%;
+    }
+
+    .slider-page-block .text-box-2 {
+        width: 344px;
+        left: 0;
+        top: 253px;
+        color: var(--main-grey, #232323);
+        text-align: right;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled,sans-serif;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 27.2px */
+    }
+
+    .slider-page-block .card-container {
+        width: 650px;
+        height: 527px;
+        left: 22.45%;
+        top: 0;
+        position: absolute;
+    }
+
+    .slider-page-block .card {
+        position: absolute;
+        border-radius: 20px;
+    }
+
+    .slider-page-block .card-red {
+        width: 268px;
+        height: 201px;
+        left: 382px;
+        top: 326px;
+        background: #F22D3E;
+    }
+
+    .slider-page-block .card-purple {
+        width: 268px;
+        height: 201px;
+        left: 0;
+        top: 0;
+        background: #A673D8;
+    }
+
+    .slider-page-block .number-box {
+        padding: 11px 20px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px #F5F5F5 solid;
+        justify-content: center;
+        align-items: center;
+        display: inline-flex;
+        position: absolute;
+        color: #F5F5F5;
+        font-size: 16px;
+        font-weight: 280;
+        font-family: TT Fors,sans-serif;
+        font-style: normal;
+        line-height: 100%;
+    }
+
+    .slider-page-block .number-1 {
+        margin-left: 18.71px;
+        margin-top: 19.32px;
+    }
+
+    .slider-page-block .service-card {
+        width: 458.82px;
+        height: 342.21px;
+        left: 95.59px;
+        top: 82.21px;
+        position: absolute;
+    }
+
+    .slider-page-block .card-black {
+        width: 458.82px;
+        height: 342.21px;
+        left: 95.59px;
+        top: 82.21px;
+        position: absolute;
+        background: #232323;
+        border-radius: 20px;
+    }
+
+    .slider-page-block .number-box-service {
+        padding: 11px 20px;
+        margin-left: 19.12px;
+        margin-top: 19.12px;
+        gap: 10px;
+    }
+
+
+
+    .slider-page-block .number-3 {
+        margin-top: 149px;
+        margin-left: 207px;
+    }
+
+    @keyframes arrow-bounce {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px);
+      }
+    }
+
+    .arrow-svg {
+      animation: arrow-bounce 1s infinite;
+      cursor: pointer;
+      position: absolute;
+      bottom: 74px;
+      left: 95.59px;
+    }
+
+    .trust-block{
+        width: 1180px;
+        height: 362px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 200px;
+    }
+
+
+    .slider-page-block .card {
+      transition: all 0.5s ease; /* Плавный переход всех свойств за 0.5 секунд */
+    }
+
+    .card-red, .card-purple, .card-black {
+      transition: all 0.5s ease;
+      position: absolute;
+      border-radius: 20px;
+    }
+
+    /* Значение z-index для карточек по бокам меньше, чем у центральной карточки */
+    .card-red, .card-purple {
+      z-index: 1;
+    }
+
+    /* У центральной карточки самое высокое значение z-index */
+    .card-black {
+      z-index: 2;
+    }
+
+
+
+</style>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<div class="header" style="display: flex" >
+    <div class="logo" >
+        <a href="" ><img src="">clinic slimness</a>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li>
+                <div class="main active" style="">
+                    <a href="">главная</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="production">
+                    <a href="">аптека</a>
+                </div>
+            </li>
+            <li>
+                <div class="about-us">
+                    <a href="">о нас</a>
+                </div>
+            </li>
+            <li>
+                <div class="cart">
+                    <a href="">корзина</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="main-page-sector" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
+    <div class="main-page-text">
+        clinic slimness
+    </div>
+    <div class="second-page-text">
+        Lorem ipsum dolor sit amet consectetur. Aliquam ac diam lobortis non ultrices. Ac aliquet mi massa proin. Faucibus luctus at ut lectus tortor fusce mattis phasellu
+    </div>
+</div>
+
+
+<div class="slider-page-block" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
+    <div class="block-container">
+        <div class="text-box text-box-1">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.Lorem ipsum dolor sit amet consectetur</div>
+        <div class="text-box text-box-2">путь<br> к идеальной фигуре начинается с профессионального руководства и заботы</div>
+        <div class="card-container">
+            <div class="card card-red">
+                <div class="number-box number-3">3</div>
+            </div>
+            <div class="card card-purple">
+                <div class="number-box number-1">1</div>
+            </div>
+
+            <div class="card card-black">
+                <div class="number-box number-box-service">2</div>
+            </div>
+
+            <svg class="arrow-svg right"  onclick="rotateCards()" xmlns="http://www.w3.org/2000/svg" width="173" height="16" viewBox="0 0 173 16" fill="none">
+                <path d="M172.707 8.70711C173.098 8.31658 173.098 7.68342 172.707 7.29289L166.343 0.928932C165.953 0.538408 165.319 0.538408 164.929 0.928932C164.538 1.31946 164.538 1.95262 164.929 2.34315L170.586 8L164.929 13.6569C164.538 14.0474 164.538 14.6805 164.929 15.0711C165.319 15.4616 165.953 15.4616 166.343 15.0711L172.707 8.70711ZM0 9H172V7H0V9Z" fill="black"/>
+            </svg>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="trust-block" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
+<div style="width: 100%; height: 100%; position: relative">
+    <div style="width: 509.14px; left: 0px; top: 0px; position: absolute; color: #232323; font-size: 72px; font-family: Gropled,sans-serif; font-weight: 700; line-height: 57.60px; word-wrap: break-word">почему<br/>нам доверяют</div>
+        <div style="width: 310.47px; left: 199.66px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.</div>
+        <div style="width: 581.02px; height: 352px; left: 598.98px; top: 10px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 50px; display: inline-flex">
+            <div style="width: 582px; height: 84px; position: relative">
+                <div style="left: 39px; top: 0px; position: absolute; color: #A673D8; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; text-decoration: underline; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #A673D8; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
+            </div>
+            <div style="width: 582px; height: 84px; position: relative">
+                <div style="left: 39px; top: 0px; position: absolute; color: #232323; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #585858; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
+            </div>
+            <div style="width: 582px; height: 84px; position: relative">
+                <div style="left: 39px; top: 0px; position: absolute; color: #232323; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #585858; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<h1 style="margin-top: 3000px; color: white">ghte</h1>
+<script>
+  AOS.init();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var rightArrow = document.querySelector('.arrow-svg.right');
+
+  rightArrow.addEventListener('click', function() {
+    // Получаем элементы карточек
+    var redCard = document.querySelector('.card-red');
+    var purpleCard = document.querySelector('.card-purple');
+    var blackCard = document.querySelector('.card-black');
+
+    // Получаем элементы номеров на карточках
+    var number1 = document.querySelector('.number-1');
+    var number2 = document.querySelector('.number-box-service');
+    var number3 = document.querySelector('.number-3');
+
+    // Сохраняем стили позиции и размера для каждой карточки
+    var redCardStyles = window.getComputedStyle(redCard);
+    var purpleCardStyles = window.getComputedStyle(purpleCard);
+    var blackCardStyles = window.getComputedStyle(blackCard);
+
+    // Сохраняем классы номеров, чтобы переместить их на новые карточки
+    var number1Class = number1.className;
+    var number2Class = number2.className;
+    var number3Class = number3.className;
+
+    // Переназначаем стили карточек
+    setCardStyles(redCard, purpleCardStyles);
+    setCardStyles(purpleCard, blackCardStyles);
+    setCardStyles(blackCard, redCardStyles);
+
+    // Переназначаем классы номеров
+    number1.className = number2Class;
+    number2.className = number3Class;
+    number3.className = number1Class;
+  });
+
+  function setCardStyles(card, styles) {
+    card.style.left = styles.left;
+    card.style.top = styles.top;
+    card.style.width = styles.width;
+    card.style.height = styles.height;
+    card.style.zIndex = styles.zIndex;
+  }
+});
+
+
+</script>
 
 {% endblock %}
