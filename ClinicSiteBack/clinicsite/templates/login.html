@@ -2,7 +2,7 @@
 {% block content %}
 <style>
     body{
-        background: gray;
+        /*background: gray;*/
         margin: 0;
         padding: 0;
         zoom: 80%
@@ -335,6 +335,33 @@
     .card-black {
       z-index: 2;
     }
+    .trust-block-pointer:hover .trust-block-number {
+        color: #A673D8; /* Цвет цифры */
+
+        transition: all 0.5s ease;
+    }
+
+    .trust-block-pointer:hover .trust-block-title {
+        background-size: 100% 2px;
+        color: #A673D8;;
+    }
+    .trust-block-title, .trust-block-text{
+        color: #232323;
+    }
+    .trust-block-title{
+        background-image: linear-gradient(to right, #A673D8, #A673D8); /* Параметры градиента */
+        background-repeat: no-repeat; /* Фон не повторяется */
+        background-size: 10px 2px; /* Линия будет шириной 10px и высотой 2px */
+        background-position: left bottom; /* Положение в левом нижнем углу */
+        padding-bottom: 2px; /* Расстояние от текста до линии */
+        text-decoration: none; /* Убираем подчёркивание */
+        transition: 0.3s;
+    }
+    .trust-block-number{
+        color: #585858;
+    }
+
+
 
 
 
@@ -414,20 +441,20 @@
     <div style="width: 509.14px; left: 0px; top: 0px; position: absolute; color: #232323; font-size: 72px; font-family: Gropled,sans-serif; font-weight: 700; line-height: 57.60px; word-wrap: break-word">почему<br/>нам доверяют</div>
         <div style="width: 310.47px; left: 199.66px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.</div>
         <div style="width: 581.02px; height: 352px; left: 598.98px; top: 10px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 50px; display: inline-flex">
-            <div style="width: 582px; height: 84px; position: relative">
-                <div style="left: 39px; top: 0px; position: absolute; color: #A673D8; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; text-decoration: underline; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #A673D8; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
+            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
             </div>
-            <div style="width: 582px; height: 84px; position: relative">
-                <div style="left: 39px; top: 0px; position: absolute; color: #232323; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #585858; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
+            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute;  font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
             </div>
-            <div style="width: 582px; height: 84px; position: relative">
-                <div style="left: 39px; top: 0px; position: absolute; color: #232323; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div style="width: 543px; left: 39px; top: 44px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div style="left: 0px; top: 4px; position: absolute; text-align: right; color: #585858; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
+            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
             </div>
         </div>
     </div>
