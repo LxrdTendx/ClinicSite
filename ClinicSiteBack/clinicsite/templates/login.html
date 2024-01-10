@@ -575,6 +575,19 @@
         margin-bottom: 20px; /* Отступы между секциями в мобильном виде */
     }
 }
+    .footer-phone-select {
+    background: #FFF; /* Цвет фона выпадающего списка */
+    color: #232323; /* Цвет текста */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде руки */
+    border: none;
+}
+
+/* Стили для элементов option */
+.footer-phone-select option {
+    padding: 5px; /* Отступ для каждого элемента списка */
+}
+
 
 
 
@@ -731,9 +744,17 @@
         <div class="footer-section">
             <h3 class="footer-heading">контакты</h3>
             <ul class="footer-list">
-                <li class="footer-item" style="width: 143px">+7(999)999-99-99</li>
-                <li class="footer-item">почта@гмаил.ком</li>
-                <li class="footer-item" style="width: auto">г. Москва, ул. Московская, д. 1, стр. 1</li>
+                <li class="footer-item">
+                    <!-- Выпадающий список телефонных номеров -->
+                    <select class="footer-phone-select" onchange="location = this.value;">
+                        <option value="tel:+74956080101">+7 495 608-01-01</option>
+                        <option value="tel:+74956077950">+7 495 607-79-50</option>
+                        <option value="tel:+74956073701">+7 495 607-37-01</option>
+                        <option value="tel:+74955438384">+7 495 543-83-84</option>
+                    </select>
+                </li>
+                <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color:#232323;">info@medicsel.ru</a></li>
+                <li class="footer-item" style="width: auto">г. Москва, пер. Малый Козловский, д. 6</li>
             </ul>
         </div>
     </div>
