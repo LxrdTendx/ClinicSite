@@ -360,6 +360,222 @@
     .trust-block-number{
         color: #585858;
     }
+    .consultation{
+        margin-top: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1180px;
+        height: 500px;
+        display: flex;
+        gap: 20px;
+    }
+    .cons-wrapper{
+        width: 380px;
+        height: 500px;
+        flex-shrink: 0;
+        background-image: url("static/consultation.png");
+    }
+    .cons-form{
+        width: 780px;
+        height: 500px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        background: var(--main-grey, #232323);
+    }
+    .cons-form-title{
+        margin: 40px 0 0 40px;
+        width: 600px;
+        color: var(--main-white, #F5F5F5);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled,sans-serif;
+        font-size: 52px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 41.6px */
+    }
+    .cons-form-subtitle{
+        width: 638px;
+        color: var(--main-white, #F5F5F5);
+        font-family: TT Fors Trial Variable,sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 100%; /* 20px */
+        margin: 30px 0 0 40px;
+    }
+    .cons-input-form {
+        flex-direction: column;
+        gap: 15px;
+        margin: 40px;
+    }
+
+    .cons-input-field,
+    .cons-textarea-field {
+        width: 340px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #585858;
+        color: #F5F5F5;
+        font-family: 'TT Fors Trial Variable', sans-serif;
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    .cons-input-field::placeholder,
+    .cons-textarea-field::placeholder {
+        color: #585858;
+        font-style: italic;
+    }
+
+    .cons-textarea-field {
+        margin-top: 50px;
+        width: 700px;
+        height: 39px; /* или другая высота по желанию */
+        resize: none; /* Запрещаем изменение размера */
+    }
+
+    .cons-submit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 406px;
+        background: #F5F5F5;
+        border-radius: 20px;
+        color: #232323;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+    }
+
+    .cons-submit-btn:hover {
+        background-color: #A673D8; /* или другой цвет при наведении */
+    }
+
+    .cons-social-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 237px;
+        border-radius: 20px;
+        border: 1px solid #585858;
+        color: #585858;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .cons-social-link:hover {
+        background-color: #A673D8; /* или другой цвет при наведении */
+        border: 1px solid #A673D8;
+    }
+    .cons-social-link:hover .text-button2 {
+        color: var(--main-grey, #232323); /* Цвет текста при наведении */
+    }
+    .text-button{
+        margin: 0;
+        padding: 0;
+        color: var(--main-grey, #232323);
+        text-align: center;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: TT Fors Trial Variable,sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+    .text-button2{
+        margin: 0;
+        padding: 0;
+        color: var(--main-light-grey, #585858);
+        text-align: center;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: TT Fors Trial Variable,sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: normal;
+    }
+    .cons-input-row {
+        display: flex; /* Применяем flexbox */
+        justify-content: space-between; /* Распределяем пространство между элементами */
+        gap: 30px; /* Расстояние между полями ввода */
+    }
+    .footer{
+        margin-top: 175px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 200px;
+        width: 1180px;
+    }
+.footer {
+    background: #fff; /* Задайте нужный фон */
+    border-radius: 20px;
+    border: 1px solid #232323;
+    padding: 40px; /* Отступы внутри футера */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*width: 100%; !* Растягиваем на всю ширину футера *!*/
+    gap: 80px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-heading {
+    font-family: 'TT Fors Trial Variable', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px; /* Отступ между заголовком и списком */
+}
+
+.footer-list {
+    display: block;
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы у списка */
+    margin: 0; /* Убираем внешние отступы у списка */
+}
+
+.footer-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #232323;
+    margin-bottom: 10px; /* Отступ между элементами списка */
+}
+
+.footer-title.red {
+    color: #F22D3E; /* Красный цвет для названия */
+    font-family: 'Gropled',sans-serif;
+    font-weight: 700;
+}
+
+/* Для медиа запросов и адаптивности */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        margin-bottom: 20px; /* Отступы между секциями в мобильном виде */
+    }
+}
+
 
 
 
@@ -461,8 +677,71 @@
 </div>
 
 
+<div class="consultation" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
+    <div class="cons-wrapper"></div>
+    <div class="cons-form">
+        <div class="cons-form-title">хотите получить пробную консультацию?</div>
+        <div class="cons-form-subtitle">Оставьте заявку нашим специалистам, и мы рассмотрим ее в ближайшее время</div>
 
-<h1 style="margin-top: 3000px; color: white">ghte</h1>
+        <!-- Форма для ввода данных -->
+        <form class="cons-input-form">
+            <div class="cons-input-row">
+                <!-- Поле для ввода имени -->
+                <input type="text" id="name" name="name" placeholder="Имя" class="cons-input-field half-width">
+                <!-- Поле для ввода номера телефона -->
+                <input type="text" id="phone" name="phone" placeholder="Номер телефона" class="cons-input-field half-width">
+            </div>
+            <!-- Поле для ввода комментария -->
+            <textarea id="comment" name="comment" placeholder="Ваш комментарий" class="cons-textarea-field"></textarea>
+            <div class="cons-input-row" style="display: flex; height: 40px; margin-top: 30px">
+               <!-- Кнопка отправки формы -->
+                <button type="submit" class="cons-submit-btn"><div class="text-button">заказать бесплатный обратный звонок</div></button>
+                <!-- Ссылка для соцсетей -->
+                <div class="cons-social-link"><div class="text-button2">связаться в соцсетях</div></div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h2 class="footer-title red">clinic slimness</h2>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">наши услуги</h3>
+            <ul class="footer-list">
+                <li class="footer-item">услуга 1</li>
+                <li class="footer-item">услуга 2</li>
+                <li class="footer-item">услуга 3</li>
+            </ul>
+        </div>
+        <div style="width: 0px; height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">компания</h3>
+            <ul class="footer-list">
+                <li class="footer-item">о нас</li>
+                <li class="footer-item">аптека</li>
+                <li class="footer-item">контакты</li>
+            </ul>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">контакты</h3>
+            <ul class="footer-list">
+                <li class="footer-item" style="width: 143px">+7(999)999-99-99</li>
+                <li class="footer-item">почта@гмаил.ком</li>
+                <li class="footer-item" style="width: auto">г. Москва, ул. Московская, д. 1, стр. 1</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
 <script>
   AOS.init();
 </script>
