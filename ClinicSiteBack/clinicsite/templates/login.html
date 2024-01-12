@@ -150,7 +150,7 @@
         color: #000;
         text-align: right;
         /* main text */
-        font-family: TT Fors Trial Variable,sans-serif;
+        font-family: TT Fors,sans-serif;
         font-size: 20px;
         font-style: normal;
         font-weight: 280;
@@ -397,7 +397,7 @@
     .cons-form-subtitle{
         width: 638px;
         color: var(--main-white, #F5F5F5);
-        font-family: TT Fors Trial Variable,sans-serif;
+        font-family: TT Fors,sans-serif;
         font-size: 20px;
         font-style: normal;
         font-weight: 280;
@@ -417,7 +417,7 @@
         border: none;
         border-bottom: 1px solid #585858;
         color: #F5F5F5;
-        font-family: 'TT Fors Trial Variable', sans-serif;
+        font-family: 'TT Fors', sans-serif;
         font-size: 16px;
         padding: 10px 0;
     }
@@ -482,7 +482,7 @@
         text-align: center;
         leading-trim: both;
         text-edge: cap;
-        font-family: TT Fors Trial Variable,sans-serif;
+        font-family: TT Fors,sans-serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 500;
@@ -495,7 +495,7 @@
         text-align: center;
         leading-trim: both;
         text-edge: cap;
-        font-family: TT Fors Trial Variable,sans-serif;
+        font-family: TT Fors,sans-serif;
         font-size: 18px;
         font-style: normal;
         font-weight: 280;
@@ -512,12 +512,12 @@
         margin-right: auto;
         height: 200px;
         width: 1180px;
+        margin-bottom: 100px;
     }
 .footer {
     background: #fff; /* Задайте нужный фон */
     border-radius: 20px;
     border: 1px solid #232323;
-    padding: 40px; /* Отступы внутри футера */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -528,7 +528,7 @@
     align-items: center;
     justify-content: space-between;
     /*width: 100%; !* Растягиваем на всю ширину футера *!*/
-    gap: 80px;
+    gap: 40px;
 }
 
 .footer-section {
@@ -538,9 +538,12 @@
 }
 
 .footer-heading {
-    font-family: 'TT Fors Trial Variable', sans-serif;
+    color: var(--main-grey, #232323);
+    font-family: 'TT Fors',sans-serif;
     font-size: 20px;
-    font-weight: 500;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%;
     margin-bottom: 10px; /* Отступ между заголовком и списком */
 }
 
@@ -612,7 +615,7 @@
 
             <li>
                 <div class="production">
-                    <a href="">аптека</a>
+                    <a href="{% url 'market' %}">аптека</a>
                 </div>
             </li>
             <li>
@@ -668,22 +671,22 @@
 <div class="trust-block" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
 <div style="width: 100%; height: 100%; position: relative">
     <div style="width: 509.14px; left: 0px; top: 0px; position: absolute; color: #232323; font-size: 72px; font-family: Gropled,sans-serif; font-weight: 700; line-height: 57.60px; word-wrap: break-word">почему<br/>нам доверяют</div>
-        <div style="width: 310.47px; left: 199.66px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.</div>
+        <div style="width: 310.47px; left: 199.66px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.</div>
         <div style="width: 581.02px; height: 352px; left: 598.98px; top: 10px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 50px; display: inline-flex">
             <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
             </div>
             <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute;  font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute;  font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
             </div>
             <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right; font-size: 16px; font-family: TT Fors Trial Variable,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
+                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
+                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
+                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right; font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
             </div>
         </div>
     </div>
@@ -705,7 +708,7 @@
                 <input type="text" id="phone" name="phone" placeholder="Номер телефона" class="cons-input-field half-width">
             </div>
             <!-- Поле для ввода комментария -->
-            <textarea id="comment" name="comment" placeholder="Ваш комментарий" class="cons-textarea-field"></textarea>
+            <textarea style="overflow:hidden" id="comment" name="comment" placeholder="Ваш комментарий" class="cons-textarea-field"></textarea>
             <div class="cons-input-row" style="display: flex; height: 40px; margin-top: 30px">
                <!-- Кнопка отправки формы -->
                 <button type="submit" class="cons-submit-btn"><div class="text-button">заказать бесплатный обратный звонок</div></button>

@@ -1,0 +1,311 @@
+{% load static %}
+{% block content %}
+
+<style>
+    body{
+        /*background: gray;*/
+        margin: 0;
+        padding: 0;
+        zoom: 80%
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
+
+    .header{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+        width: 73.75%;
+        height: 100px;
+        background: var(--main-grey, #232323);
+        font-family: Fira Sans Condensed, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        position: sticky;
+        top: 10px;
+        z-index: 10;
+        border-radius: 20px;
+    }
+    .navbar{
+        margin-bottom:auto;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: 80px;
+        height: 39px;
+        width: auto;
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
+    ul{
+        gap: 20px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        list-style-type: none;
+    }
+
+    ul li{
+        width: 95px;
+
+    }
+    .logo{
+        color: var(--main-white, #F5F5F5);
+        font-family: Gropled, sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%; /* 32px */
+        margin-left: 111px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .navbar a, .about-us-link a{
+        color: var(--main-light-grey, #585858);
+        text-decoration: none;
+    }
+    .navbar a:hover, .about-us-link a:hover{
+        cursor: pointer;
+        color: var(--main-grey, #232323);
+        transition: 0.5s;
+    }
+    .main a {
+        background-color: var(--main-grey, #232323); /* Фон для 'главная' */
+        color: white; /* Цвет текста для 'главная' */
+        border-radius: 80px; /* Скругление углов для 'главная' */
+        padding: 10px 15px; /* Внутренние отступы для создания обводки */
+        display: flex; /* Использование flexbox для центрирования текста */
+        align-items: center; /* Центрирование текста по вертикали */
+        justify-content: center; /* Центрирование текста по горизонтали */
+        width: auto; /* Автоматическая ширина в зависимости от контента и padding */
+    }
+
+    /* Стили для остальных пунктов меню */
+    .navbar a {
+        font-family: "TT Fors", sans-serif;
+        color: var(--main-light-grey, #585858);
+        display: block;
+        text-align: center;
+        padding: 10px 15px; /* Одинаковые отступы для всех пунктов */
+        border-radius: 80px; /* Скругление углов для всех пунктов */
+    }
+
+    /* Стили при наведении для всех пунктов меню */
+    .navbar a:hover {
+        color: var(--main-grey, #232323);
+        background-color: white; /* Фон при наведении */
+        text-decoration: none;
+    }
+    .navbar .active a {
+
+        background-color: white; /* Фон для активного пункта меню */
+        color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
+
+    }
+    .title-page{
+        margin-top: 100px;
+        width: 73.75%;
+        height: 141px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+    .title-page-text{
+        width: 505px;
+        height: 141px;
+        color: var(--main-grey, #232323);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled,sans-serif;
+        font-size: 96px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 76.8px */
+    }
+    .market{
+        gap: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1180px;
+        height: 1550px;
+        margin-top: 100px;
+    }
+
+    .market-sorting{
+        width: 280px;
+        height: 529px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        background: var(--main-violet, #A673D8);
+    }
+    .search-sorting {
+        justify-content: space-between;
+        width: 880px;
+        height: 57px;
+        display: flex;
+        gap: 20px; /* Расстояние между элементами */
+    }
+
+    .search input[type="search"] {
+        width: 480px;
+        height: 57px;
+        border-radius: 50px;
+        border: 1px solid #232323; /* Используем --main-grey как резервный цвет */
+        color: #585858; /* Используем --main-light-grey как резервный цвет */
+        font-family: 'TT Fors', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 18px; /* 100% от размера шрифта */
+        padding: 0 40px 0px 30px; /* Отступ слева и справа внутри поля поиска */
+        outline: none; /* Убираем контур при фокусе */
+        background-image: url('/static/searchicon.svg');
+        background-repeat: no-repeat;
+        background-position: calc(100% - 40px) center;  /* Позиция иконки внутри поля */
+
+    }
+
+    .search input[type="search"]::placeholder {
+        color: #585858;
+    }
+
+    .sort button {
+        border-radius: 50px;
+        border: 1px solid #585858; /* Используем --main-light-grey как резервный цвет */
+        width: 280px;
+        height: 57px;
+        color: #585858; /* Используем --main-light-grey как резервный цвет */
+        font-family: 'TT Fors', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 18px; /* 100% от размера шрифта */
+        background-color: transparent; /* Прозрачный фон */
+        cursor: pointer; /* Курсор в виде руки при наведении */
+        background-image: url('/static/sorticon.svg'); /* Путь к вашей иконке */
+        background-repeat: no-repeat;
+        background-position: calc(100% - 23px) center; /* Иконка справа с отступом в 23px */
+         /* Размер иконки */
+        padding: 0 150px 0 30px; /* Отступы, учитывая место для иконки */
+        outline: none;
+    }
+
+    .sort button:hover {
+        background-color: #eaeaea; /* Легкий фон при наведении */
+    }
+    .sort{
+        width: 280px;
+        height: 57px;
+    }
+    .search{
+        width: 480px;
+        height: 57px;
+    }
+    .card{
+        width: 280px;
+        height: 452px;
+        border-radius: 20px;
+        border: 1px solid var(--main-grey, #232323);
+        background: var(--main-white, #F5F5F5);
+        box-sizing: border-box;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+        gap: 20px; /* Устанавливает промежуток между карточками */
+        justify-content: flex-start; /* Выравнивание карточек по началу контейнера */
+        margin-top: 20px; /* Отступ сверху */
+    }
+
+
+
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<div class="header" style="display: flex" >
+    <div class="logo" >
+        <a href="" ><img src="">clinic slimness</a>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li>
+                <div class="main " style="">
+                    <a href="{% url 'login' %}">главная</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="production active">
+                    <a href="{% url 'market' %}">аптека</a>
+                </div>
+            </li>
+            <li>
+                <div class="about-us">
+                    <a href="">о нас</a>
+                </div>
+            </li>
+            <li>
+                <div class="cart">
+                    <a href="">корзина</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="title-page">
+    <div class="title-page-text">наша продукция</div>
+</div>
+<div class="market">
+    <div style="display: flex">
+        <div class="market-sorting"></div>
+        <div style="display: block; margin-left: 20px" >
+            <div class="search-sorting">
+            <div class="search">
+                <input type="search" placeholder="Поиск продукции по категории">
+            </div>
+            <div class="sort">
+                <button type="button">Сортировка</button>
+            </div>
+        </div>
+            <div class="card-container" >
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+            </div>
+        </div>
+    </div>
+    <div class="card-container">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+</div>
+{% endblock %}
