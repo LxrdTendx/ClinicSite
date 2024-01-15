@@ -236,6 +236,216 @@
         justify-content: flex-start; /* Выравнивание карточек по началу контейнера */
         margin-top: 20px; /* Отступ сверху */
     }
+    .footer{
+        margin-top: 175px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 200px;
+        width: 1180px;
+        margin-bottom: 100px;
+    }
+    .footer {
+        background: #fff; /* Задайте нужный фон */
+        border-radius: 20px;
+        border: 1px solid #232323;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /*width: 100%; !* Растягиваем на всю ширину футера *!*/
+        gap: 40px;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-heading {
+        color: var(--main-grey, #232323);
+        font-family: 'TT Fors',sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%;
+        margin-bottom: 10px; /* Отступ между заголовком и списком */
+    }
+
+    .footer-list {
+        display: block;
+        list-style: none; /* Убираем маркеры списка */
+        padding: 0; /* Убираем отступы у списка */
+        margin: 0; /* Убираем внешние отступы у списка */
+    }
+
+    .footer-item {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: #232323;
+        margin-bottom: 10px; /* Отступ между элементами списка */
+    }
+
+    .footer-title.red {
+        color: #F22D3E; /* Красный цвет для названия */
+        font-family: 'Gropled',sans-serif;
+        font-weight: 700;
+    }
+
+    /* Для медиа запросов и адаптивности */
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+        }
+
+        .footer-section {
+            margin-bottom: 20px; /* Отступы между секциями в мобильном виде */
+        }
+    }
+        .footer-phone-select {
+        background: #FFF; /* Цвет фона выпадающего списка */
+        color: #232323; /* Цвет текста */
+        font-size: 16px; /* Размер шрифта */
+        cursor: pointer; /* Курсор в виде руки */
+        border: none;
+    }
+
+    /* Стили для элементов option */
+    .footer-phone-select option {
+        padding: 5px; /* Отступ для каждого элемента списка */
+    }
+    .type-card{
+        width: 187px;
+        height: 101px;
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+    .type-card-text{
+        color: var(--main-white, #F5F5F5);
+        font-family: 'TT Fors', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%; /* 20px */
+        text-transform: uppercase;
+
+    }
+    .type-card-select{
+        color: #F5F5F5;
+        font-size: 18px;
+        font-family: 'TT Fors', sans-serif;
+        font-weight: 400;
+        word-wrap: break-word;
+        width: 167px;
+        height: 36px;
+        font-style: normal;
+        line-height: 100%;
+    }
+    .slider {
+        margin-top: 42px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 170px;
+        height: 229px;
+    }
+
+    .slides {
+        justify-content: center;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .slide {
+        display: none; /* Скрыть все изображения */
+        transition: 0.5s; /* Плавная анимация при смене слайдов */
+    }
+
+    .slide.active {
+        display: block; /* Показать активное изображение */
+    }
+
+    .slider-indicators {
+        margin-top: 32px;
+        gap: 5px;
+        display: flex;
+        width: 170px;
+    }
+
+    .indicator {
+        width: 30px;
+        height: 3px;
+        cursor: pointer;
+        border-radius: 50px;
+        background: var(--main-light-light-grey, #B5B5B5);
+        transition: background-color 0.5s;
+    }
+
+    .indicator.active {
+        background: var(--main-violet, #A673D8);
+    }
+    .card-title{
+        color: var(--main-grey, #232323);
+        font-family: 'TT Fors', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%; /* 20px */
+        margin-left: 20px;
+        margin-top: 36px;
+    }
+    .card-subtitle{
+        color: var(--main-grey, #232323);
+        font-family: 'TT Fors', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 160;
+        line-height: 100%; /* 16px */
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    .card-price, .currency{
+        color: var(--main-violet, #A673D8);
+        font-family: 'TT Fors', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%; /* 20px */
+        letter-spacing: -0.8px;
+    }
+    .currency {
+        font-size: 0.6em; /* Уменьшить шрифт вдвое относительно основного текста */
+        vertical-align: super; /* Поднять символ рубля */
+    }
+    .card-button button{
+        justify-content: center;
+        height: 26px;
+        border-radius: 20px;
+        background: var(--main-violet, #A673D8);
+        border: none;
+        width: 113px;
+        color: var(--main-grey, #232323);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: 'TT Fors', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 100%;
+        transition: background-color 0.5s;
+        transition: color 0.5s;
+    }
+    .card-button button:hover{
+        background: var(--main-violet, #232323);
+        color: var(--main-grey, white);
+    }
+
+
 
 
 
@@ -280,7 +490,24 @@
 </div>
 <div class="market">
     <div style="display: flex">
-        <div class="market-sorting"></div>
+        <div class="market-sorting">
+            <div class="type-card">
+                <div class="type-card-text">Тип</div>
+                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 7px; margin-right: 7px">
+                      <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#F5F5F5" stroke-linecap="square"/>
+                    </svg>
+                    <div class="type-card-select">фармацептические препараты</div>
+                </div>
+                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                      <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
+                    </svg>
+                    <div class="type-card-select" style="color: #000">БАДы</div>
+                </div>
+            </div>
+            <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
+         </div>
         <div style="display: block; margin-left: 20px" >
             <div class="search-sorting">
             <div class="search">
@@ -291,7 +518,24 @@
             </div>
         </div>
             <div class="card-container" >
-                <div class="card"></div>
+                <div class="card">
+                    <div class="slider">
+                      <div class="slides">
+                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
+                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
+                      </div>
+                      <div class="slider-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                      </div>
+                    </div>
+                    <div class="card-title">Lorem Ipsum</div>
+                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
+                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
+                        <div class="card-price">1000<span class="currency">₽</span></div>
+                        <div class="card-button"><button>в корзину</button></div>
+                    </div>
+                </div>
                 <div class="card"></div>
                 <div class="card"></div>
             </div>
@@ -308,4 +552,92 @@
         <div class="card"></div>
     </div>
 </div>
+
+
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h2 class="footer-title red">clinic slimness</h2>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">наши услуги</h3>
+            <ul class="footer-list">
+                <li class="footer-item">услуга 1</li>
+                <li class="footer-item">услуга 2</li>
+                <li class="footer-item">услуга 3</li>
+            </ul>
+        </div>
+        <div style="width: 0px; height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">компания</h3>
+            <ul class="footer-list">
+                <li class="footer-item">о нас</li>
+                <li class="footer-item">аптека</li>
+                <li class="footer-item">контакты</li>
+            </ul>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">контакты</h3>
+            <ul class="footer-list">
+                <li class="footer-item">
+                    <!-- Выпадающий список телефонных номеров -->
+                    <select class="footer-phone-select" onchange="location = this.value;">
+                        <option value="tel:+74956080101">+7 495 608-01-01</option>
+                        <option value="tel:+74956077950">+7 495 607-79-50</option>
+                        <option value="tel:+74956073701">+7 495 607-37-01</option>
+                        <option value="tel:+74955438384">+7 495 543-83-84</option>
+                    </select>
+                </li>
+                <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color:#232323;">info@medicsel.ru</a></li>
+                <li class="footer-item" style="width: auto">г. Москва, пер. Малый Козловский, д. 6</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const indicators = document.querySelectorAll('.indicator');
+
+let currentSlide = 0;
+
+// Функция для обновления слайдера
+function updateSlider(index) {
+// Удаляем класс 'active' у всех изображений и индикаторов
+slides.forEach(slide => slide.classList.remove('active'));
+indicators.forEach(indicator => indicator.classList.remove('active'));
+
+// Добавляем класс 'active' к текущему изображению и индикатору
+slides[index].classList.add('active');
+indicators[index].classList.add('active');
+}
+
+// Функция для перехода к следующему слайду
+function nextSlide() {
+currentSlide = (currentSlide + 1) % slides.length;
+updateSlider(currentSlide);
+}
+
+// Функция для перехода к предыдущему слайду
+function prevSlide() {
+currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+updateSlider(currentSlide);
+}
+
+// Добавляем событие клика для индикаторов
+indicators.forEach((indicator, index) => {
+indicator.addEventListener('click', () => {
+updateSlider(index);
+});
+});
+
+// Инициализируем слайдер
+updateSlider(currentSlide);
+
+// Опционально: добавьте автоматическую смену слайдов через интервалы
+setInterval(nextSlide, 3000); // Смена слайда каждые 3 секунды
+
+</script>
 {% endblock %}
