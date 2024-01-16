@@ -12,10 +12,10 @@ class Product(models.Model):
     type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     discount_percent = models.IntegerField()
     country_of_origin = models.CharField(max_length=100)
-    photo1 = models.ImageField(upload_to='products/')
-    photo2 = models.ImageField(upload_to='products/')
-    photo3 = models.ImageField(upload_to='products/')
-    photo4 = models.ImageField(upload_to='products/')
-    photo5 = models.ImageField(upload_to='products/')
+    photo1 = models.ImageField(upload_to='products/', null=True)
+    photo2 = models.ImageField(upload_to='products/', null=True)
+    photo3 = models.ImageField(upload_to='products/', null=True)
+    photo4 = models.ImageField(upload_to='products/', null=True)
+    photo5 = models.ImageField(upload_to='products/', null=True)
     def __str__(self):
         return self.name

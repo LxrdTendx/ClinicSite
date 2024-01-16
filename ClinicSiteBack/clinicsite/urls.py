@@ -8,3 +8,5 @@ urlpatterns = [
     path('', views.login_view, name='login'),
     path('market/', views.market_view, name='market')
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

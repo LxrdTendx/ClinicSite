@@ -356,6 +356,7 @@
     }
 
     .slides {
+        height: 214px;
         justify-content: center;
         display: flex;
         overflow: hidden;
@@ -408,6 +409,8 @@
         line-height: 100%; /* 16px */
         margin-left: 20px;
         margin-top: 10px;
+        width: 240px;
+        height: 32px;
     }
     .card-price, .currency{
         color: var(--main-violet, #A673D8);
@@ -508,204 +511,96 @@
             </div>
             <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
          </div>
-        <div style="display: block; margin-left: 20px" >
+        <div style="display: block; margin-left: 20px">
             <div class="search-sorting">
-            <div class="search">
-                <input type="search" placeholder="Поиск продукции по категории">
+                <div class="search">
+                    <input type="search" placeholder="Поиск продукции по категории">
+                </div>
+                <div class="sort">
+                    <button type="button">Сортировка</button>
+                </div>
             </div>
-            <div class="sort">
-                <button type="button">Сортировка</button>
-            </div>
-        </div>
             <div class="card-container">
+            {% for product in first_three_products %}
                 <div class="card">
                     <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
+                        <div class="slides">
+                            {% if product.photo1 %}
+                                <img src="{{ product.photo1.url }}" class="slide active" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.photo2 %}
+                                <img src="{{ product.photo2.url }}" class="slide" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.photo3 %}
+                                <img src="{{ product.photo3.url }}" class="slide" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.photo4 %}
+                                <img src="{{ product.photo4.url }}" class="slide" alt="{{ product.name }}">
+                            {% endif %}
+                            {% if product.photo5 %}
+                                <img src="{{ product.photo5.url }}" class="slide" alt="{{ product.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="slider-indicators">
+                            <span class="indicator active"></span>
+                            {% if product.photo2 %}<span class="indicator"></span>{% endif %}
+                            {% if product.photo3 %}<span class="indicator"></span>{% endif %}
+                            {% if product.photo4 %}<span class="indicator"></span>{% endif %}
+                            {% if product.photo5 %}<span class="indicator"></span>{% endif %}
+                        </div>
                     </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
+                    <div class="card-title">{{ product.name }}</div>
+                    <div class="card-subtitle">{{ product.short_description }}</div>
+                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px; margin-right: auto; justify-content: space-between;">
+                        <div class="card-price">{{ product.price }}<span class="currency">₽</span></div>
                         <div class="card-button"><button>в корзину</button></div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
-    </div>
-    <div class="card-container">
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
-        <div class="card">
-                    <div class="slider">
-                      <div class="slides">
-                        <img src="{% static 'testimage.png' %}" class="slide active" alt="Фото 1">
-                        <img src="{% static 'testimage.png' %}" class="slide" alt="Фото 2">
-                      </div>
-                      <div class="slider-indicators">
-                        <span class="indicator active"></span>
-                        <span class="indicator"></span>
-                      </div>
-                    </div>
-                    <div class="card-title">Lorem Ipsum</div>
-                    <div class="card-subtitle">Lorem ipsum dolor sit amet consectetur. Eget pellentesque.</div>
-                    <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px;margin-right: auto; justify-content: space-between;">
-                        <div class="card-price">1000<span class="currency">₽</span></div>
-                        <div class="card-button"><button>в корзину</button></div>
-                    </div>
-                </div>
 
     </div>
 </div>
 
+<div class="card-container">
+    {% for product in next_eight_products %}
+        <div class="card">
+            <div class="slider">
+                <div class="slides">
+                    {% if product.photo1 %}
+                        <img src="{{ product.photo1.url }}" class="slide active" alt="{{ product.name }}">
+                    {% endif %}
+                    {% if product.photo2 %}
+                        <img src="{{ product.photo2.url }}" class="slide" alt="{{ product.name }}">
+                    {% endif %}
+                    {% if product.photo3 %}
+                        <img src="{{ product.photo3.url }}" class="slide" alt="{{ product.name }}">
+                    {% endif %}
+                    {% if product.photo4 %}
+                        <img src="{{ product.photo4.url }}" class="slide" alt="{{ product.name }}">
+                    {% endif %}
+                    {% if product.photo5 %}
+                        <img src="{{ product.photo5.url }}" class="slide" alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+                <div class="slider-indicators">
+                    <span class="indicator active"></span>
+                    {% if product.photo2 %}<span class="indicator"></span>{% endif %}
+                    {% if product.photo3 %}<span class="indicator"></span>{% endif %}
+                    {% if product.photo4 %}<span class="indicator"></span>{% endif %}
+                    {% if product.photo5 %}<span class="indicator"></span>{% endif %}
+                </div>
+            </div>
+            <div class="card-title">{{ product.name }}</div>
+            <div class="card-subtitle">{{ product.short_description }}</div>
+            <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px; margin-right: auto; justify-content: space-between;">
+                <div class="card-price">{{ product.price }}<span class="currency">₽</span></div>
+                <div class="card-button"><button>в корзину</button></div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 
 <div class="footer">
     <div class="footer-content">
@@ -750,27 +645,30 @@
     </div>
 </div>
 
+
+
 <script>
 document.querySelectorAll('.card').forEach(card => {
-  let slides = card.querySelectorAll('.slide');
-  let indicators = card.querySelectorAll('.indicator');
-  let currentSlide = 0;
+    let slides = card.querySelectorAll('.slide');
+    let indicators = card.querySelectorAll('.indicator');
+    let currentSlide = 0;
 
-  function updateSlider(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
+    function updateSlider(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
 
-    slides[index].classList.add('active');
-    indicators[index].classList.add('active');
-  }
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+    }
 
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-      updateSlider(index);
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('mouseenter', () => {
+            updateSlider(index);
+            currentSlide = index; // Обновляем текущий слайд
+        });
     });
-  });
 
-  updateSlider(currentSlide);
+    updateSlider(currentSlide);
 });
 
 </script>
