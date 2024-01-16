@@ -348,6 +348,7 @@
         line-height: 100%;
     }
     .slider {
+        position: relative;
         margin-top: 42px;
         margin-left: auto;
         margin-right: auto;
@@ -448,6 +449,20 @@
         color: var(--main-grey, white);
     }
 
+.slider-track {
+        position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.track-section {
+    flex-grow: 1;
+    height: 100%;
+    /* Добавьте background-color: transparent; если нужно */
+}
 
 
 
@@ -541,6 +556,13 @@
                                 <img src="{{ product.photo5.url }}" class="slide" alt="{{ product.name }}">
                             {% endif %}
                         </div>
+                        <div class="slider-track">
+                            {% if product.photo1 %}<div class="track-section"></div>{% endif %}
+                            {% if product.photo2 %}<div class="track-section"></div>{% endif %}
+                            {% if product.photo3 %}<div class="track-section"></div>{% endif %}
+                            {% if product.photo4 %}<div class="track-section"></div>{% endif %}
+                            {% if product.photo5 %}<div class="track-section"></div>{% endif %}
+                        </div>
                         <div class="slider-indicators">
                             <span class="indicator active"></span>
                             {% if product.photo2 %}<span class="indicator"></span>{% endif %}
@@ -557,7 +579,6 @@
                     </div>
                 </div>
             {% endfor %}
-
         </div>
 
     </div>
@@ -583,6 +604,13 @@
                     {% if product.photo5 %}
                         <img src="{{ product.photo5.url }}" class="slide" alt="{{ product.name }}">
                     {% endif %}
+                </div>
+                <div class="slider-track">
+                    {% if product.photo1 %}<div class="track-section"></div>{% endif %}
+                    {% if product.photo2 %}<div class="track-section"></div>{% endif %}
+                    {% if product.photo3 %}<div class="track-section"></div>{% endif %}
+                    {% if product.photo4 %}<div class="track-section"></div>{% endif %}
+                    {% if product.photo5 %}<div class="track-section"></div>{% endif %}
                 </div>
                 <div class="slider-indicators">
                     <span class="indicator active"></span>
@@ -651,6 +679,7 @@
 document.querySelectorAll('.card').forEach(card => {
     let slides = card.querySelectorAll('.slide');
     let indicators = card.querySelectorAll('.indicator');
+    let trackSections = card.querySelectorAll('.track-section');
     let currentSlide = 0;
 
     function updateSlider(index) {
@@ -659,17 +688,27 @@ document.querySelectorAll('.card').forEach(card => {
 
         slides[index].classList.add('active');
         indicators[index].classList.add('active');
+        currentSlide = index; // Обновляем текущий слайд
     }
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('mouseenter', () => {
+    // Обработка перемещения курсора на track-sections
+trackSections.forEach((section, index) => {
+    section.addEventListener('mousemove', () => {
+        if (currentSlide !== index) {
             updateSlider(index);
-            currentSlide = index; // Обновляем текущий слайд
-        });
+        }
     });
-
-    updateSlider(currentSlide);
 });
 
+// Обработка наведения на индикаторы
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('mouseenter', () => {
+        updateSlider(index);
+    });
+});
+
+// Инициализация слайдера
+updateSlider(currentSlide);
+});
 </script>
+
 {% endblock %}
