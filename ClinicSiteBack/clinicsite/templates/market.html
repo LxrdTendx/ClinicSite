@@ -6,7 +6,8 @@
         /*background: gray;*/
         margin: 0;
         padding: 0;
-        zoom: 80%
+        zoom: 80%;
+        background: var(--main-white, #F5F5F5)
     }
     @font-face {
         font-family: 'Gropled';
@@ -245,7 +246,7 @@
         margin-bottom: 100px;
     }
     .footer {
-        background: #fff; /* Задайте нужный фон */
+        background: #F5F5F5; /* Задайте нужный фон */
         border-radius: 20px;
         border: 1px solid #232323;
         display: flex;
@@ -639,7 +640,7 @@
             </li>
             <li>
                 <div class="about-us">
-                    <a href="">о нас</a>
+                    <a href="{% url 'about'%}">о нас</a>
                 </div>
             </li>
             <li>
@@ -657,83 +658,85 @@
 <div class="market">
     <div style="display: flex">
         <div class="market-sorting">
-            <div class="type-card">
-                <div class="type-card-text">Тип</div>
-                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                      <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#fff" stroke-linecap="square"/>
-                    </svg>
-                    <div class="type-card-select">фармацептические препараты</div>
-                </div>
-                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                      <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
-                    </svg>
-                    <div class="type-card-select" style="color: #000">БАДы</div>
-                </div>
-            </div>
-            <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
-            <div class="count-card">
-                <div class="country-card-text">Страна</div>
-                <div style="display: flex; column-gap: 40px; flex-wrap: wrap; ">
-                    <div style="display: flex; margin-top: 15px; width: 83px">
+            <form id="filter-form" method="get">
+                <div class="type-card">
+                    <div class="type-card-text">Тип</div>
+                    <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#fff" stroke-linecap="square"/>
+                        </svg>
+                        <div class="type-card-select">фармацептические препараты</div>
+                    </div>
+                    <div style="width: 187px;height: 36px; display: flex; margin-top: 15px">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
                           <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
                         </svg>
-                        <div class="type-card-select-country" style="color: #000">Россия</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country" style="color: #000">Америка</div>
-                    </div>
-                    <div style=" display: flex; margin-top: 15px">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country" style="color: #000">Италия</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country" style="color: #000">Испания</div>
+                        <div class="type-card-select" style="color: #000">БАДы</div>
                     </div>
                 </div>
-            </div>
-            <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
-            <div class="price-card">
-                <div class="price-card-text">Цена</div>
+                <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
+                <div class="count-card">
+                    <div class="country-card-text">Страна</div>
+                    <div style="display: flex; column-gap: 40px; flex-wrap: wrap; ">
+                        <div style="display: flex; margin-top: 15px; width: 83px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                              <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
+                            </svg>
+                            <div class="type-card-select-country" style="color: #000">Россия</div>
+                        </div>
+                        <div style="display: flex; margin-top: 15px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                              <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
+                            </svg>
+                            <div class="type-card-select-country" style="color: #000">Америка</div>
+                        </div>
+                        <div style=" display: flex; margin-top: 15px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                              <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
+                            </svg>
+                            <div class="type-card-select-country" style="color: #000">Италия</div>
+                        </div>
+                        <div style="display: flex; margin-top: 15px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                              <path d="M1 4.13726L4.46154 7.66667L11 1" stroke="#000" stroke-linecap="square"/>
+                            </svg>
+                            <div class="type-card-select-country" style="color: #000">Испания</div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
+                <div class="price-card">
+                    <div class="price-card-text">Цена</div>
 
 
-                <div class="slider-price">
-                    <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
-                </div>
-                <div class="price-input">
-                    <div class="field">
-                        <span>от</span>
-                        <input type="number" class="input-min" value="2500">
-                        <span>р.</span>
+                    <div class="slider-price">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="range-input">
+                        <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                    </div>
+                    <div class="price-input">
+                        <div class="field">
+                            <span>от</span>
+                            <input type="number" class="input-min" value="2500">
+                            <span>р.</span>
+                        </div>
+
+                        <div class="field">
+                            <span>до</span>
+                            <input type="number" class="input-max" value="7500">
+                            <span>р.</span>
+                        </div>
                     </div>
 
-                    <div class="field">
-                        <span>до</span>
-                        <input type="number" class="input-max" value="7500">
-                        <span>р.</span>
-                    </div>
                 </div>
-
-            </div>
-            <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
-            <div class="button-sorting" style="margin-left: 20px; display: flex; width: 241px">
-                <button class="accept">подтвердить</button>
-                <button class="clear-sort">очистить выбор</button>
-            </div>
+                <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
+                <div class="button-sorting" style="margin-left: 19px">
+                    <button type="submit" class="accept">подтвердить</button>
+                    <button type="button" class="clear-sort" onclick="resetForm()">очистить выбор</button>
+                </div>
+            </form>
          </div>
         <div style="display: block; margin-left: 20px">
             <div class="search-sorting">

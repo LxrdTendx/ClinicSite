@@ -5,7 +5,8 @@
         /*background: gray;*/
         margin: 0;
         padding: 0;
-        zoom: 80%
+        zoom: 80%;
+        background: var(--main-white, #F5F5F5)
     }
     @font-face {
         font-family: 'Gropled';
@@ -372,7 +373,6 @@
     .cons-wrapper{
         width: 380px;
         height: 500px;
-        flex-shrink: 0;
         background-image: url("static/consultation.png");
     }
     .cons-form{
@@ -515,7 +515,7 @@
         margin-bottom: 100px;
     }
 .footer {
-    background: #fff; /* Задайте нужный фон */
+    background: #F5F5F5; /* Задайте нужный фон */
     border-radius: 20px;
     border: 1px solid #232323;
     display: flex;
@@ -609,7 +609,7 @@
         <ul>
             <li>
                 <div class="main active" style="">
-                    <a href="">главная</a>
+                    <a href="{% url 'login' %}">главная</a>
                 </div>
             </li>
 
@@ -620,7 +620,7 @@
             </li>
             <li>
                 <div class="about-us">
-                    <a href="">о нас</a>
+                    <a href="{% url 'about' %}">о нас</a>
                 </div>
             </li>
             <li>

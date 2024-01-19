@@ -1,0 +1,714 @@
+{% load static %}
+{% block content %}
+
+<style>
+    body{
+        /*background: gray;*/
+        margin: 0;
+        padding: 0;
+        zoom: 80%;
+        background: var(--main-white, #F5F5F5)
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
+
+    .header{
+        margin-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+        width: 73.75%;
+        height: 100px;
+        background: var(--main-grey, #232323);
+        font-family: Fira Sans Condensed, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        position: sticky;
+        top: 10px;
+        z-index: 10;
+        border-radius: 20px;
+    }
+    .navbar{
+        margin-bottom:auto;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: 80px;
+        height: 39px;
+        width: auto;
+        display: inline-flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
+    ul{
+        gap: 20px;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        list-style-type: none;
+    }
+
+    ul li{
+        width: 95px;
+
+    }
+    .logo{
+        color: var(--main-white, #F5F5F5);
+        font-family: Gropled, sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 100%; /* 32px */
+        margin-left: 111px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    .navbar a, .about-us-link a{
+        color: var(--main-light-grey, #585858);
+        text-decoration: none;
+    }
+    .navbar a:hover, .about-us-link a:hover{
+        cursor: pointer;
+        color: var(--main-grey, #232323);
+        transition: 0.5s;
+    }
+    .main a {
+        background-color: var(--main-grey, #232323); /* Фон для 'главная' */
+        color: white; /* Цвет текста для 'главная' */
+        border-radius: 80px; /* Скругление углов для 'главная' */
+        padding: 10px 15px; /* Внутренние отступы для создания обводки */
+        display: flex; /* Использование flexbox для центрирования текста */
+        align-items: center; /* Центрирование текста по вертикали */
+        justify-content: center; /* Центрирование текста по горизонтали */
+        width: auto; /* Автоматическая ширина в зависимости от контента и padding */
+    }
+
+    /* Стили для остальных пунктов меню */
+    .navbar a {
+        font-family: "TT Fors", sans-serif;
+        color: var(--main-light-grey, #585858);
+        display: block;
+        text-align: center;
+        padding: 10px 15px; /* Одинаковые отступы для всех пунктов */
+        border-radius: 80px; /* Скругление углов для всех пунктов */
+    }
+
+    /* Стили при наведении для всех пунктов меню */
+    .navbar a:hover {
+        color: var(--main-grey, #232323);
+        background-color: white; /* Фон при наведении */
+        text-decoration: none;
+    }
+    .navbar .active a {
+
+        background-color: white; /* Фон для активного пункта меню */
+        color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
+
+    }
+    .profile {
+        margin-top: 100px;
+        width: 1086px;
+        height: 450px;
+        margin-right: auto;
+        margin-left: auto
+    }
+
+.profile-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.profile-photo {
+    width: 380px;
+    height: 450px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    border-radius: 20px;
+    border: 2px #232323 solid;
+    background-image: url("/static/profile.png");
+}
+
+.profile-name {
+    left: 400px;
+    top: 124px;
+    position: absolute;
+    color: #232323;
+    font-size: 72px;
+    font-family: 'Gropled', sans-serif;
+    font-weight: 700;
+    line-height: 57.60px;
+    word-wrap: break-word;
+}
+
+.profile-description {
+    width: 600px;
+    left: 480px;
+    top: 330px;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 280;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.profile-tags {
+    width: 673px;
+    height: 40px;
+    left: 400px;
+    top: 260px;
+    position: absolute;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.tag {
+    padding-bottom: 13.5px;
+    padding-top: 13.5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 2px #F22D3E solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #F22D3E;
+    font-size: 18px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    line-height: 18px;
+    word-wrap: break-word;
+}
+
+/* Для каждого размера тега, вы можете добавить отдельный класс или использовать inline-style для width, если размеры сильно различаются */
+.tag {
+    width: auto; /* Пример, если ширина тега должна быть автоматически определена */
+}
+.experience{
+    position: relative;
+    width: 1180px;
+    height: 422px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+}
+.experience-text{
+    color: var(--main-grey, #232323);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Gropled, sans-serif;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80%; /* 57.6px */
+}
+.experience-icon{
+    margin-left: 245px;
+    margin-top: 60px;
+    position: absolute;
+    width: 38.891px;
+    height: 38.891px;
+    flex-shrink: 0;
+}
+.experience-point{
+    width: 859px;
+    height: 40px;
+    display: flex;
+}
+.experience-year{
+    color: var(--main-violet, #232323);
+    text-align: right;
+    font-family: "TT Fors", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 100%; /* 24px */
+}
+.experience-text-year{
+    width: 759px;
+    height: auto;
+    color: var(--main-grey, #232323);
+    font-family: "TT Fors", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 280;
+    line-height: 100%; /* 20px */
+}
+.experience-point:hover .experience-year{
+    color: var(--main-grey, #A673D8);
+    transition: 0.4s;
+}
+.scientific-work{
+    margin-top: 200px;
+    width: 1156px;
+    height: 567px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.scientific-work {
+    /* Общие стили для блока научной работы */
+}
+
+.scientific-work-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scientific-content {
+    width: 357px;
+    height: 310px;
+    position: absolute;
+    left: 711px;
+    top: 231px;
+}
+
+.scientific-description {
+    width: 240px;
+    position: absolute;
+    left: 0;
+    top: 102px;
+    color: #232323;
+    font-size: 16px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 280;
+    line-height: 16px;
+    word-wrap: break-word;
+}
+
+.scientific-title {
+    width: 357px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #F22D3E;
+    font-size: 24px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    text-decoration: underline;
+    line-height: 24px;
+    word-wrap: break-word;
+    font-style: normal;
+
+}
+
+.scientific-image {
+    width: 380px;
+    height: 542px;
+    position: absolute;
+    left: 311px;
+    top: 0;
+    border-radius: 20px;
+    background-image: url("/static/patent.png");
+    background-size: cover; /* Или используйте contain, в зависимости от нужного результата */
+    background-position: center; /* Центрирует изображение */
+    background-repeat: no-repeat;
+}
+
+.scientific-panel {
+    width: 291px;
+    height: 138px;
+    position: absolute;
+    left: 0;
+    top: 358px;
+}
+
+.panel-background {
+    width: 291px;
+    height: 138px;
+    position: absolute;
+    background: #232323;
+    border-radius: 20px;
+}
+
+.panel-text {
+    width: 253px;
+    position: absolute;
+    left: 20px;
+    top: 70px;
+    color: #F5F5F5;
+    font-size: 16px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 280;
+    line-height: 16px;
+    word-wrap: break-word;
+}
+
+.panel-navigation {
+    width: 99px;
+    height: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    /* Стили для текста и стрелки навигации */
+}
+
+.navigation-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #F5F5F5;
+    font-size: 24px;
+    font-family: 'Gropled', sans-serif;
+    font-weight: 700;
+    line-height: 19.20px;
+    word-wrap: break-word;
+}
+
+/*.navigation-arrow {*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    position: absolute;*/
+/*    left: 99px;*/
+/*    top: 0;*/
+/*    transform: rotate(90deg);*/
+/*    transform-origin: 0 0;*/
+/*    background: #F5F5F5;*/
+/*    !* Стили для внутренних элементов стрелки *!*/
+/*}*/
+
+/* Стили для '.navigation-arrow' внутренних элементов */
+
+.scientific-back {
+    width: 137px;
+    height: 61px;
+    position: absolute;
+    left: 154px;
+    top: 506px;
+}
+
+.back-background {
+    width: 137px;
+    height: 61px;
+    position: absolute;
+    background: #B5B5B5;
+    border-radius: 20px;
+}
+
+.back-navigation {
+    width: 97px;
+    height: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    /* Стили для текста и стрелки назад */
+}
+
+.navigation-text-back {
+    position: absolute;
+    left: 25px;
+    top: 0;
+    color: #F5F5F5;
+    font-size: 24px;
+    font-family: 'Gropled', sans-serif;
+    font-weight: 700;
+    line-height: 19.20px;
+    word-wrap: break-word;
+}
+
+.navigation-arrow-back {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: rotate(90deg);
+    transform-origin: 0 0;
+    background: #F5F5F5;
+    /* Стили для внутренних элементов стрелки назад */
+}
+
+/* Стили для '.navigation-arrow-back' внутренних элементов */
+
+.scientific-header {
+    width: 525px;
+    position: absolute;
+    left: 631px;
+    top: 60px;
+    color: #232323;
+    font-size: 72px;
+    font-family: 'Gropled', sans-serif;
+    font-weight: 700;
+    line-height: 57.60px;
+    word-wrap: break-word;
+}
+.footer{
+        margin-top: 175px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 200px;
+        width: 1180px;
+        margin-bottom: 100px;
+    }
+    .footer {
+        background: #F5F5F5; /* Задайте нужный фон */
+        border-radius: 20px;
+        border: 1px solid #232323;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /*width: 100%; !* Растягиваем на всю ширину футера *!*/
+        gap: 40px;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-heading {
+        color: var(--main-grey, #232323);
+        font-family: 'TT Fors',sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 100%;
+        margin-bottom: 10px; /* Отступ между заголовком и списком */
+    }
+
+    .footer-list {
+        display: block;
+        list-style: none; /* Убираем маркеры списка */
+        padding: 0; /* Убираем отступы у списка */
+        margin: 0; /* Убираем внешние отступы у списка */
+    }
+
+    .footer-item {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: #232323;
+        margin-bottom: 10px; /* Отступ между элементами списка */
+    }
+
+    .footer-title.red {
+        color: #F22D3E; /* Красный цвет для названия */
+        font-family: 'Gropled',sans-serif;
+        font-weight: 700;
+    }
+
+    /* Для медиа запросов и адаптивности */
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+        }
+
+        .footer-section {
+            margin-bottom: 20px; /* Отступы между секциями в мобильном виде */
+        }
+    }
+        .footer-phone-select {
+        background: #FFF; /* Цвет фона выпадающего списка */
+        color: #232323; /* Цвет текста */
+        font-size: 16px; /* Размер шрифта */
+        cursor: pointer; /* Курсор в виде руки */
+        border: none;
+    }
+
+    /* Стили для элементов option */
+    .footer-phone-select option {
+        padding: 5px; /* Отступ для каждого элемента списка */
+    }
+
+
+</style>
+
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<div class="header" style="display: flex" >
+    <div class="logo" >
+        <a href="" ><img src="">clinic slimness</a>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li>
+                <div class="main " style="">
+                    <a href="{% url 'login' %}">главная</a>
+                </div>
+            </li>
+
+            <li>
+                <div class="production">
+                    <a href="{% url 'market' %}">аптека</a>
+                </div>
+            </li>
+            <li>
+                <div class="about-us active">
+                    <a href="{% url 'about' %}">о нас</a>
+                </div>
+            </li>
+            <li>
+                <div class="cart">
+                    <a href="">корзина</a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<div class="profile" >
+    <div class="profile-wrapper">
+        <div class="profile-photo"></div>
+        <div class="profile-name">Исламбеков<br/>Рашид Раджабович</div>
+        <div class="profile-description">Основатель Clinic Slimness. Врач-эндокринолог, кандидат медицинских наук. Член-корреспондент академии медико-технических наук Российской Федерации. Автор множества научных работ на темы сахарного диабета и его поздних осложнений, диабетической полинейропатии, коррекции метаболических нарушений, лечения ожирения.</div>
+        <div class="profile-tags">
+            <div class="tag">терапевт</div>
+            <div class="tag">эндокринолог</div>
+            <div class="tag">андролог</div>
+            <div class="tag">врач общей практики</div>
+        </div>
+    </div>
+</div>
+<div class="experience">
+    <div style="display: flex; width: 470px;height: 106px">
+        <div class="experience-text">образование и опыт</div>
+        <div class="experience-icon">
+           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+              <path d="M13.75 13.75C21.3529 6.14704 33.647 6.14704 41.25 13.75C48.8529 21.3529 48.8529 33.6471 41.25 41.25C33.647 48.853 21.3529 48.853 13.75 41.25C6.14703 33.6471 6.14703 21.3529 13.75 13.75ZM39.6323 39.6324C46.3456 32.9191 46.3456 22.0809 39.6323 15.3676C32.9191 8.6544 22.0809 8.6544 15.3676 15.3676C8.65438 22.0809 8.65438 32.9191 15.3676 39.6324C22.0809 46.3456 32.9191 46.3456 39.6323 39.6324Z" fill="#585858"/>
+              <path d="M19.4115 32.8387H32.8379L32.8379 19.4123L35.1027 19.4123L35.1026 35.1034L19.4115 35.1034V32.8387Z" fill="#585858"/>
+              <path d="M34.7793 33.1619L33.1616 34.7795L19.4116 21.0295L21.0293 19.4119L34.7793 33.1619Z" fill="#585858"/>
+           </svg>
+        </div>
+    </div>
+    <div style="margin-right:0px; margin-left:auto; width: 880px; height: auto">
+        <hr style="margin-top: 0px;width: 880px; border-color: #B5B5B5; margin-bottom: 30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <div class="experience-point" style="gap: 47px; align-items: center">
+            <div class="experience-year">
+                1983
+            </div>
+            <div class="experience-text-year">Лечебный факультет Московского медико-стоматологического института им. Евдокимова, специальность “Лечебное дело”</div>
+        </div>
+        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <div class="experience-point" style="gap: 47px; align-items: center">
+            <div class="experience-year">
+                1983<br>1985
+            </div>
+            <div class="experience-text-year">Интернатура по специальности “Терапия” и работа в отделении кардиологии на базе ГКБ №33 им. Остроумова</div>
+        </div>
+        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <div class="experience-point" style="gap: 41px; align-items: center">
+            <div class="experience-year">
+                1985<br>2009
+            </div>
+            <div class="experience-text-year">Кафедра Эндокринологии факультета “Усовершенствования врачей” медицинской академии им. Сеченова</div>
+        </div>
+        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+
+    </div>
+
+</div>
+<div class="scientific-work">
+    <div class="scientific-work-wrapper">
+        <div class="scientific-content">
+            <div class="scientific-description">Цифровые очки содержат затемненную линзу с вмонтированной в нее на уровне зрачка видеокамерой с углами разворота, соответствующими человеческому глазу, а также линзу с цифровым внутренним экраном, расположенным ближе к переносице. Над линзой расположен датчик положения зрачка видящего глаза</div>
+            <div class="scientific-title">устройство цифровых очков для эмуляции бинокулярного зрения</div>
+        </div>
+        <div class="scientific-image" src=""></div>
+        <div class="scientific-panel">
+            <div class="panel-background"></div>
+            <div class="panel-text">Диабетическая полинейропатия и ее течение при различных терапевтических воздействиях</div>
+            <div class="panel-navigation">
+                <div class="navigation-text">далее</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-left: 80px;}">
+                  <path d="M0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10ZM18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10Z" fill="#F5F5F5"/>
+                  <path d="M9.00037 14.8825L13.8827 10.0002L9.00037 5.11784L9.8239 4.29431L15.5298 10.0002L9.8239 15.7061L9.00037 14.8825Z" fill="#F5F5F5"/>
+                  <path d="M14.7061 9.4118V10.5883H4.70605V9.4118H14.7061Z" fill="#F5F5F5"/>
+                </svg>
+            </div>
+        </div>
+        <div class="scientific-back">
+            <div class="back-background"></div>
+            <div class="back-navigation">
+                <div class="navigation-text-back">назад</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M20 10C20 4.47059 15.5294 0 10 0C4.47059 0 0 4.47059 0 10C0 15.5294 4.47059 20 10 20C15.5294 20 20 15.5294 20 10ZM1.17647 10C1.17647 5.11765 5.11765 1.17647 10 1.17647C14.8824 1.17647 18.8235 5.11765 18.8235 10C18.8235 14.8824 14.8824 18.8235 10 18.8235C5.11765 18.8235 1.17647 14.8824 1.17647 10Z" fill="#F5F5F5"/>
+                  <path d="M10.9996 14.8825L6.11727 10.0002L10.9996 5.11784L10.1761 4.29431L4.47021 10.0002L10.1761 15.7061L10.9996 14.8825Z" fill="#F5F5F5"/>
+                  <path d="M5.29395 9.4118V10.5883H15.2939V9.4118H5.29395Z" fill="#F5F5F5"/>
+                </svg>
+            </div>
+        </div>
+        <div class="scientific-header">научная деятельность</div>
+    </div>
+</div>
+
+
+
+
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h2 class="footer-title red">clinic slimness</h2>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">наши услуги</h3>
+            <ul class="footer-list">
+                <li class="footer-item">услуга 1</li>
+                <li class="footer-item">услуга 2</li>
+                <li class="footer-item">услуга 3</li>
+            </ul>
+        </div>
+        <div style="width: 0px; height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">компания</h3>
+            <ul class="footer-list">
+                <li class="footer-item">о нас</li>
+                <li class="footer-item">аптека</li>
+                <li class="footer-item">контакты</li>
+            </ul>
+        </div>
+        <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
+        <div class="footer-section">
+            <h3 class="footer-heading">контакты</h3>
+            <ul class="footer-list">
+                <li class="footer-item">
+                    <!-- Выпадающий список телефонных номеров -->
+                    <select class="footer-phone-select" onchange="location = this.value;">
+                        <option value="tel:+74956080101">+7 495 608-01-01</option>
+                        <option value="tel:+74956077950">+7 495 607-79-50</option>
+                        <option value="tel:+74956073701">+7 495 607-37-01</option>
+                        <option value="tel:+74955438384">+7 495 543-83-84</option>
+                    </select>
+                </li>
+                <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color:#232323;">info@medicsel.ru</a></li>
+                <li class="footer-item" style="width: auto">г. Москва, пер. Малый Козловский, д. 6</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

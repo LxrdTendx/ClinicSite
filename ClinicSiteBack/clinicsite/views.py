@@ -5,6 +5,9 @@ from .models import Product
 def login_view(request):
     return render(request, 'login.html')
 
+def about_view(request):
+    return render(request, 'about.html')
+
 def market_view(request):
     # Получение продуктов из базы данных
     products = Product.objects.all()
