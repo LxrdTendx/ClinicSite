@@ -1,0 +1,43 @@
+{% for product in products %}
+    <div class="card">
+        <div class="slider">
+            <div class="slides">
+                {% if product.photo1 %}
+                    <img src="{{ product.photo1.url }}" class="slide active" alt="{{ product.name }}">
+                {% endif %}
+                {% if product.photo2 %}
+                    <img src="{{ product.photo2.url }}" class="slide" alt="{{ product.name }}">
+                {% endif %}
+                {% if product.photo3 %}
+                    <img src="{{ product.photo3.url }}" class="slide" alt="{{ product.name }}">
+                {% endif %}
+                {% if product.photo4 %}
+                    <img src="{{ product.photo4.url }}" class="slide" alt="{{ product.name }}">
+                {% endif %}
+                {% if product.photo5 %}
+                    <img src="{{ product.photo5.url }}" class="slide" alt="{{ product.name }}">
+                {% endif %}
+            </div>
+            <div class="slider-track">
+                {% if product.photo1 %}<div class="track-section"></div>{% endif %}
+                {% if product.photo2 %}<div class="track-section"></div>{% endif %}
+                {% if product.photo3 %}<div class="track-section"></div>{% endif %}
+                {% if product.photo4 %}<div class="track-section"></div>{% endif %}
+                {% if product.photo5 %}<div class="track-section"></div>{% endif %}
+            </div>
+            <div class="slider-indicators">
+                <span class="indicator active"></span>
+                {% if product.photo2 %}<span class="indicator"></span>{% endif %}
+                {% if product.photo3 %}<span class="indicator"></span>{% endif %}
+                {% if product.photo4 %}<span class="indicator"></span>{% endif %}
+                {% if product.photo5 %}<span class="indicator"></span>{% endif %}
+            </div>
+        </div>
+        <div class="card-title">{{ product.name }}</div>
+        <div class="card-subtitle">{{ product.short_description }}</div>
+        <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px; margin-right: auto; justify-content: space-between;">
+            <div class="card-price">{{ product.price }}<span class="currency">₽</span></div>
+            <div class="card-button"><button>в корзину</button></div>
+        </div>
+    </div>
+{% endfor %}
