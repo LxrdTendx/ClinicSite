@@ -1,5 +1,5 @@
 {% for product in products %}
-    <div class="card">
+    <div class="card" data-product-id="{{ product.id }}">
         <div class="slider">
             <div class="slides">
                 {% if product.photo1 %}

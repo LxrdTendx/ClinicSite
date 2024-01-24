@@ -732,7 +732,7 @@
 }
 
 .card-entrance {
-  animation: entranceAnimation 0.5s ease-out forwards;
+  animation: entranceAnimation 0.9s ease-out forwards;
 }
 
 @keyframes entranceAnimation {
@@ -901,6 +901,11 @@
 </div>
 <button class="load-more" id="load-more">Загрузить еще</button>
 
+<div class="pagination">
+    {% for i in products.paginator.page_range %}
+        <button class="page-link" data-page="{{ i }}">{{ i }}</button>
+    {% endfor %}
+</div>
 
 
 
@@ -1006,7 +1011,7 @@ let totalPages = 1;  // Переменная для хранения общег�
 document.getElementById('load-more').addEventListener('click', function() {
     if (currentPage < totalPages) {
         currentPage++;
-        sendAjaxRequest(true);
+        sendAjaxRequest(true); // true означает, что это подгрузка дополнительных товаров
     }
 });
 
@@ -1014,9 +1019,18 @@ function clearAnimationClasses() {
     document.querySelectorAll('.card').forEach(card => card.classList.remove('card-entrance'));
 }
 
+document.querySelectorAll('.page-link').forEach(pageLink => {
+    pageLink.addEventListener('click', function() {
+        let page = this.getAttribute('data-page');
+        sendAjaxRequest(false, page); // false означает, что это не подгрузка дополнительных товаров
+    });
+});
 
+function isProductAlreadyDisplayed(productId) {
+    return !!document.querySelector(`.card[data-product-id="${productId}"]`);
+}
 // Функция для отправки запроса с фильтрацией и сортировкой
-function sendAjaxRequest(isLoadMore = false) {
+function sendAjaxRequest(isLoadMore = false, page = 1) {
     clearAnimationClasses();
     let searchQuery = document.querySelector('.search input[type="search"]').value;
     let types = getActiveFilters('type-card-select');
@@ -1039,7 +1053,7 @@ function sendAjaxRequest(isLoadMore = false) {
     if (isLoadMore) {
         params.append('page', currentPage);
     } else {
-        currentPage = 1;  // Сброс к первой странице при изменении фильтров
+        params.append('page', page);
     }
 
     fetch(`/market/?${params.toString()}`, {
@@ -1050,16 +1064,23 @@ function sendAjaxRequest(isLoadMore = false) {
 
     .then(response => response.json())
     .then(data => {
-        totalPages = data.num_pages;  // Обновляем общее количество страниц
+        totalPages = data.num_pages;
         let container = document.querySelector('.card-container');
         if (isLoadMore) {
-            container.insertAdjacentHTML('beforeend', data.html);
+            let parser = new DOMParser();
+            let newDoc = parser.parseFromString(data.html, 'text/html');
+            newDoc.querySelectorAll('.card').forEach(newCard => {
+                let productId = newCard.dataset.productId;
+                if (!isProductAlreadyDisplayed(productId)) {
+                    container.appendChild(newCard);
+                    newCard.classList.add('card-entrance');
+                }
+            });
         } else {
             container.innerHTML = data.html;
-            currentPage = 1;  // Сброс к первой странице при изменении фильтров
+            currentPage = 1;
         }
-        container.querySelectorAll('.card').forEach(card => card.classList.add('card-entrance'));
-        initializeSliders(); // Инициализация слайдеров для новых элементов
+        initializeSliders();
     });
 }
 
