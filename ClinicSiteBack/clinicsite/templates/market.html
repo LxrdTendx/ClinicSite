@@ -155,7 +155,7 @@
 
     .market-sorting{
         width: 280px;
-        height: 529px;
+        height: 549px;
         flex-shrink: 0;
         border-radius: 20px;
         background: var(--main-violet, #A673D8);
@@ -338,7 +338,7 @@
 
     .count-card{
         width: 230px;
-        height: 91px;
+        height: 120px;
         margin-left: 20px;
         margin-top: 30px;
     }
@@ -708,6 +708,28 @@
 .sort-select::-ms-expand {
     display: none;
 }
+.load-more{
+    margin-left: 50%;
+    border: 1px solid #585858;
+    width: 280px;
+    height: 57px;
+    color: #585858;
+    font-family: 'TT Fors', sans-serif;
+    font-size: 18px;
+    font-weight: 280;
+    line-height: 18px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border-radius: 50px;
+    margin-top: 30px;
+}
+.load-more:hover{
+    transition: 0.4s;
+    border: #A673D8;
+    background: var(--main-violet, #A673D8);
+    color: var(--main-grey, white);
+}
 
 
 </style>
@@ -793,7 +815,19 @@
                         <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
                           <path d="M1 4.13726L4.46154 7.66667L11 1"  stroke-linecap="square"/>
                         </svg>
-                        <div class="type-card-select-country" data-country="Испания">Испания</div>
+                        <div class="type-card-select-country" data-country="Турция">Турция</div>
+                    </div>
+                    <div style="display: flex; margin-top: 15px; width: 83px" class="country-block">
+                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
+                        </svg>
+                        <div class="type-card-select-country"  data-country="Индия">Индия</div>
+                    </div>
+                    <div style="display: flex; margin-top: 15px; width: 83px" class="country-block">
+                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
+                        </svg>
+                        <div class="type-card-select-country"  data-country="Корея">Корея</div>
                     </div>
                 </div>
             </div>
@@ -844,10 +878,13 @@
             <div class="card-container">
                 {% include 'product_cards.html' with products=first_three_products %}
             </div>
+
         </div>
 
     </div>
 </div>
+<button class="load-more" id="load-more">Загрузить еще</button>
+
 
 
 
@@ -947,8 +984,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+let currentPage = 1;
+let totalPages = 1;  // Переменная для хранения общего количества страниц
+
+document.getElementById('load-more').addEventListener('click', function() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        sendAjaxRequest(true);
+    }
+});
+
 // Функция для отправки запроса с фильтрацией и сортировкой
-function sendAjaxRequest() {
+function sendAjaxRequest(isLoadMore = false) {
     let searchQuery = document.querySelector('.search input[type="search"]').value;
     let types = getActiveFilters('type-card-select');
     let countries = getActiveFilters('type-card-select-country');
@@ -966,15 +1013,29 @@ function sendAjaxRequest() {
     params.append('search', searchQuery);
     params.append('sort', sortOrder);
 
+
+    if (isLoadMore) {
+        params.append('page', currentPage);
+    } else {
+        currentPage = 1;  // Сброс к первой странице при изменении фильтров
+    }
+
     fetch(`/market/?${params.toString()}`, {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }
     })
+
     .then(response => response.json())
     .then(data => {
+        totalPages = data.num_pages;  // Обновляем общее количество страниц
         let container = document.querySelector('.card-container');
-        container.innerHTML = data.html;
+        if (isLoadMore) {
+            container.innerHTML += data.html;
+        } else {
+            container.innerHTML = data.html;
+            currentPage = 1;  // Сброс к первой странице при изменении фильтров
+        }
         initializeSliders(); // Инициализация слайдеров для новых элементов
     });
 }

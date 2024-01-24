@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from .models import Product
 
@@ -41,14 +42,22 @@ def market_view(request):
     if min_price and max_price:
         products = products.filter(price__gte=min_price, price__lte=max_price)
 
+
+    # Установите количество товаров на странице
+    paginator = Paginator(products, 6)  # 6 товаров на страницу
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     # Если это AJAX-запрос, возвращаем только карточки товаров
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        html = render_to_string('product_cards.html', {'products': products}, request=request)
-        return JsonResponse({'html': html})
+        html = render_to_string('product_cards.html', {'products': page_obj}, request=request)
+        return JsonResponse({'html': html, 'num_pages': paginator.num_pages})
+
+
 
     # Если это не AJAX-запрос, то возвращаем все товары
     context = {
-        'products': products
+        'products': page_obj,
     }
     return render(request, 'market.html', context)
 
