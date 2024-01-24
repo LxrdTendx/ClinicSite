@@ -44,7 +44,7 @@ def market_view(request):
 
 
     # Установите количество товаров на странице
-    paginator = Paginator(products, 6)  # 6 товаров на страницу
+    paginator = Paginator(products, 8)  # 8 товаров на страницу
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

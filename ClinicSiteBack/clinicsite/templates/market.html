@@ -709,7 +709,7 @@
     display: none;
 }
 .load-more{
-    margin-left: 50%;
+    margin-left: 45%;
     border: 1px solid #585858;
     width: 280px;
     height: 57px;
@@ -730,6 +730,22 @@
     background: var(--main-violet, #A673D8);
     color: var(--main-grey, white);
 }
+
+.card-entrance {
+  animation: entranceAnimation 0.5s ease-out forwards;
+}
+
+@keyframes entranceAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 </style>
@@ -994,8 +1010,14 @@ document.getElementById('load-more').addEventListener('click', function() {
     }
 });
 
+function clearAnimationClasses() {
+    document.querySelectorAll('.card').forEach(card => card.classList.remove('card-entrance'));
+}
+
+
 // Функция для отправки запроса с фильтрацией и сортировкой
 function sendAjaxRequest(isLoadMore = false) {
+    clearAnimationClasses();
     let searchQuery = document.querySelector('.search input[type="search"]').value;
     let types = getActiveFilters('type-card-select');
     let countries = getActiveFilters('type-card-select-country');
@@ -1031,11 +1053,12 @@ function sendAjaxRequest(isLoadMore = false) {
         totalPages = data.num_pages;  // Обновляем общее количество страниц
         let container = document.querySelector('.card-container');
         if (isLoadMore) {
-            container.innerHTML += data.html;
+            container.insertAdjacentHTML('beforeend', data.html);
         } else {
             container.innerHTML = data.html;
             currentPage = 1;  // Сброс к первой странице при изменении фильтров
         }
+        container.querySelectorAll('.card').forEach(card => card.classList.add('card-entrance'));
         initializeSliders(); // Инициализация слайдеров для новых элементов
     });
 }
