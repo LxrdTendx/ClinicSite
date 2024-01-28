@@ -37,7 +37,7 @@
         line-height: normal;
         position: sticky;
         top: 10px;
-        z-index: 10;
+        z-index: 20;
         border-radius: 20px;
     }
     .navbar{
@@ -154,6 +154,9 @@
     }
 
     .market-sorting{
+        top: 130px;
+        position: sticky;
+        z-index: 10;
         width: 280px;
         height: 549px;
         flex-shrink: 0;
@@ -901,15 +904,11 @@
 </div>
 <button class="load-more" id="load-more">Загрузить еще</button>
 
-<div class="pagination">
-    {% for i in products.paginator.page_range %}
-        <button class="page-link" data-page="{{ i }}">{{ i }}</button>
-    {% endfor %}
-</div>
 
 
 
-<div class="footer">
+
+<div class="footer" id="footer">
     <div class="footer-content">
         <div class="footer-section">
             <h2 class="footer-title red">clinic slimness</h2>
@@ -951,6 +950,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script>
@@ -1023,6 +1023,7 @@ document.querySelectorAll('.page-link').forEach(pageLink => {
     pageLink.addEventListener('click', function() {
         let page = this.getAttribute('data-page');
         sendAjaxRequest(false, page); // false означает, что это не подгрузка дополнительных товаров
+        initializeSliders();
     });
 });
 
@@ -1064,23 +1065,16 @@ function sendAjaxRequest(isLoadMore = false, page = 1) {
 
     .then(response => response.json())
     .then(data => {
-        totalPages = data.num_pages;
+        totalPages = data.num_pages;  // Обновляем общее количество страниц
         let container = document.querySelector('.card-container');
         if (isLoadMore) {
-            let parser = new DOMParser();
-            let newDoc = parser.parseFromString(data.html, 'text/html');
-            newDoc.querySelectorAll('.card').forEach(newCard => {
-                let productId = newCard.dataset.productId;
-                if (!isProductAlreadyDisplayed(productId)) {
-                    container.appendChild(newCard);
-                    newCard.classList.add('card-entrance');
-                }
-            });
+            container.insertAdjacentHTML('beforeend', data.html);
         } else {
             container.innerHTML = data.html;
-            currentPage = 1;
+            currentPage = 1;  // Сброс к первой странице при изменении фильтров
         }
-        initializeSliders();
+        container.querySelectorAll('.card').forEach(card => card.classList.add('card-entrance'));
+        initializeSliders(); // Инициализация слайдеров для новых элементов
     });
 }
 
