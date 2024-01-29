@@ -3,13 +3,18 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-from .models import Product
+from .models import Product, Scientific
 
 def login_view(request):
     return render(request, 'login.html')
 
 def about_view(request):
-    return render(request, 'about.html')
+    scientific = Scientific.objects.all()
+    context ={
+        'scientific': scientific,
+    }
+    return render(request, 'about.html', context)
+
 
 def market_view(request):
     search_query = request.GET.get('search', '')

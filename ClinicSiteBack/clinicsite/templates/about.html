@@ -323,7 +323,6 @@
     left: 311px;
     top: 0;
     border-radius: 20px;
-    background-image: url("/static/patent.png");
     background-size: cover; /* Или используйте contain, в зависимости от нужного результата */
     background-position: center; /* Центрирует изображение */
     background-repeat: no-repeat;
@@ -368,6 +367,7 @@
 }
 
 .navigation-text {
+    cursor: pointer;
     position: absolute;
     left: 0;
     top: 0;
@@ -419,6 +419,7 @@
 }
 
 .navigation-text-back {
+    cursor: pointer;
     position: absolute;
     left: 25px;
     top: 0;
@@ -528,7 +529,7 @@
             margin-bottom: 20px; /* Отступы между секциями в мобильном виде */
         }
     }
-        .footer-phone-select {
+    .footer-phone-select {
         background: #F5F5F5; /* Цвет фона выпадающего списка */
         color: #232323; /* Цвет текста */
         font-size: 16px; /* Размер шрифта */
@@ -540,6 +541,189 @@
     .footer-phone-select option {
         padding: 5px; /* Отступ для каждого элемента списка */
     }
+    .fade {
+        animation: fadeIn 0.5s;
+        display: block; /* или другой тип отображения, который вы используете */
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes arrow-bounce {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(5px);
+      }
+    }
+    .arrow{
+        animation: arrow-bounce 2s infinite;
+    }
+    .reviews {
+        margin-top: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1177px;
+        height: 682.004px;
+    }
+    .title-reviews {
+        color: #232323;
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled, sans-serif;
+        font-size: 72px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%;
+        width: 647px;
+    }
+    .reviews-back, .reviews-next{
+        align-items: center;
+        padding: 20px;
+        gap: 5px;
+        display: flex;
+        width: 100px;
+        height: 20px;
+        border-radius: 20px;
+        border: 1px #585858 solid;
+        cursor: pointer;
+    }
+    .navigation-reviews {
+        display: flex;
+        gap: 10px;
+    }
+    .reviews-text-back {
+        color:  #585858;
+        font-family: Gropled, sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 19.2px */
+    }
+    .reviews-text-next{
+        color: #585858;
+        font-family: Gropled,sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 19.2px */
+    }
+    .reviews-card {
+        margin-left: 247px;
+        width: 680px;
+        height: 400px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        border: 1px solid #232323;
+        background: #F5F5F5;
+        position: absolute;
+        transition: transform 0.3s ease;
+        z-index: 3;
+    }
+    .reviews-text {
+        width: 619px;
+        color: #232323;
+        font-family: "TT Fors", sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 160;
+        line-height: 140%; /* 28px */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .reviewer{
+        margin-left: 30px;
+        display: flex;
+        height: 60px;
+    }
+    .avatar{
+        width: 60px;
+        height: 60px;
+        background: black;
+        border-radius: 50px;
+    }
+    .name{
+        height: 25px;
+        margin-top: 10px;
+        margin-left: 10px;
+        color:  #232323;
+        font-family: Gropled, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%; /* 25.2px */
+    }
+
+    .reviews-card:nth-child(2) {
+        transform: rotate(-5deg); /* Rotate second card */
+        z-index: 2; /* Stack below the first card */
+        margin-left: 217px; /* Adjust to desired overlap */
+        border: none;
+        border-radius: 20px;
+        background: #585858;
+    }
+
+    .reviews-card:nth-child(3) {
+        transform: rotate(-10deg); /* Rotate third card */
+        z-index: 1; /* Stack below the second card */
+        margin-left: 187px; /* Adjust to desired overlap */
+        border:none;
+        border-radius: 20px;
+        background: #232323;
+    }
+
+    .reviews-card:nth-child(2) .reviews-text,
+    .reviews-card:nth-child(3) .reviews-text {
+        color: #f5f5f5; /* Установить цвет текста белым */
+    }
+    .reviews-card:nth-child(2) .name,
+    .reviews-card:nth-child(3) .name{
+        color: #f5f5f5; /* Установить цвет текста белым */
+    }
+    .reviews-card:nth-child(2) .avatar,
+    .reviews-card:nth-child(3) .avatar {
+        background: #D9D9D9;/* Установить цвет текста белым */
+    }
+
+
+    .reviews-card {
+  width: 680px;
+  height: 400px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+/* Стили для карточки на переднем плане */
+.front-card {
+  z-index: 3;
+  background: #F5F5F5;
+  color: #232323;
+  transform: rotate(0deg);
+  margin-left: 247px;
+}
+
+/* Стили для карточки посередине */
+.middle-card {
+  z-index: 2;
+  background: #585858;
+  color: #f5f5f5;
+  transform: rotate(-5deg);
+  margin-left: 217px;
+}
+
+/* Стили для карточки на заднем плане */
+.back-card {
+  z-index: 1;
+  background: #232323;
+  color: #f5f5f5;
+  transform: rotate(-10deg);
+  margin-left: 187px;
+}
 
 
 </style>
@@ -629,19 +813,21 @@
     </div>
 
 </div>
-<div class="scientific-work">
+{% for item in scientific %}
+<div class="scientific-work card-entrance" id="scientific-work-{{ forloop.counter }}" {% if forloop.counter != 1 %}style="display:none;"{% endif %}>
     <div class="scientific-work-wrapper">
         <div class="scientific-content">
-            <div class="scientific-description">Цифровые очки содержат затемненную линзу с вмонтированной в нее на уровне зрачка видеокамерой с углами разворота, соответствующими человеческому глазу, а также линзу с цифровым внутренним экраном, расположенным ближе к переносице. Над линзой расположен датчик положения зрачка видящего глаза</div>
-            <div class="scientific-title">устройство цифровых очков для эмуляции бинокулярного зрения</div>
+            <div class="scientific-description">{{ item.scientific_text }}</div>
+            <div class="scientific-title">{{ item.name }}</div>
         </div>
-        <div class="scientific-image" src=""></div>
+        <img class="scientific-image" src="{{ item.doc_photo.url }}" id="scientific-img-{{ forloop.counter }}" alt="{{ item.name }}">
+
         <div class="scientific-panel">
             <div class="panel-background"></div>
-            <div class="panel-text">Диабетическая полинейропатия и ее течение при различных терапевтических воздействиях</div>
+            <div class="panel-text">{{ item.button_text }}</div>
             <div class="panel-navigation">
                 <div class="navigation-text">далее</div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-left: 80px;}">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-left: 80px;}">
                   <path d="M0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10ZM18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10Z" fill="#F5F5F5"/>
                   <path d="M9.00037 14.8825L13.8827 10.0002L9.00037 5.11784L9.8239 4.29431L15.5298 10.0002L9.8239 15.7061L9.00037 14.8825Z" fill="#F5F5F5"/>
                   <path d="M14.7061 9.4118V10.5883H4.70605V9.4118H14.7061Z" fill="#F5F5F5"/>
@@ -649,19 +835,90 @@
             </div>
         </div>
         <div class="scientific-back">
-            <div class="back-background"></div>
-            <div class="back-navigation">
-                <div class="navigation-text-back">назад</div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M20 10C20 4.47059 15.5294 0 10 0C4.47059 0 0 4.47059 0 10C0 15.5294 4.47059 20 10 20C15.5294 20 20 15.5294 20 10ZM1.17647 10C1.17647 5.11765 5.11765 1.17647 10 1.17647C14.8824 1.17647 18.8235 5.11765 18.8235 10C18.8235 14.8824 14.8824 18.8235 10 18.8235C5.11765 18.8235 1.17647 14.8824 1.17647 10Z" fill="#F5F5F5"/>
-                  <path d="M10.9996 14.8825L6.11727 10.0002L10.9996 5.11784L10.1761 4.29431L4.47021 10.0002L10.1761 15.7061L10.9996 14.8825Z" fill="#F5F5F5"/>
-                  <path d="M5.29395 9.4118V10.5883H15.2939V9.4118H5.29395Z" fill="#F5F5F5"/>
-                </svg>
+            <div class="back-background">
+                <div class="back-navigation">
+                    <div class="navigation-text-back">назад</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M20 10C20 4.47059 15.5294 0 10 0C4.47059 0 0 4.47059 0 10C0 15.5294 4.47059 20 10 20C15.5294 20 20 15.5294 20 10ZM1.17647 10C1.17647 5.11765 5.11765 1.17647 10 1.17647C14.8824 1.17647 18.8235 5.11765 18.8235 10C18.8235 14.8824 14.8824 18.8235 10 18.8235C5.11765 18.8235 1.17647 14.8824 1.17647 10Z" fill="#F5F5F5"/>
+                      <path d="M10.9996 14.8825L6.11727 10.0002L10.9996 5.11784L10.1761 4.29431L4.47021 10.0002L10.1761 15.7061L10.9996 14.8825Z" fill="#F5F5F5"/>
+                      <path d="M5.29395 9.4118V10.5883H15.2939V9.4118H5.29395Z" fill="#F5F5F5"/>
+                    </svg>
+                </div>
             </div>
+
         </div>
         <div class="scientific-header">научная деятельность</div>
     </div>
 </div>
+{% endfor %}
+
+
+<div class="reviews">
+    <div style="display: flex; justify-content: space-between">
+        <div class="title-reviews">отзывы клиентов о работе<br> по снижению веса</div>
+        <div class="navigation-reviews">
+            <div class="reviews-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M20 10C20 4.47059 15.5294 0 10 0C4.47059 0 0 4.47059 0 10C0 15.5294 4.47059 20 10 20C15.5294 20 20 15.5294 20 10ZM1.17647 10C1.17647 5.11765 5.11765 1.17647 10 1.17647C14.8824 1.17647 18.8235 5.11765 18.8235 10C18.8235 14.8824 14.8824 18.8235 10 18.8235C5.11765 18.8235 1.17647 14.8824 1.17647 10Z" fill="#585858"/>
+                  <path d="M10.9996 14.8825L6.11727 10.0002L10.9996 5.11784L10.1761 4.29431L4.47021 10.0002L10.1761 15.7061L10.9996 14.8825Z" fill="#585858"/>
+                  <path d="M5.29395 9.4118V10.5883H15.2939V9.4118H5.29395Z" fill="#585858"/>
+                </svg>
+                <div class="reviews-text-back">назад</div>
+            </div>
+            <div class="reviews-next">
+                <div class="reviews-text-next">далее</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10ZM18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10Z" fill="#585858"/>
+                  <path d="M9.00037 14.8825L13.8827 10.0002L9.00037 5.11784L9.8239 4.29431L15.5298 10.0002L9.8239 15.7061L9.00037 14.8825Z" fill="#585858"/>
+                  <path d="M14.7061 9.4118V10.5883H4.70605V9.4118H14.7061Z" fill="#585858"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="reviews-container">
+        <div class="reviews-card">
+            <svg style="margin: 30px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviews-text">1Lorem ipsum dolor sit amet consectetur. Nunc feugiat lacus eu id. Elit euismod dui tempus pulvinar accumsan. Pulvinar maecenas amet egestas interdum consequat tincidunt libero duis. Enim ut sagittis augue vitae parturient non viverra. Pharetra phasellus cursus purus vestibulum a nibh. Volutpat aliquam mollis nisl non neque aliquam pellentesque ultrices. </div>
+            <svg style="margin: 30px; margin-left: 625px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviewer">
+                <div class="avatar"></div>
+                <div class="name">1Lorem ipsum</div>
+            </div>
+        </div>
+        <div class="reviews-card">
+            <svg style="margin: 30px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviews-text">2Lorem ipsum dolor sit amet consectetur. Nunc feugiat lacus eu id. Elit euismod dui tempus pulvinar accumsan. Pulvinar maecenas amet egestas interdum consequat tincidunt libero duis. Enim ut sagittis augue vitae parturient non viverra. Pharetra phasellus cursus purus vestibulum a nibh. Volutpat aliquam mollis nisl non neque aliquam pellentesque ultrices. </div>
+            <svg style="margin: 30px; margin-left: 625px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviewer">
+                <div class="avatar"></div>
+                <div class="name">2Lorem ipsum</div>
+            </div>
+        </div>
+        <div class="reviews-card">
+            <svg style="margin: 30px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviews-text">3Lorem ipsum dolor sit amet consectetur. Nunc feugiat lacus eu id. Elit euismod dui tempus pulvinar accumsan. Pulvinar maecenas amet egestas interdum consequat tincidunt libero duis. Enim ut sagittis augue vitae parturient non viverra. Pharetra phasellus cursus purus vestibulum a nibh. Volutpat aliquam mollis nisl non neque aliquam pellentesque ultrices. </div>
+            <svg style="margin: 30px; margin-left: 625px" xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18" fill="none">
+              <path d="M0 17.2159L5.568 -0.00012207H11.904L8.192 17.2159H0ZM12.928 17.2159L18.496 -0.00012207H24.832L21.12 17.2159H12.928Z" fill="#F22D3E"/>
+            </svg>
+            <div class="reviewer">
+                <div class="avatar"></div>
+                <div class="name">3Lorem ipsum</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
@@ -708,6 +965,148 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<!-- Подключаем jQuery для удобства -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // Начальная настройка: первая карточка активна, вторая - следующая, третья - последняя
+    var cards = $(".reviews-card");
+    var cardStyles = [
+        { // Стили для передней (белой) карточки
+            zIndex: 3,
+            transform: 'rotate(0deg)',
+            background: '#F5F5F5',
+            color: '#232323',
+            marginLeft: '247px',
+            border: '1px solid #232323',
+            nameColor: '#232323',
+            avatarBackground: 'black'
+        },
+        { // Стили для средней (серой) карточки
+            zIndex: 2,
+            transform: 'rotate(-5deg)',
+            background: '#585858',
+            color: '#f5f5f5',
+            marginLeft: '217px',
+            border: '1px solid #585858',
+            nameColor: '#f5f5f5',
+            avatarBackground: '#D9D9D9'
+        },
+        { // Стили для задней (чёрной) карточки
+            zIndex: 1,
+            transform: 'rotate(-10deg)',
+            background: '#232323',
+            color: '#f5f5f5',
+            marginLeft: '187px',
+            border: '1px solid #232323',
+            nameColor: '#f5f5f5',
+            avatarBackground: '#D9D9D9'
+        }
+    ];
+
+    function applyStyles(){
+        cards.each(function(index){
+            var card = $(this);
+            var style = cardStyles[index];
+
+            card.css({
+                'z-index': style.zIndex,
+                'transform': style.transform,
+                'background': style.background,
+                'color': style.color,
+                'margin-left': style.marginLeft,
+                'border': style.border
+            });
+
+            card.find(".name").css('color', style.nameColor);
+            card.find(".avatar").css('background', style.avatarBackground);
+            card.find(".reviews-text").css('color', style.color);
+        });
+    }
+
+    // Применяем начальные стили
+    applyStyles();
+
+    // Функция для переключения карточек вперед
+    function rotateForward(){
+        cardStyles.unshift(cardStyles.pop()); // Перемещаем последний элемент в начало массива
+        applyStyles();
+    }
+
+    // Функция для переключения карточек назад
+    function rotateBackward(){
+        cardStyles.push(cardStyles.shift()); // Перемещаем первый элемент в конец массива
+        applyStyles();
+    }
+
+    // Обработчик клика для кнопки "далее"
+    $(".reviews-next").click(function(){
+        rotateForward();
+    });
+
+    // Обработчик клика для кнопки "назад"
+    $(".reviews-back").click(function(){
+        rotateBackward();
+    });
+});
+</script>
+
+
+<script>
+    let currentIndex = 1;
+    const totalItems = {{ scientific|length|safe }};
+
+    function showItem(index) {
+        const elementsToAnimate = ['scientific-description', 'scientific-title', 'panel-text', 'scientific-image'];
+
+        // Скрываем все элементы
+        document.querySelectorAll('.scientific-work').forEach(function(item) {
+            item.style.display = 'none';
+        });
+
+        // Показываем нужный элемент
+        const currentItem = document.getElementById('scientific-work-' + index);
+        currentItem.style.display = 'block';
+
+        // Применяем анимацию к каждому элементу
+        elementsToAnimate.forEach(function(className) {
+            const element = currentItem.querySelector('.' + className);
+            if (element) {
+                element.classList.remove('fade');
+                // Вызываем перерисовку для сброса анимации
+                void element.offsetWidth;
+                element.classList.add('fade');
+            }
+        });
+    }
+
+    function nextItem() {
+        currentIndex = currentIndex >= totalItems ? 1 : currentIndex + 1;
+        showItem(currentIndex);
+    }
+
+    function prevItem() {
+        currentIndex = currentIndex <= 1 ? totalItems : currentIndex - 1;
+        showItem(currentIndex);
+    }
+
+    document.querySelectorAll('.scientific-panel').forEach(function(button) {
+        button.addEventListener('click', nextItem);
+    });
+
+    document.querySelectorAll('.back-background').forEach(function(button) {
+        button.addEventListener('click', prevItem);
+    });
+</script>
+
+
 
 
 {% endblock %}

@@ -19,3 +19,10 @@ class Product(models.Model):
     photo5 = models.ImageField(upload_to='products/', null=True)
     def __str__(self):
         return self.name
+
+
+class Scientific(models.Model):
+    name = models.CharField(max_length=70)
+    button_text=models.CharField(max_length=85)
+    scientific_text=models.CharField(max_length=300)
+    doc_photo = models.ImageField(upload_to='scientific/', null=True)
