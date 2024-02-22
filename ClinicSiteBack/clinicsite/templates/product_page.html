@@ -1,6 +1,7 @@
 {% load static %}
 {% block content %}
 <style>
+
     body{
         /*background: gray;*/
         margin: 0;
@@ -19,6 +20,20 @@
         src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
         font-weight: 400; /* Normal */
         font-style: normal;
+    }
+    :root {
+        --main---red: #f22d3e;
+        --main---violet: #a673d8;
+        --main---light-violet: #e8dff2;
+        --main---light-grey: #585858;
+        --main---white: #f5f5f5;
+        --main---grey: #232323;
+        --main---light-light-grey: #b5b5b5;
+    }
+    :root {
+      --font-family: 'TT Fors', sans-serif;
+      --second-family: "Inter", sans-serif;
+      --third-family: "Gropled", sans-serif;
     }
 
     .header{
@@ -593,13 +608,261 @@
     padding: 5px; /* Отступ для каждого элемента списка */
 }
 
+.market-link{
+    margin-top: 90px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 73.75%;
+}
+.market-link, .market-link a{
+    font-family: 'TT Fors',sans-serif;
+    font-weight: 280;
+    font-size: 16px;
+    line-height: 100%;
+    color: #585858;
+}
+.product-block{
+    display: flex;
+    margin-top: 50px;
+    width: 1150px;
+    height: 524px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.photo-preview{
+    cursor: pointer;
+    background: white;
+    border: 1px solid #B5B5B5;
+    border-radius: 20px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+.photo-preview img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.photo-preview-block{
+    display: block;
+}
+.main-photo-review{
+    background: white;
+    border: 1px solid #232323;
+    border-radius: 20px;
+    width: 380px;
+    height: 524px;
+    margin-left: 20px;
+}
+.main-photo-review img{
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.product-name{
+    height: 77px;
+    font-family: Gropled, sans-serif;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 80%;
+    color: #232323;
+}
+.country{
+    border: 2px solid #F22D3E;
+    border-radius: 50px;
+    padding: 13.5px 20px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    color: #F22D3E;
+}
+.company{
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    color: #F22D3E;
+    margin-left: 20px;
+}
+.product-info{
+    margin-top: 20px;
+}
+.product-info hr{
+    border: 1px solid #B5B5B5;
+    width: 580px;
+    height: 0px;
+    margin: 0;
+    box-sizing: border-box;
+}
+.text-info{
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    color: #232323;
+}
+.text-info-object{
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 100%;
+    color: #232323;
+}
 
+.price {
+    margin-top: 27px;
+    display: inline-flex;
+    align-items: baseline; /* Это выравнивает текст по базовой линии, полезно для разного размера текста */
+}
+.from{
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #A673D8;
+}
+.amount{
+    margin-left: 10px;
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #A673D8;
+}
+.currency, .currency-price-text{
+    display: inline-block; /* May help with positioning */
+    vertical-align: top; /* Or a specific value like 'text-top' or a percentage */
+    position: relative;
+    top: -15px; /* Adjust the value to move it up as needed */
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #A673D8;
+}
 
+.price-text, .currency-price-text {
+    font-family: 'TT Fors', sans-serif;
+    font-weight: 280;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #B5B5B5;
+    position: relative;
+    display: inline-block;
+}
+.price-text{
+    margin-left: 20px;
+}
 
+.strike-through {
+    border: 1px solid #A673D8;
+    width: 59px;
+    height: 0;
+    transform: rotate(-30deg);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.currency-price-text{
+    font-size: 15px;
+    top: -2px;
+}
+.card-button{
+    float: right;
+    width: 220px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 27px;
+}
+.card-button button {
+    cursor: pointer;
+    justify-content: center;
+    height: 47px;
+    border-radius: 100px;
+    background: var(--main-violet, #A673D8);
+    border: none;
+    width: 220px;
+    color: #F5F5F5;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: 'TT Fors', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 280;
+    line-height: 100%;
+    transition: background-color 0.5s;
+    transition: color 0.5s;
+    display: inline-block;
+}
+.experience-icon{
+    margin-top: 35px;
+}
 
+.instruction hr{
+    border: 1px solid #B5B5B5;
+    margin-right: auto;
+    margin-left: auto;
+    width: 73.75%;
+    height: 0px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    margin-top: 20px;
+    max-width: 1180px;
+}
+.warn-text{
+    font-family: var(--font-family);
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--main---grey);
+    width: 560px;
+    height: 60px;
+}
+.text{
+    margin-top: 20px;
+    font-family: var(--font-family);
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--main---grey);
+    max-width: 560px;
+}
+.first-section, .second-section{
+    row-gap: 50px;
+    width: 560px;
+    display: flex;
+    flex-direction: column;
+}
+.instruction-info{
+    gap: 60px;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    width: 73.75%;
+    max-width: 1180px;
+}
+.title-text{
+    font-family: var(--third-family);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 80%;
+    color: var(--main---grey);
+}
 
 </style>
+
+
+
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -610,7 +873,7 @@
     <div class="navbar">
         <ul>
             <li>
-                <div class="main active" style="">
+                <div class="main" style="">
                     <a href="{% url 'login' %}">главная</a>
                 </div>
             </li>
@@ -634,93 +897,173 @@
 
     </div>
 </div>
-<div class="main-page-sector" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
-    <div class="main-page-text">
-        clinic slimness
+
+<div class="market-link"><a href="{% url 'market' %}">Аптека > </a>{{object.brand}} {{object.name}}</div>
+<div class="product-block">
+    <div class="photo-preview-block">
+        {% if object.photo1 %}
+        <div class="photo-preview">
+            <img src="{{ object.photo1.url }}"  alt="{{ object.name }}" data-src="{{ object.photo1.url }}">
+        </div>
+        {% endif %}
+        {% if object.photo2%}
+        <div class="photo-preview">
+            <img src="{{ object.photo2.url }}"  alt="{{ object.name }}" data-src="{{ object.photo2.url }}">
+        </div>
+        {% endif %}
+        {% if object.photo3 %}
+        <div class="photo-preview">
+            <img src="{{ object.photo3.url }}"  alt="{{ object.name }}" data-src="{{ object.photo3.url }}">
+        </div>
+        {% endif %}
+        {% if object.photo4 %}
+        <div class="photo-preview">
+            <img src="{{ object.photo4.url }}"  alt="{{ object.name }}" data-src="{{ object.photo4.url }}">
+        </div>
+        {% endif %}
+        {% if object.photo5 %}
+        <div class="photo-preview">
+            <img src="{{ object.photo5.url }}"  alt="{{ object.name }}" data-src="{{ object.photo5.url }}">
+        </div>
+        {% endif %}
     </div>
-    <div class="second-page-text">
-        Lorem ipsum dolor sit amet consectetur. Aliquam ac diam lobortis non ultrices. Ac aliquet mi massa proin. Faucibus luctus at ut lectus tortor fusce mattis phasellu
+    <div class="main-photo">
+        {% if object.photo1%}
+        <div class="main-photo-review">
+            <img id="mainPhoto" src="{{ object.photo1.url }}"  alt="{{ object.name }}">
+        </div>
+        {% endif %}
     </div>
+    <div style="margin-left: 20px">
+        <div class="product-name">
+            {{object.brand}}<br>
+            {{object.name}}
+        </div>
+        <div style="display: flex; margin-top: 20px; align-items: center;">
+            <div class="country">{{object.country_of_origin}}</div>
+            <div class="company">{{object.brand}}, Inc.</div>
+        </div>
+        <div class="product-info">
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Бренд:</div>
+                <div class="text-info-object">{{object.brand}}</div>
+            </div>
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Действующее вещество:</div>
+                <div class="text-info-object">{{object.active_substance}}</div>
+            </div>
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Форма выпуска:</div>
+                <div class="text-info-object">{{object.release_form}}</div>
+            </div>
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Количество в упаковке:</div>
+                <div class="text-info-object">{{object.amount_in_a_package}} шт.</div>
+            </div>
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Дозировка:</div>
+                <div class="text-info-object">{{object.dosage}}</div>
+            </div>
+            <hr>
+            <div style="display: flex; gap: 20px; margin: 14px 0">
+                <div class="text-info">Назначение:</div>
+                <div class="text-info-object">{{object.purpose}}</div>
+            </div>
+            <hr>
+
+        </div>
+        <div class="price">
+            <span class="from">от </span>
+            <span class="amount">{{ object.price_with_discount }}</span>
+            <span class="currency">₽</span>
+        </div>
+        {% if object.discount_percent > 0 %}
+        <div class="price-text">
+            {{ object.price }}<span class="currency-price-text">₽</span>
+            <div class="strike-through"></div>
+        </div>
+        {% endif %}
+        <div class="card-button"><button>в корзину</button></div>
+    </div>
+
 </div>
-
-
-<div class="slider-page-block" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
-    <div class="block-container">
-        <div class="text-box text-box-1">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.Lorem ipsum dolor sit amet consectetur</div>
-        <div class="text-box text-box-2">путь<br> к идеальной фигуре начинается с профессионального руководства и заботы</div>
-        <div class="card-container">
-            <div class="card card-red">
-                <div class="number-box number-3">3</div>
+<div class="instruction">
+    <div style="display: flex;  margin-right: auto;margin-left: auto;width: 73.75%; margin-top: 80px; max-width: 1180px;">
+        <div style="font-weight: 700;font-size: 52px;line-height: 80%; color: #F22D3E; font-family: Gropled, sans-serif;height: 77px;">
+            инструкция <br>по применению
+        </div>
+        <div class="experience-icon">
+           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+              <path d="M13.75 13.75C21.3529 6.14704 33.647 6.14704 41.25 13.75C48.8529 21.3529 48.8529 33.6471 41.25 41.25C33.647 48.853 21.3529 48.853 13.75 41.25C6.14703 33.6471 6.14703 21.3529 13.75 13.75ZM39.6323 39.6324C46.3456 32.9191 46.3456 22.0809 39.6323 15.3676C32.9191 8.6544 22.0809 8.6544 15.3676 15.3676C8.65438 22.0809 8.65438 32.9191 15.3676 39.6324C22.0809 46.3456 32.9191 46.3456 39.6323 39.6324Z" fill="#585858"/>
+              <path d="M19.4115 32.8387H32.8379L32.8379 19.4123L35.1027 19.4123L35.1026 35.1034L19.4115 35.1034V32.8387Z" fill="#585858"/>
+              <path d="M34.7793 33.1619L33.1616 34.7795L19.4116 21.0295L21.0293 19.4119L34.7793 33.1619Z" fill="#585858"/>
+           </svg>
+        </div>
+    </div>
+    <hr>
+    <div class="instruction-info">
+        <!-- First Section -->
+        <div class="first-section">
+            <div>
+                <div class="title-text">Предупреждение</div>
+                <div class="text">{{ object.warning }}</div>
             </div>
-            <div class="card card-purple">
-                <div class="number-box number-1">1</div>
+            <div>
+                <div class="title-text">Состав</div>
+                <div class="text">{{ object.compound }}</div>
             </div>
-
-            <div class="card card-black">
-                <div class="number-box number-box-service">2</div>
+            <div>
+                <div class="title-text">Описание</div>
+                <div class="text">{{ object.description }}</div>
             </div>
+            <div>
+                <div class="title-text">Фармакологический эффект</div>
+                <div class="text">{{ object.pharmachologic_effect }}</div>
+            </div>
+        </div>
 
-            <svg class="arrow-svg right"  onclick="rotateCards()" xmlns="http://www.w3.org/2000/svg" width="173" height="16" viewBox="0 0 173 16" fill="none">
-                <path d="M172.707 8.70711C173.098 8.31658 173.098 7.68342 172.707 7.29289L166.343 0.928932C165.953 0.538408 165.319 0.538408 164.929 0.928932C164.538 1.31946 164.538 1.95262 164.929 2.34315L170.586 8L164.929 13.6569C164.538 14.0474 164.538 14.6805 164.929 15.0711C165.319 15.4616 165.953 15.4616 166.343 15.0711L172.707 8.70711ZM0 9H172V7H0V9Z" fill="black"/>
-            </svg>
-
+        <!-- Second Section -->
+        <div class="second-section">
+            <div>
+                <div class="title-text">Показания к применению</div>
+                <div class="text">{{ object.indications_for_use }}</div>
+            </div>
+            <div>
+                <div class="title-text">Противопоказания</div>
+                <div class="text">{{ object.contraindications }}</div>
+            </div>
+            <div>
+                <div class="title-text">Побочные действия</div>
+                <div class="text">{{ object.side_effects }}</div>
+            </div>
+            <div>
+                <div class="title-text">Курс приема и дозировка</div>
+                <div class="text">{{ object.course_of_administration_and_dosage }}</div>
+            </div>
+            <div>
+                <div class="title-text">Условия отпуска из аптек</div>
+                <div class="text">{{ object.conditions_for_dispensing_from_pharmacies }}</div>
+            </div>
+            <div>
+                <div class="title-text">Условия хранения</div>
+                <div class="text">{{ object.storage_conditions }}</div>
+            </div>
+            <div>
+                <div class="title-text">Специальные указания</div>
+                <div class="text">{{ object.special_instructions }}</div>
+            </div>
         </div>
 
     </div>
+
+
 </div>
 
-
-<div class="trust-block" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
-<div style="width: 100%; height: 100%; position: relative">
-    <div style="width: 509.14px; left: 0px; top: 0px; position: absolute; color: #232323; font-size: 72px; font-family: Gropled,sans-serif; font-weight: 700; line-height: 57.60px; word-wrap: break-word">почему<br/>нам доверяют</div>
-        <div style="width: 310.47px; left: 199.66px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.</div>
-        <div style="width: 581.02px; height: 352px; left: 598.98px; top: 10px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 50px; display: inline-flex">
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
-            </div>
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute;  font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
-            </div>
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">lorem ipsum dolor sit amet</div>
-                <div class="trust-block-text" style="width: 543px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right; font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="consultation" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
-    <div class="cons-wrapper"></div>
-    <div class="cons-form">
-        <div class="cons-form-title">хотите получить пробную консультацию?</div>
-        <div class="cons-form-subtitle">Оставьте заявку нашим специалистам, и мы рассмотрим ее в ближайшее время</div>
-
-        <!-- Форма для ввода данных -->
-        <form class="cons-input-form">
-            <div class="cons-input-row">
-                <!-- Поле для ввода имени -->
-                <input type="text" id="name" name="name" placeholder="Имя" class="cons-input-field half-width">
-                <!-- Поле для ввода номера телефона -->
-                <input type="text" id="phone" name="phone" placeholder="Номер телефона" class="cons-input-field half-width">
-            </div>
-            <!-- Поле для ввода комментария -->
-            <textarea style="overflow:hidden" id="comment" name="comment" placeholder="Ваш комментарий" class="cons-textarea-field"></textarea>
-            <div class="cons-input-row" style="display: flex; height: 40px; margin-top: 30px">
-               <!-- Кнопка отправки формы -->
-                <button type="submit" class="cons-submit-btn"><div class="text-button">заказать бесплатный обратный звонок</div></button>
-                <!-- Ссылка для соцсетей -->
-                <div class="cons-social-link"><div class="text-button2">связаться в соцсетях</div></div>
-            </div>
-
-        </form>
-    </div>
-</div>
 
 <div class="footer">
     <div class="footer-content">
@@ -766,58 +1109,24 @@
 </div>
 
 
-
-
-<script>
-  AOS.init();
-</script>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  var rightArrow = document.querySelector('.arrow-svg.right');
+    // Получаем все миниатюры
+    var previews = document.querySelectorAll('.photo-preview img');
 
-  rightArrow.addEventListener('click', function() {
-    // Получаем элементы карточек
-    var redCard = document.querySelector('.card-red');
-    var purpleCard = document.querySelector('.card-purple');
-    var blackCard = document.querySelector('.card-black');
-
-    // Получаем элементы номеров на карточках
-    var number1 = document.querySelector('.number-1');
-    var number2 = document.querySelector('.number-box-service');
-    var number3 = document.querySelector('.number-3');
-
-    // Сохраняем стили позиции и размера для каждой карточки
-    var redCardStyles = window.getComputedStyle(redCard);
-    var purpleCardStyles = window.getComputedStyle(purpleCard);
-    var blackCardStyles = window.getComputedStyle(blackCard);
-
-    // Сохраняем классы номеров, чтобы переместить их на новые карточки
-    var number1Class = number1.className;
-    var number2Class = number2.className;
-    var number3Class = number3.className;
-
-    // Переназначаем стили карточек
-    setCardStyles(redCard, purpleCardStyles);
-    setCardStyles(purpleCard, blackCardStyles);
-    setCardStyles(blackCard, redCardStyles);
-
-    // Переназначаем классы номеров
-    number1.className = number2Class;
-    number2.className = number3Class;
-    number3.className = number1Class;
-  });
-
-  function setCardStyles(card, styles) {
-    card.style.left = styles.left;
-    card.style.top = styles.top;
-    card.style.width = styles.width;
-    card.style.height = styles.height;
-    card.style.zIndex = styles.zIndex;
-  }
+    // Для каждой миниатюры добавляем обработчик события наведения мыши
+    previews.forEach(function(preview) {
+        preview.addEventListener('mouseover', function() {
+            // Получаем URL из data-src атрибута миниатюры
+            var src = this.getAttribute('data-src');
+            // Находим главное фото и обновляем его атрибут src
+            document.getElementById('mainPhoto').src = src;
+        });
+    });
 });
-
-
 </script>
+
+
+
 
 {% endblock %}

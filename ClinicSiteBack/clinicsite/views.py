@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.generic import DetailView
 
 from .models import Product, Scientific
 
@@ -67,3 +68,7 @@ def market_view(request):
     return render(request, 'market.html', context)
 
 
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_page.html'
