@@ -311,10 +311,11 @@
 
     .trust-block{
         width: 1180px;
-        height: 362px;
+        height: 375px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 200px;
+        display: flex;
     }
 
 
@@ -339,7 +340,6 @@
     }
     .trust-block-pointer:hover .trust-block-number {
         color: #A673D8; /* Цвет цифры */
-
         transition: all 0.5s ease;
     }
 
@@ -358,9 +358,21 @@
         padding-bottom: 2px; /* Расстояние от текста до линии */
         text-decoration: none; /* Убираем подчёркивание */
         transition: 0.3s;
+        font-size: 24px;
+        font-family: TT Fors,sans-serif;
+        font-weight: 600;
+        line-height: 24px;
+        word-wrap: break-word;
+        margin-left: 16px;
     }
     .trust-block-number{
+        margin-top: 4px;
         color: #585858;
+        font-size: 16px;
+        font-family: TT Fors,sans-serif;
+        font-weight: 500;
+        line-height: 16px;
+        word-wrap: break-word
     }
     .consultation{
         margin-top: 200px;
@@ -604,16 +616,100 @@
 }
 
 .yandex-map{
+    display: flex;
     margin-right: auto;
     margin-left: auto;
-    width: 1280px;
-    height: auto;
+    width: 1178px;
+    height: 490px;
     margin-top: 100px;
+    position: relative;
 }
 .yandex-map iframe{
     border-radius: 20px;
 }
 
+.trust-block-text{
+    margin-top: 20px;
+    margin-left: 39px;
+    font-size: 20px;
+    font-family: TT Fors ,sans-serif;
+    font-weight: 280;
+    line-height: 20px;
+    word-wrap: break-word
+}
+.trust-block-title1{
+    color: #232323;
+    font-size: 72px;
+    font-family: Gropled,sans-serif;
+    font-weight: 700;
+    line-height: 57.60px;
+    word-wrap: break-word;
+    height: 48px;
+    width: 550px;
+}
+.trust-block-title2{
+    color: #232323;
+    font-size: 72px;
+    font-family: Gropled,sans-serif;
+    font-weight: 700;
+    line-height: 57.60px;
+    word-wrap: break-word;
+    height: 48px;
+    width: 550px;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+.trust-block-text1{
+    color: #232323;
+    font-size: 20px;
+    font-family: TT Fors,sans-serif;
+    font-weight: 280;
+    line-height: 20px;
+    word-wrap: break-word;
+    width: 350px;
+    height: 160px;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.trust-block-pointer{
+    width: 582px;
+    height: auto;
+    margin-top: 50px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 900px;
+    height: 490px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, #F5F5F5 91%);
+    pointer-events: none; /* Это позволит взаимодействовать с картой под наложением */
+    border-radius: 20px;
+}
+.yandex-map-text{
+    position: absolute;
+    font-family: "Gropled", sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 80%;
+    color: #232323;
+    width: 410px;
+    height: 104px;
+    margin-left: 698px;
+    margin-top: 85px;
+}
+.yandex-map-address{
+    position: absolute;
+    margin-left: 778px;
+    margin-top: 219px;
+    width: 400px;
+    height: 40px;
+    font-family: "TT Fors Trial Variable", sans-serif;
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 100%;
+    color: #232323;
+}
 
 
 
@@ -690,26 +786,35 @@
 </div>
 
 
-<div class="trust-block" data-aos="fade-up" data-aos-duration="200" data-aos-once="true">
-<div style="width: 100%; height: 100%; position: relative">
-    <div style="width: 509.14px; left: 0px; top: 0px; position: absolute; color: #232323; font-size: 72px; font-family: Gropled,sans-serif; font-weight: 700; line-height: 57.60px; word-wrap: break-word">Красота <br/>по-корейски</div>
-        <div style="width: 370px; left: 175px; top: 156px; position: absolute; color: #232323; font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Корейские инновации в области красоты и здоровья теперь доступны в России. Наши методики, согласующиеся с российскими стандартами, помогают достигнуть видимых улучшений уже после первых процедур. Сочетание проверенных традиций и современных технологий предлагает наилучшее решение для вашего благополучия.</div>
-        <div style="width: 581.02px; height: 352px; left: 598.98px; top: 10px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 50px; display: inline-flex">
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">Гармония стандартов</div>
-                <div class="trust-block-text" style="width: 640px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Методики красоты, основанные на корейской медицине, гармонируют с российскими медицинскими стандартами. Наши препараты и методология обеспечивают быстрые результаты.</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">01)</div>
+
+
+<div class="trust-block">
+    <div style="display: block; width: auto;height: auto">
+        <div class="trust-block-title1">Красота</div>
+        <div class="trust-block-title2">по-корейски</div>
+        <div class="trust-block-text1">Корейские инновации в области красоты и здоровья теперь доступны в России. Наши методики, согласующиеся с российскими стандартами, помогают достигнуть видимых улучшений уже после первых процедур. Сочетание проверенных традиций и современных технологий предлагает наилучшее решение для вашего благополучия.</div>
+    </div>
+    <div>
+        <div class="trust-block-pointer">
+            <div style="display: flex">
+                <div class="trust-block-number">01)</div>
+                <div class="trust-block-title">Гармония стандартов</div>
             </div>
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute;  font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">Индивидуальный подход</div>
-                <div class="trust-block-text" style="width: 640px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Мы предлагаем решения, принесущие долгосрочные эффекты. Наш подход индивидуален, и мы учитываем особенности каждого клиента.</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right;  font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">02)</div>
+            <div class="trust-block-text">Методики красоты, основанные на корейской медицине, гармонируют с российскими медицинскими стандартами. Наши препараты и методология обеспечивают быстрые результаты.</div>
+        </div>
+        <div class="trust-block-pointer">
+            <div style="display: flex">
+                <div class="trust-block-number">02)</div>
+                <div class="trust-block-title">Индивидуальный подход</div>
             </div>
-            <div class="trust-block-pointer" style="width: 582px; height: 84px; position: relative">
-                <div class="trust-block-title" style="left: 39px; top: 0px; position: absolute; font-size: 24px; font-family: TT Fors,sans-serif; font-weight: 600; line-height: 24px; word-wrap: break-word">Инновации и качество</div>
-                <div class="trust-block-text" style="width: 640px; left: 39px; top: 44px; position: absolute;  font-size: 20px; font-family: TT Fors ,sans-serif; font-weight: 280; line-height: 20px; word-wrap: break-word">Используем новейшие технологии и аппаратуру. Каждый квартал проводим корректировку методик на основе анализов.</div>
-                <div class="trust-block-number" style="left: 0px; top: 4px; position: absolute; text-align: right; font-size: 16px; font-family: TT Fors,sans-serif; font-weight: 500; line-height: 16px; word-wrap: break-word">03)</div>
+            <div class="trust-block-text">Мы предлагаем решения, приносящие долгосрочные эффекты. Наш подход индивидуален, и мы учитываем особенности каждого клиента.</div>
+        </div>
+        <div class="trust-block-pointer">
+            <div style="display: flex">
+                <div class="trust-block-number">03)</div>
+                <div class="trust-block-title">Инновации и качество</div>
             </div>
+            <div class="trust-block-text">Используем новейшие технологии и аппаратуру. Каждый квартал проводим корректировку методик на основе анализов.</div>
         </div>
     </div>
 </div>
@@ -743,7 +848,16 @@
 </div>
 
 <div class="yandex-map">
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9eca9b613eb41feb5595108aa2e72c591b72f019132211ae3d70d978764a6fc2&amp;source=constructor" width="1280" height="600" frameborder="0"></iframe>
+    <div class="yandex-map-api">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9eca9b613eb41feb5595108aa2e72c591b72f019132211ae3d70d978764a6fc2&amp;source=constructor" width="900" height="490" frameborder="0"></iframe>
+        <div class="overlay"></div>
+    </div>
+    <div class="yandex-map-text">
+        будем рады<br> видеть вас<br> на <span style="text-decoration: underline; text-decoration-skip-ink: none; color: #a673d8;">очной</span> консультации по адресу:
+    </div>
+    <div class="yandex-map-address">
+        Москва, Малый Козловский переулок, 6
+    </div>
 </div>
 
 <div class="footer">

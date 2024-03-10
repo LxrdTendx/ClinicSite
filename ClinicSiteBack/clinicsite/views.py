@@ -18,6 +18,7 @@ def about_view(request):
 
 
 def market_view(request):
+    unique_countries = Product.objects.values_list('country_of_origin', flat=True).distinct()
     search_query = request.GET.get('search', '')
     sort_order = request.GET.get('sort', 'asc')  # По умолчанию сортируем по возрастанию
 
@@ -64,6 +65,7 @@ def market_view(request):
     # Если это не AJAX-запрос, то возвращаем все товары
     context = {
         'products': page_obj,
+        'countries': unique_countries,
     }
     return render(request, 'market.html', context)
 

@@ -159,7 +159,7 @@
         position: sticky;
         z-index: 10;
         width: 280px;
-        height: 549px;
+        height: 570px;
         flex-shrink: 0;
         border-radius: 20px;
         background: var(--main-violet, #A673D8);
@@ -342,7 +342,7 @@
 
     .count-card{
         width: 230px;
-        height: 120px;
+        height: auto;
         margin-left: 20px;
         margin-top: 30px;
     }
@@ -577,6 +577,7 @@
         position: relative;
     }
     .range-input input{
+        opacity: 0;
         position: absolute;
         width: 100%;
         height: 5px;
@@ -586,6 +587,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
     }
+
     input[type="range"]::-webkit-slider-thumb{
         height: 15px;
         width: 15px;
@@ -636,8 +638,6 @@
     .clear-sort:hover{
         flex-shrink: 0;
         border-radius: 20px;
-        background: var(--main-white, #F5F5F5);
-        color: var(--main-violet, #A673D8);
         font-family: "TT Fors", sans-serif;
         font-size: 16px;
         font-style: normal;
@@ -750,6 +750,23 @@
   }
 }
 
+.clear-sort {
+    background-image: linear-gradient(to right, transparent, transparent);
+    background-repeat: no-repeat;
+    background-size: 0 2px; /* Изначально линия не показывается */
+    background-position: left bottom;
+    padding-bottom: 2px;
+    transition: background-size 0.3s ease;
+    font-size: 16px; /* Или любой другой размер, который вам нужен */
+    color: #232323; /* Цвет текста кнопки */
+    border: none; /* Убрать стандартное оформление кнопки */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+.clear-sort:hover {
+    background-image: linear-gradient(to right, #000, #000);
+    background-size: 100% 1px; /* При наведении линия появляется */
+}
 
 
 </style>
@@ -812,43 +829,15 @@
             <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
             <div class="count-card">
                 <div class="country-card-text">Страна</div>
-                <div class="country-list" style="display: flex; column-gap: 40px; flex-wrap: wrap; ">
-                    <div style="display: flex; margin-top: 15px; width: 83px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country"  data-country="Россия">Россия</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country"  data-country="Америка">Америка</div>
-                    </div>
-                    <div style=" display: flex; margin-top: 15px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1"  stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country"  data-country="Италия">Италия</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1"  stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country" data-country="Турция">Турция</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px; width: 83px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country"  data-country="Индия">Индия</div>
-                    </div>
-                    <div style="display: flex; margin-top: 15px; width: 83px" class="country-block">
-                        <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
-                          <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
-                        </svg>
-                        <div class="type-card-select-country"  data-country="Корея">Корея</div>
-                    </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px 40px">
+                    {% for country in countries %}
+                        <div style="display: flex; margin-top: 15px; width: auto" class="country-block">
+                            <svg class="svg-tick" xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
+                              <path d="M1 4.13726L4.46154 7.66667L11 1" stroke-linecap="square"/>
+                            </svg>
+                            <div class="type-card-select-country"  data-country="{{ country }}">{{ country }}</div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
             <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
