@@ -865,6 +865,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
 
 <div class="header" style="display: flex" >
     <div class="logo" >
@@ -902,36 +905,49 @@
 <div class="product-block">
     <div class="photo-preview-block">
         {% if object.photo1 %}
-        <div class="photo-preview">
-            <img src="{{ object.photo1.url }}"  alt="{{ object.name }}" data-src="{{ object.photo1.url }}">
-        </div>
+        <a href="{{ object.photo1.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="photo-preview">
+                <img src="{{ object.photo1.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
-        {% if object.photo2%}
-        <div class="photo-preview">
-            <img src="{{ object.photo2.url }}"  alt="{{ object.name }}" data-src="{{ object.photo2.url }}">
-        </div>
+        {% if object.photo2 %}
+        <a href="{{ object.photo2.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="photo-preview">
+                <img src="{{ object.photo2.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
         {% if object.photo3 %}
-        <div class="photo-preview">
-            <img src="{{ object.photo3.url }}"  alt="{{ object.name }}" data-src="{{ object.photo3.url }}">
-        </div>
+        <a href="{{ object.photo3.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="photo-preview">
+                <img src="{{ object.photo3.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
         {% if object.photo4 %}
-        <div class="photo-preview">
-            <img src="{{ object.photo4.url }}"  alt="{{ object.name }}" data-src="{{ object.photo4.url }}">
-        </div>
+        <a href="{{ object.photo4.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="photo-preview">
+                <img src="{{ object.photo4.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
         {% if object.photo5 %}
-        <div class="photo-preview">
-            <img src="{{ object.photo5.url }}"  alt="{{ object.name }}" data-src="{{ object.photo5.url }}">
-        </div>
+        <a href="{{ object.photo5.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="photo-preview">
+                <img src="{{ object.photo5.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
+
     </div>
     <div class="main-photo">
-        {% if object.photo1%}
-        <div class="main-photo-review">
-            <img id="mainPhoto" src="{{ object.photo1.url }}"  alt="{{ object.name }}">
-        </div>
+        {% if object.photo1 %}
+        <a href="{{ object.photo1.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
+            <div class="main-photo-review">
+                <img id="mainPhoto" src="{{ object.photo1.url }}" alt="{{ object.name }}">
+            </div>
+        </a>
         {% endif %}
     </div>
     <div style="margin-left: 20px">
@@ -1111,22 +1127,49 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Получаем все миниатюры
-    var previews = document.querySelectorAll('.photo-preview img');
+    // Получаем все ссылки с data-lightbox атрибутом
+    var links = document.querySelectorAll('a[data-lightbox="product-gallery"]');
 
-    // Для каждой миниатюры добавляем обработчик события наведения мыши
-    previews.forEach(function(preview) {
-        preview.addEventListener('mouseover', function() {
-            // Получаем URL из data-src атрибута миниатюры
-            var src = this.getAttribute('data-src');
+    // Для каждой ссылки добавляем обработчик события наведения мыши
+    links.forEach(function(link) {
+        link.addEventListener('mouseover', function() {
+            // Получаем URL большой версии изображения из атрибута href ссылки
+            var bigImageSrc = this.getAttribute('href');
             // Находим главное фото и обновляем его атрибут src
-            document.getElementById('mainPhoto').src = src;
+            document.getElementById('mainPhoto').src = bigImageSrc;
         });
     });
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const carousels = document.querySelectorAll('.media-carousel');
 
+    carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('img');
+        let currentImgIndex = 0;
+
+        if (images.length > 0) {
+            images[0].style.opacity = '1'; // Делаем первое изображение видимым
+
+            setInterval(() => {
+                const nextImgIndex = (currentImgIndex + 1) % images.length; // Определяем индекс следующего изображения
+                images[currentImgIndex].style.opacity = '0'; // Скрываем текущее изображение
+                images[nextImgIndex].style.transform = 'translateX(100%)'; // Подготавливаем следующее изображение к анимации
+
+                // Анимируем следующее изображение
+                requestAnimationFrame(() => {
+                    images[nextImgIndex].style.opacity = '1';
+                    images[nextImgIndex].style.transform = 'translateX(0)';
+                });
+
+                currentImgIndex = nextImgIndex; // Обновляем индекс текущего изображения
+            }, 3000); // Интервал в 3 секунды
+        }
+    });
+});
+</script>
 
 
 {% endblock %}
