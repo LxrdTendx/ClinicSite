@@ -4,15 +4,17 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
 
-from .models import Product, Scientific
+from .models import Product, Scientific, Certificates
 
 def login_view(request):
     return render(request, 'login.html')
 
 def about_view(request):
     scientific = Scientific.objects.all()
+    certificates = Certificates.objects.all()
     context ={
         'scientific': scientific,
+        'certificates': certificates,
     }
     return render(request, 'about.html', context)
 

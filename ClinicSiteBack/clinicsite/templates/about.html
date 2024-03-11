@@ -690,46 +690,155 @@
 
 
     .reviews-card {
-  width: 680px;
-  height: 400px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  position: absolute;
-  transition: transform 0.3s ease;
-}
+      width: 680px;
+      height: 400px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      position: absolute;
+      transition: transform 0.3s ease;
+    }
 
-/* Стили для карточки на переднем плане */
-.front-card {
-  z-index: 3;
-  background: #F5F5F5;
-  color: #232323;
-  transform: rotate(0deg);
-  margin-left: 247px;
-}
+    /* Стили для карточки на переднем плане */
+    .front-card {
+      z-index: 3;
+      background: #F5F5F5;
+      color: #232323;
+      transform: rotate(0deg);
+      margin-left: 247px;
+    }
 
-/* Стили для карточки посередине */
-.middle-card {
-  z-index: 2;
-  background: #585858;
-  color: #f5f5f5;
-  transform: rotate(-5deg);
-  margin-left: 217px;
-}
+    /* Стили для карточки посередине */
+    .middle-card {
+      z-index: 2;
+      background: #585858;
+      color: #f5f5f5;
+      transform: rotate(-5deg);
+      margin-left: 217px;
+    }
 
-/* Стили для карточки на заднем плане */
-.back-card {
-  z-index: 1;
-  background: #232323;
-  color: #f5f5f5;
-  transform: rotate(-10deg);
-  margin-left: 187px;
-}
+    /* Стили для карточки на заднем плане */
+    .back-card {
+      z-index: 1;
+      background: #232323;
+      color: #f5f5f5;
+      transform: rotate(-10deg);
+      margin-left: 187px;
+    }
+
+    .certificates {
+        flex-wrap: wrap;
+        gap: 20px;
+        display: flex;
+        margin-top: 200px;
+        width: 1180px;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .certificates-title {
+        margin-top: 37px;
+        margin-left: 43px;
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 72px;
+        line-height: 80%;
+        text-align: right;
+        color: #232323;
+    }
+    .certificate{
+        transition: all 1s ease;
+        cursor: pointer;
+        width: 380px;
+        height: 138px;
+        border: #000000 solid 1px;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+    .certificate-title{
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 80%;
+        color: #232323;
+        margin-left: 23px;
+        margin-top: 20px;
+    }
+    .certificate svg {
+        margin-top: 20px;
+        margin-right: 23px;
+        fill: #232323;
+    }
+    .certificate-text {
+        font-family: "TT Fors Trial Variable", sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #232323;
+        width: 336px;
+        height: auto;
+        margin-left: 23px;
+        margin-top: 34px;
+    }
+    .certificate:hover, .certificate.active {
+        color: #a673d8;
+        border-color: #a673d8 ;
+        height: 570px;
+    }
+
+    .certificate:hover svg, .certificate.active svg {
+        transition: all 0.3s ease;
+        transform: rotate(180deg);
+        fill: #a673d8; /* Изменяем цвет svg */
+    }
+
+    .certificate:hover .certificate-title, .certificate.active .certificate-title,
+    .certificate:hover .certificate-text, .certificate.active .certificate-text {
+        color: #a673d8;
+        border-color: #a673d8;
+    }
+
+    .certificate-image {
+        opacity: 0;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 336px;
+        border: #1b1b1b 1px solid;
+        height: 0;
+        overflow: hidden;
+        transition: height 1s ease;
+    }
+
+    .certificate:hover .certificate-image, .certificate.active .certificate-image {
+        opacity: 100;
+        height: 402px; /* Устанавливаем желаемую высоту */
+    }
+    .certificate svg {
+        transition: transform 0.5s ease;
+    }
+
+    .certificate-image {
+        transition: height 1s ease, opacity 0.5s ease;
+    }
+    .certificate-title, .certificate-text {
+        transition: color 0.5s ease;
+    }
+    .certificate-image img {
+        width: 100%; /* Занимает всю ширину контейнера */
+        height: 100%; /* Занимает всю высоту контейнера */
+
+    }
+
+
 
 
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
 
 <div class="header" style="display: flex" >
     <div class="logo" >
@@ -820,7 +929,9 @@
             <div class="scientific-description">{{ item.scientific_text }}</div>
             <div class="scientific-title">{{ item.name }}</div>
         </div>
-        <img class="scientific-image" src="{{ item.doc_photo.url }}" id="scientific-img-{{ forloop.counter }}" alt="{{ item.name }}">
+        <a href="{{ item.doc_photo.url }}" data-lightbox="scientific-gallery" data-title="{{ item.name }}">
+            <img class="scientific-image" src="{{ item.doc_photo.url }}" id="scientific-img-{{ forloop.counter }}" alt="{{ item.name }}">
+        </a>
 
         <div class="scientific-panel">
             <div class="panel-background"></div>
@@ -918,6 +1029,31 @@
     </div>
 </div>
 
+<div class="certificates">
+    <div class="certificates-title">
+        Сертифи-<br>каты
+    </div>
+    {% for certificate in certificates %}
+    <div class="certificate">
+        <div style="display: flex; justify-content: space-between">
+            <div class="certificate-title">{{ certificate.title }}</div>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0ZM10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235Z" />
+              <path d="M5.11733 9.00013L9.99969 13.8825L14.882 9.00013L15.7056 9.82366L9.99969 15.5295L4.2938 9.82366L5.11733 9.00013Z" />
+              <path d="M10.5884 14.7061H9.41191L9.41191 4.70605H10.5884L10.5884 14.7061Z" />
+            </svg>
+        </div>
+        <div class="certificate-text">
+            {{ certificate.short_text }}
+        </div>
+        <div class="certificate-image">
+            <img src="{{ certificate.certificate_photo.url }}" alt="{{ certificate.title }}">
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
 
 
 
@@ -973,6 +1109,20 @@
 
 <!-- Подключаем jQuery для удобства -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+document.querySelectorAll('.certificate').forEach((element) => {
+    element.addEventListener('click', function() {
+        document.querySelectorAll('.certificate').forEach((el) => {
+            if (el !== this) {
+                el.classList.remove('active'); // Удаляем класс active у всех кроме текущего
+            }
+        });
+        this.classList.toggle('active'); // Добавляем класс active к текущему элементу, если его нет, иначе удаляем
+    });
+});
+</script>
+
 
 <script>
 $(document).ready(function(){
@@ -1057,7 +1207,6 @@ $(document).ready(function(){
     });
 });
 </script>
-
 
 <script>
     let currentIndex = 1;

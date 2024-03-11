@@ -66,8 +66,18 @@ class Scientific(models.Model):
     name = models.CharField(max_length=70, verbose_name="Название")
     button_text=models.CharField(max_length=85, verbose_name="Текст для кнопки")
     scientific_text=models.CharField(max_length=300, verbose_name="Описание научной деятельности")
-    doc_photo = models.ImageField(upload_to='scientific/', null=True, verbose_name="Фото сертификата/патента")
+    doc_photo = models.ImageField(upload_to='scientific/', null=True, verbose_name="Фото патента")
 
     class Meta:
         verbose_name = 'Научная деятельность'
-        verbose_name_plural = 'Сертификаты'
+        verbose_name_plural = 'Научную деятельность'
+
+
+class Certificates(models.Model):
+    title = models.CharField(max_length=30, verbose_name="Название")
+    short_text = models.CharField(max_length=100, verbose_name="Краткое описание")
+    certificate_photo = models.ImageField(upload_to='certificate/', null=True, verbose_name="Фото сертификата")
+
+    class Meta:
+        verbose_name = 'Сертификаты'
+        verbose_name_plural = 'Сертификат'

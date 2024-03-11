@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Scientific
+from .models import Product, Scientific, Certificates
 
 
 @admin.register(Product)
@@ -15,3 +15,9 @@ class ScientificAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'button_text']
     list_filter = ['name']
     search_fields = ['name']
+
+
+@admin.register(Certificates)
+class CertificatesAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    list_filter = ['title']
