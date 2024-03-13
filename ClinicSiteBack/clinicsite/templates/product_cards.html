@@ -39,7 +39,9 @@
         </a>
         <div style="display: flex; width: 240px; margin-left: auto; margin-top:30px; margin-right: auto; justify-content: space-between;">
             <div class="card-price">{{ product.price }}<span class="currency">₽</span></div>
-            <div class="card-button"><button>в корзину</button></div>
+            <div class="card-button">
+                <button onclick="toggleAddToCartButton('{{ product.id }}')">в корзину</button>
+            </div>
         </div>
 
     </div>

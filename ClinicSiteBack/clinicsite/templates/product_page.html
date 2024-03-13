@@ -858,6 +858,16 @@
     line-height: 80%;
     color: var(--main---grey);
 }
+.quantity{
+    font-size: 30px;
+    font-family: 'TT Fors', sans-serif;
+    display: block;
+
+}
+.quantity-control{
+    display: flex;
+    justify-content: space-between;
+}
 
 </style>
 
@@ -868,7 +878,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
-
+<title>{{object.name}}</title>
 <div class="header" style="display: flex" >
     <div class="logo" >
         <a href="" ><img src="">clinic slimness</a>
@@ -893,7 +903,7 @@
             </li>
             <li>
                 <div class="cart">
-                    <a href="">корзина</a>
+                    <a href="{% url 'cart' %}">корзина</a>
                 </div>
             </li>
         </ul>
@@ -902,7 +912,7 @@
 </div>
 
 <div class="market-link"><a href="{% url 'market' %}">Аптека > </a>{{object.brand}} {{object.name}}</div>
-<div class="product-block">
+<div class="product-block" data-product-id="{{ object.id }}">
     <div class="photo-preview-block">
         {% if object.photo1 %}
         <a href="{{ object.photo1.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
@@ -1004,7 +1014,9 @@
             <div class="strike-through"></div>
         </div>
         {% endif %}
-        <div class="card-button"><button>в корзину</button></div>
+        <div class="card-button">
+            <button onclick="toggleAddToCartButton('{{ product.id }}')">в корзину</button>
+        </div>
     </div>
 
 </div>
@@ -1080,7 +1092,6 @@
 
 </div>
 
-
 <div class="footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -1124,6 +1135,67 @@
     </div>
 </div>
 
+
+<script>
+function showQuantityControl(productId, quantity) {
+    const card = document.querySelector(`.product-block[data-product-id="${productId}"]`);
+    const cardButtonDiv = card.querySelector('.card-button');
+
+    const quantityControlHTML = `
+        <div class="quantity-control" style="width: 200px;">
+            <button class="decrease-quantity" style="width: 45px; height: 45px">-</button>
+            <span class="quantity">${quantity}</span>
+            <button class="increase-quantity" style="width: 45px; height: 45px">+</button>
+        </div>
+    `;
+
+    cardButtonDiv.innerHTML = quantityControlHTML;
+
+    const increaseButton = cardButtonDiv.querySelector('.increase-quantity');
+    const decreaseButton = cardButtonDiv.querySelector('.decrease-quantity');
+    const quantitySpan = cardButtonDiv.querySelector('.quantity');
+
+    increaseButton.addEventListener('click', () => {
+        let currentQuantity = parseInt(quantitySpan.innerText);
+        currentQuantity++;
+        quantitySpan.innerText = currentQuantity;
+        localStorage.setItem(`product_${productId}`, currentQuantity);
+    });
+
+    decreaseButton.addEventListener('click', () => {
+        let currentQuantity = parseInt(quantitySpan.innerText);
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            quantitySpan.innerText = currentQuantity;
+            localStorage.setItem(`product_${productId}`, currentQuantity);
+        } else {
+            cardButtonDiv.innerHTML = `<button onclick="toggleAddToCartButton('${productId}')">в корзину</button>`;
+            localStorage.removeItem(`product_${productId}`);
+        }
+    });
+}
+
+function toggleAddToCartButton(productId) {
+    const storedQuantity = localStorage.getItem(`product_${productId}`);
+    if (storedQuantity) {
+        showQuantityControl(productId, storedQuantity);
+    } else {
+        showQuantityControl(productId, 1);
+        localStorage.setItem(`product_${productId}`, 1);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const productId = document.querySelector('.product-block').dataset.productId;
+    const storedQuantity = localStorage.getItem(`product_${productId}`);
+    if (storedQuantity) {
+        showQuantityControl(productId, storedQuantity);
+    } else {
+        const cardButtonDiv = document.querySelector('.product-block .card-button');
+        cardButtonDiv.innerHTML = `<button onclick="toggleAddToCartButton('${productId}')">в корзину</button>`;
+    }
+});
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

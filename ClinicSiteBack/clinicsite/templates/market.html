@@ -475,6 +475,7 @@
         vertical-align: super; /* Поднять символ рубля */
     }
     .card-button button{
+        cursor: pointer;
         justify-content: center;
         height: 26px;
         border-radius: 20px;
@@ -767,10 +768,22 @@
     background-image: linear-gradient(to right, #000, #000);
     background-size: 100% 1px; /* При наведении линия появляется */
 }
+.quantity{
+    font-size: 24px;
+    font-family: 'TT Fors', sans-serif;
+    display: block;
+
+}
+.quantity-control{
+    display: flex;
+    justify-content: space-between;
+}
+
+
 
 
 </style>
-
+<title>Аптека</title>
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -798,7 +811,7 @@
             </li>
             <li>
                 <div class="cart">
-                    <a href="">корзина</a>
+                    <a href="{% url 'cart' %}">корзина</a>
                 </div>
             </li>
         </ul>
@@ -892,12 +905,9 @@
 
     </div>
 </div>
+
+
 <button class="load-more" id="load-more">Загрузить еще</button>
-
-
-
-
-
 <div class="footer" id="footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -940,6 +950,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 
@@ -1020,6 +1032,19 @@ document.querySelectorAll('.page-link').forEach(pageLink => {
 function isProductAlreadyDisplayed(productId) {
     return !!document.querySelector(`.card[data-product-id="${productId}"]`);
 }
+
+function initializeProductControls() {
+    document.querySelectorAll('.card').forEach(card => {
+        const productId = card.dataset.productId;
+        const storedQuantity = localStorage.getItem(`product_${productId}`);
+        if (storedQuantity) {
+            showQuantityControl(productId, storedQuantity);
+        } else {
+            const cardButtonDiv = card.querySelector('.card-button');
+            cardButtonDiv.innerHTML = `<button onclick="toggleAddToCartButton('${productId}')">в корзину</button>`;
+        }
+    });
+}
 // Функция для отправки запроса с фильтрацией и сортировкой
 function sendAjaxRequest(isLoadMore = false, page = 1) {
     clearAnimationClasses();
@@ -1065,6 +1090,7 @@ function sendAjaxRequest(isLoadMore = false, page = 1) {
         }
         container.querySelectorAll('.card').forEach(card => card.classList.add('card-entrance'));
         initializeSliders(); // Инициализация слайдеров для новых элементов
+        initializeProductControls();
     });
 }
 
@@ -1222,6 +1248,60 @@ indicators.forEach((indicator, index) => {
 
 // Инициализация слайдера
 updateSlider(currentSlide);
+});
+</script>
+
+<script>
+function showQuantityControl(productId, quantity) {
+    const card = document.querySelector(`.card[data-product-id="${productId}"]`);
+    const cardButtonDiv = card.querySelector('.card-button');
+
+    const quantityControlHTML = `
+        <div class="quantity-control" style="width: 100px;">
+            <button class="decrease-quantity" style="width: 30px; height: 30px">-</button>
+            <span class="quantity">${quantity}</span>
+            <button class="increase-quantity" style="width: 30px; height: 30px">+</button>
+        </div>
+    `;
+
+    cardButtonDiv.innerHTML = quantityControlHTML;
+
+    const increaseButton = cardButtonDiv.querySelector('.increase-quantity');
+    const decreaseButton = cardButtonDiv.querySelector('.decrease-quantity');
+    const quantitySpan = cardButtonDiv.querySelector('.quantity');
+
+    increaseButton.addEventListener('click', () => {
+        let currentQuantity = parseInt(quantitySpan.innerText);
+        currentQuantity++;
+        quantitySpan.innerText = currentQuantity;
+        localStorage.setItem(`product_${productId}`, currentQuantity);
+    });
+
+    decreaseButton.addEventListener('click', () => {
+        let currentQuantity = parseInt(quantitySpan.innerText);
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            quantitySpan.innerText = currentQuantity;
+            localStorage.setItem(`product_${productId}`, currentQuantity);
+        } else {
+            cardButtonDiv.innerHTML = `<button onclick="toggleAddToCartButton('${productId}')">в корзину</button>`;
+            localStorage.removeItem(`product_${productId}`);
+        }
+    });
+}
+
+function toggleAddToCartButton(productId) {
+    const storedQuantity = localStorage.getItem(`product_${productId}`);
+    if (storedQuantity) {
+        showQuantityControl(productId, storedQuantity);
+    } else {
+        localStorage.setItem(`product_${productId}`, 1);
+        showQuantityControl(productId, 1);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeProductControls();
 });
 </script>
 

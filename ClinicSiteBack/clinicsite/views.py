@@ -9,6 +9,37 @@ from .models import Product, Scientific, Certificates
 def login_view(request):
     return render(request, 'login.html')
 
+def cart_view(request):
+    product_ids = request.GET.get('ids', '')
+    quantities = request.GET.get('quantities', '')
+
+    cart_items = []
+    total_sum = 0
+
+    if product_ids and quantities:
+        product_ids = [int(id) for id in product_ids.split(',') if id.isdigit()]
+        quantities = [int(quantity) for quantity in quantities.split(',') if quantity.isdigit()]
+        products = Product.objects.filter(id__in=product_ids)
+
+        for product, quantity in zip(products, quantities):
+            discounted_price = product.price_with_discount()
+            total_price = discounted_price * quantity
+            cart_items.append({
+                'product': product,
+                'quantity': quantity,
+                'unit_price': discounted_price,  # Цена за штуку с учетом скидки
+                'total_price': total_price,
+            })
+
+        total_sum = sum(item['total_price'] for item in cart_items)
+
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'total_sum': total_sum,
+    })
+
+
+
 def about_view(request):
     scientific = Scientific.objects.all()
     certificates = Certificates.objects.all()
