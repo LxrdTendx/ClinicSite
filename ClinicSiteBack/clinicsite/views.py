@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
-
+from math import ceil
 from .models import Product, Scientific, Certificates
 
 def login_view(request):
@@ -39,14 +39,35 @@ def cart_view(request):
     })
 
 
-
 def about_view(request):
     scientific = Scientific.objects.all()
-    certificates = Certificates.objects.all()
-    context ={
+    certificates = list(Certificates.objects.all())
+
+    # Вычисляем количество слотов для сертификатов, учитывая заголовок
+    total_slots = len(certificates) + 1  # +1 для заголовка
+
+    # Равномерно распределяем сертификаты по трем колонкам
+    slots_per_column = [total_slots // 3 + (1 if i < total_slots % 3 else 0) for i in range(3)]
+
+    # Первая колонка имеет на один слот меньше из-за заголовка
+    slots_per_column[0] -= 1
+
+    # Определяем индексы начала для каждой колонки
+    first_col_end = slots_per_column[0]
+    second_col_end = first_col_end + slots_per_column[1]
+
+    # Выделяем сертификаты для каждой колонки
+    first_col_certs = certificates[:first_col_end]
+    second_col_certs = certificates[first_col_end:second_col_end]
+    third_col_certs = certificates[second_col_end:]
+
+    context = {
         'scientific': scientific,
-        'certificates': certificates,
+        'first_col_certs': first_col_certs,
+        'second_col_certs': second_col_certs,
+        'third_col_certs': third_col_certs,
     }
+
     return render(request, 'about.html', context)
 
 

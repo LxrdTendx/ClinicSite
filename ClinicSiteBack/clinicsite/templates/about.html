@@ -736,7 +736,8 @@
         margin-right: auto;
     }
     .certificates-title {
-        margin-top: 37px;
+        margin-bottom: 12px;
+        margin-top: 32px;
         margin-left: 43px;
         font-family: "Gropled", sans-serif;
         font-weight: 700;
@@ -746,6 +747,7 @@
         color: #232323;
     }
     .certificate{
+        margin-bottom: 20px;
         transition: all 1s ease;
         cursor: pointer;
         width: 380px;
@@ -827,6 +829,10 @@
         width: 100%; /* Занимает всю ширину контейнера */
         height: 100%; /* Занимает всю высоту контейнера */
 
+    }
+
+    .certificates-column {
+        width: 380px;
     }
 
 
@@ -1056,7 +1062,75 @@
 
 
 
+<div class="certificates">
+    <div class="certificates-column">
+         <div class="certificates-title">
+            Сертифи-<br>каты
+        </div>
+        {% for certificate in first_col_certs %}
+        <div class="certificate">
+            <div style="display: flex; justify-content: space-between">
+                <div class="certificate-title">{{ certificate.title }}</div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0ZM10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235Z" />
+                  <path d="M5.11733 9.00013L9.99969 13.8825L14.882 9.00013L15.7056 9.82366L9.99969 15.5295L4.2938 9.82366L5.11733 9.00013Z" />
+                  <path d="M10.5884 14.7061H9.41191L9.41191 4.70605H10.5884L10.5884 14.7061Z" />
+                </svg>
+            </div>
+            <div class="certificate-text">
+                {{ certificate.short_text }}
+            </div>
+            <div class="certificate-image">
+                <img src="{{ certificate.certificate_photo.url }}" alt="{{ certificate.title }}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
+    <div class="certificates-column">
+        {% for certificate in second_col_certs %}
+        <div class="certificate">
+            <div style="display: flex; justify-content: space-between">
+                <div class="certificate-title">{{ certificate.title }}</div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0ZM10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235Z" />
+                  <path d="M5.11733 9.00013L9.99969 13.8825L14.882 9.00013L15.7056 9.82366L9.99969 15.5295L4.2938 9.82366L5.11733 9.00013Z" />
+                  <path d="M10.5884 14.7061H9.41191L9.41191 4.70605H10.5884L10.5884 14.7061Z" />
+                </svg>
+            </div>
+            <div class="certificate-text">
+                {{ certificate.short_text }}
+            </div>
+            <div class="certificate-image">
+                <img src="{{ certificate.certificate_photo.url }}" alt="{{ certificate.title }}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="certificates-column">
+        {% for certificate in third_col_certs %}
+        <div class="certificate">
+            <div style="display: flex; justify-content: space-between">
+                <div class="certificate-title">{{ certificate.title }}</div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0ZM10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235Z" />
+                  <path d="M5.11733 9.00013L9.99969 13.8825L14.882 9.00013L15.7056 9.82366L9.99969 15.5295L4.2938 9.82366L5.11733 9.00013Z" />
+                  <path d="M10.5884 14.7061H9.41191L9.41191 4.70605H10.5884L10.5884 14.7061Z" />
+                </svg>
+            </div>
+            <div class="certificate-text">
+                {{ certificate.short_text }}
+            </div>
+            <div class="certificate-image">
+                <img src="{{ certificate.certificate_photo.url }}" alt="{{ certificate.title }}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
 
 
 <div class="footer">
