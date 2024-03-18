@@ -20,7 +20,11 @@
         font-weight: 400; /* Normal */
         font-style: normal;
     }
-
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
     .header{
         margin-bottom: 10px;
         margin-top: 10px;
@@ -88,6 +92,117 @@
         cursor: pointer;
         color: var(--main-grey, #232323);
         transition: 0.5s;
+    }
+
+    /* Базовые стили бургер-меню, аналогичные вашему примеру */
+    .menu__toggle {
+      display: none;
+    }
+    .menu__btn {
+      display: none;
+    }
+    .menu__box {
+      display: flex;
+    }
+
+
+    /* Адаптивные стили */
+    @media screen and (max-width: 1000px) {
+      .menu__toggle {
+        display: block;
+        opacity: 0;
+        z-index: 2;
+      }
+        ul li{
+            width: auto;
+        }
+
+      .menu__btn {
+        margin-right: 20px;
+        margin-top: 20px;
+        display: block;
+        position: relative;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      .menu__btn > span,
+      .menu__btn > span::before,
+      .menu__btn > span::after {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #616161;
+        transition-duration: .25s;
+      }
+
+      .menu__btn > span::before {
+        content: '';
+        top: -8px;
+      }
+
+      .menu__btn > span::after {
+        content: '';
+        top: 8px;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 300px;
+        height: 100%;
+        margin: 0;
+        padding: 80px 0;
+        list-style: none;
+        background-color: #ECEFF1;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+        transition-duration: .25s;
+      }
+
+      #menu__toggle:checked + .menu__btn > span {
+        transform: rotate(45deg);
+      }
+
+      #menu__toggle:checked + .menu__btn > span::before {
+        top: 0;
+        transform: rotate(0deg);
+      }
+
+      #menu__toggle:checked + .menu__btn > span::after {
+        top: 0;
+        transform: rotate(90deg);
+      }
+
+      #menu__toggle:checked ~ .navbar {
+        left: 0;
+      }
+
+      /* Стили для пунктов меню внутри бургер-меню */
+      .navbar ul {
+        display: block;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+      }
+
+      .navbar ul li {
+        padding: 12px 0;
+      }
+
+      .navbar ul li a {
+        display: block;
+        padding: 12px 24px;
+        color: #333;
+        text-decoration: none;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #CFD8DC;
+      }
     }
     .main a {
         background-color: var(--main-grey, #232323); /* Фон для 'главная' */
@@ -718,37 +833,27 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <title>Главная</title>
-<div class="header" style="display: flex" >
-    <div class="logo" >
-        <a href="" ><img src="">clinic slimness</a>
+
+<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="logo">
+        <a href=""><img src="">clinic slimness</a>
     </div>
+    <input id="menu__toggle" type="checkbox" class="menu__toggle" />
+    <label for="menu__toggle" class="menu__btn">
+        <span></span>
+    </label>
     <div class="navbar">
-        <ul>
-            <li>
-                <div class="main active" style="">
-                    <a href="{% url 'login' %}">главная</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="production">
-                    <a href="{% url 'market' %}">аптека</a>
-                </div>
-            </li>
-            <li>
-                <div class="about-us">
-                    <a href="{% url 'about' %}">о нас</a>
-                </div>
-            </li>
-            <li>
-                <div class="cart">
-                    <a href="{% url 'cart' %}">корзина</a>
-                </div>
-            </li>
+        <ul class="menu__box">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
-
     </div>
 </div>
+
+
+
 <div class="main-page-sector" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
     <div class="main-page-text">
         clinic slimness
