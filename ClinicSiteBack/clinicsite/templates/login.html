@@ -26,6 +26,7 @@
         }
     }
     .header{
+        transition: width 0.3s ease, border-radius 0.3s ease;
         margin-bottom: 10px;
         margin-top: 10px;
         margin-right: auto;
@@ -801,6 +802,51 @@
   transform: rotate(-90deg) translateX(-3px);
 }
 
+@keyframes arrow-bounce-up {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+.full-screen-menu {
+    transition: 1s ease;
+    opacity: 90%;
+    position: fixed;
+    top: -100%; /* Скрыть изначально */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000; /* Убедитесь, что меню находится поверх других элементов */
+    display: flex; /* Использование flexbox для выравнивания */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+}
+
+.header .full-screen-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin-top: 50px; /* Или другое значение для отступа сверху */
+}
+
+.header .full-screen-menu ul li {
+  padding: 10px;
+}
+
+.header .full-screen-menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+}
+
+.wrapper-menu.open + .full-screen-menu {
+  top: 0; /* Показать меню */
+}
+
 @media (max-width: 1000px) {
         body{
             zoom: 140%;
@@ -813,6 +859,7 @@
             width: 90%;
         }
         .logo{
+            margin: 0;
             font-size: 1.5em;
             margin-left: 20px;
         }
@@ -1021,12 +1068,20 @@
           <div class="line-menu half end"></div>
         </div>
     </div>
+    <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
+        <ul class="menu__box" style="display: block; width: 100px;">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
+        </ul>
+    </div>
 
 </div>
 
 
 
-<div class="main-page-sector" data-aos="fade-up" data-aos-duration="400" data-aos-once="true">
+<div class="main-page-sector" data-aos="fade-up" data-aos-duration="400" data-aos-once="true" id="main-sector">
     <div class="main-page-text">
         clinic slimness
     </div>
@@ -1182,11 +1237,14 @@
 
 
 <div class="footer-mobile">
-    <svg style="display: block; margin-left: auto;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a href="#main-sector">
+        <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
       <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
       <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
     </svg>
+    </a>
+
     <hr>
     <div class="footer-section">
         <h2 class="footer-title red">clinic slimness</h2>
@@ -1282,10 +1340,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 var wrapperMenu = document.querySelector('.wrapper-menu');
+var fullScreenMenu = document.querySelector('.full-screen-menu');
+var header = document.querySelector('.header'); // Получаем элемент header
+var body = document.body;
 
-wrapperMenu.addEventListener('click', function(){
+wrapperMenu.addEventListener('click', function() {
   wrapperMenu.classList.toggle('open');
-})
+  if (wrapperMenu.classList.contains('open')) {
+      fullScreenMenu.style.opacity='90%'
+    fullScreenMenu.style.top = '112px'; // Показать меню
+    body.style.overflow = 'hidden'; // Отключить прокрутку
+    header.style.width = '100%'; // Устанавливаем ширину header на 100%
+    header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
+      header.style.top="0";
+      header.style.marginTop="0";
+  } else {
+    fullScreenMenu.style.top = '-100%'; // Скрыть меню
+    body.style.overflow = ''; // Включить прокрутку обратно
+    header.style.width = '90%'; // Вернуть начальную ширину
+    header.style.borderRadius = '20px'; // Вернуть начальный border-radius
+      fullScreenMenu.style.opacity='0%'
+      header.style.top="10";
+      header.style.marginTop="10px";
+  }
+});
 </script>
 
 {% endblock %}
