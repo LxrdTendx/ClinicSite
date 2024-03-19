@@ -735,6 +735,71 @@
     width: auto;
     height: auto
 }
+.cons-form-row-flex{
+    display: flex;
+}
+
+.yandex-map-api{
+    height: 490px;
+    width: 900px;
+}
+
+.footer-mobile{
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    margin-top: 120px;
+    width: 90%;
+}
+.market-logo{
+    display: none;
+}
+
+.wrapper-menu {
+    display: none;
+  width: 35px;
+  height: 35px;
+
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 330ms ease-out;
+}
+
+.wrapper-menu.open {
+  transform: rotate(-45deg);
+}
+
+.line-menu {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 6px;
+}
+
+.line-menu.half {
+  width: 50%;
+}
+
+.line-menu.start {
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: right;
+}
+
+.open .line-menu.start {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+.line-menu.end {
+  align-self: flex-end;
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: left;
+}
+
+.open .line-menu.end {
+  transform: rotate(-90deg) translateX(-3px);
+}
 
 @media (max-width: 1000px) {
         body{
@@ -751,12 +816,21 @@
             font-size: 1.5em;
             margin-left: 20px;
         }
+        .market-logo{
+            display: block;
+        }
+        .wrapper-menu{
+            display: flex;
+        }
 
         .main-page-sector{
             width: 90%;
             height: 25.875em;
         }
         .main-page-text{
+            top: 20px;
+            position: relative;
+            margin-top: 20px;
             font-size: 4em;
             margin-left: 20px;
             padding-top: 20px;
@@ -821,14 +895,98 @@
 
 
         .consultation{
+            width: 90%;
+            height: 700px;
+        }
+        .cons-wrapper{
             display: none;
         }
+        .cons-form{
+            width: 100%;
+            height: 100%;
+        }
+        .cons-input-row{
+            display: block;
+        }
+        .cons-form-title{
+            width: 86%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cons-textarea-field{
+            width: 100%;
+            margin-top: 0;
+        }
+        .cons-form-subtitle{
+            width: 86%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cons-input-field{
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        .cons-submit-btn{
+            height: 40px;
+            width: 100%;
+        }
+        .cons-social-link{
+            height: 40px;
+            margin-top: 20px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
         .yandex-map{
-            display: none;
+            width: 90%;
         }
+        .yandex-map-api{
+            width: 100%;
+            height: 300px;
+            margin-top: 200px;
+        }
+        .yandex-map-text{
+            margin: 0;
+        }
+        .yandex-map-address{
+            margin: 0;
+            margin-top: 130px;
+            right: 0;
+        }
+        .overlay{
+            width: 100%;
+            height: 300px;
+            margin-top: 200px;
+        }
+
         .footer{
             display: none;
         }
+        .footer-mobile{
+            height: 400px;
+            display: block;
+        }
+        .footer-title{
+            margin-top: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 2em;
+        }
+        .footer-list{
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 145px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
+            font-size: 1em;
+            line-height: 100%;
+            color: #585858;
+        }
+
+
     }
 
 
@@ -851,6 +1009,19 @@
             <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
     </div>
+    <div style="display: flex; gap: 25px; margin-right: 20px">
+       <div class="market-logo">
+            <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 16C16.5304 16 17.0391 16.2107 17.4142 16.5858C17.7893 16.9609 18 17.4696 18 18C18 18.5304 17.7893 19.0391 17.4142 19.4142C17.0391 19.7893 16.5304 20 16 20C15.4696 20 14.9609 19.7893 14.5858 19.4142C14.2107 19.0391 14 18.5304 14 18C14 16.89 14.89 16 16 16ZM0 0H3.27L4.21 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3C20 3.17 19.95 3.34 19.88 3.5L16.3 9.97C15.96 10.58 15.3 11 14.55 11H7.1L6.2 12.63L6.17 12.75C6.17 12.8163 6.19634 12.8799 6.24322 12.9268C6.29011 12.9737 6.3537 13 6.42 13H18V15H6C5.46957 15 4.96086 14.7893 4.58579 14.4142C4.21071 14.0391 4 13.5304 4 13C4 12.65 4.09 12.32 4.24 12.04L5.6 9.59L2 2H0V0ZM6 16C6.53043 16 7.03914 16.2107 7.41421 16.5858C7.78929 16.9609 8 17.4696 8 18C8 18.5304 7.78929 19.0391 7.41421 19.4142C7.03914 19.7893 6.53043 20 6 20C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18C4 16.89 4.89 16 6 16ZM15 9L17.78 4H5.14L7.5 9H15Z" fill="#F5F5F5" />
+            </svg>
+        </div>
+        <div class="wrapper-menu">
+          <div class="line-menu half start"></div>
+          <div class="line-menu"></div>
+          <div class="line-menu half end"></div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -942,7 +1113,7 @@
             </div>
             <!-- Поле для ввода комментария -->
             <textarea style="overflow:hidden" id="comment" name="comment" placeholder="Ваш комментарий" class="cons-textarea-field"></textarea>
-            <div class="cons-input-row" style="display: flex; height: 40px; margin-top: 30px">
+            <div class="cons-input-row cons-form-row-flex" style="height: 40px; margin-top: 30px">
                <!-- Кнопка отправки формы -->
                 <button type="submit" class="cons-submit-btn"><div class="text-button">заказать бесплатный обратный звонок</div></button>
                 <!-- Ссылка для соцсетей -->
@@ -955,7 +1126,7 @@
 
 <div class="yandex-map">
     <div class="yandex-map-api">
-        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9eca9b613eb41feb5595108aa2e72c591b72f019132211ae3d70d978764a6fc2&amp;source=constructor" width="900" height="490" frameborder="0"></iframe>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9eca9b613eb41feb5595108aa2e72c591b72f019132211ae3d70d978764a6fc2&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
         <div class="overlay"></div>
     </div>
     <div class="yandex-map-text">
@@ -1007,6 +1178,32 @@
             </ul>
         </div>
     </div>
+</div>
+
+
+<div class="footer-mobile">
+    <svg style="display: block; margin-left: auto;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
+      <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
+      <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
+    </svg>
+    <hr>
+    <div class="footer-section">
+        <h2 class="footer-title red">clinic slimness</h2>
+    </div>
+    <ul class="footer-list">
+        <li class="footer-item">
+            <!-- Выпадающий список телефонных номеров -->
+            <select class="footer-phone-select" onchange="location = this.value;">
+                <option value="tel:+74956080101">+7 495 608-01-01</option>
+                <option value="tel:+74956077950">+7 495 607-79-50</option>
+                <option value="tel:+74956073701">+7 495 607-37-01</option>
+                <option value="tel:+74955438384">+7 495 543-83-84</option>
+            </select>
+        </li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color:#232323;">info@medicsel.ru</a></li>
+
+    </ul>
 </div>
 
 
@@ -1081,6 +1278,14 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+</script>
+
+<script>
+var wrapperMenu = document.querySelector('.wrapper-menu');
+
+wrapperMenu.addEventListener('click', function(){
+  wrapperMenu.classList.toggle('open');
+})
 </script>
 
 {% endblock %}
