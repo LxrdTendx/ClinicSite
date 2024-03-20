@@ -1,6 +1,9 @@
 {% load static %}
 {% block content %}
 <style>
+    * {
+      font-style: normal;
+    }
     body{
         /*background: gray;*/
         margin: 0;
@@ -760,7 +763,7 @@
 .wrapper-menu {
     display: none;
   width: 35px;
-  height: 35px;
+  height: 25px;
 
   flex-direction: column;
   justify-content: space-between;
@@ -776,7 +779,7 @@
   background-color: #fff;
   border-radius: 5px;
   width: 100%;
-  height: 6px;
+  height: 4px;
 }
 
 .line-menu.half {
@@ -884,27 +887,32 @@
             font-weight: 600;
         }
         .second-page-text{
+            font-size: 22px;
             margin-right: 0px;
-            width: 412px;
+            width: 80%;
         }
 
         .slider-page-block{
             margin-top: 250px;
-            width: 100%;
+            width: 90%;
             height: 800px;
         }
 
         .slider-page-block .card-container{
-            left: 27px;
+            zoom: 97%;
+            left: 0;
             margin-right: auto;
             margin-left: auto;
         }
 
         .slider-page-block .text-box-2{
-            left: 27px;
+            left: 0px;
             top: 546px;
             text-align: left;
             width: 430px;
+        }
+        .slider-page-block .number-box {
+            font-size: 22px;
         }
         .text-box-2 span{
             display: none;
@@ -913,17 +921,17 @@
             content: 'путь к идеальной фигуре начинается с профессионального руководства и заботы';
         }
         .slider-page-block .text-box-1{
-            font-size: 1.125em;
+            font-size: 22px;
             top: 700px;
             text-align: right;
             width: 380px;
-            right: 27px;
+            right: 0px;
         }
 
 
         .trust-block{
             display: block;
-            width: 100%;
+            width: 90%;
             height: auto;
         }
         .trust-block-pointers{
@@ -931,13 +939,17 @@
             height: 440px;
             margin-left: 81px;
         }
-        .trust-block-title-page{
-
-            margin-left: 27px;
+        .trust-block-pointer{
+            width: auto;
         }
         .trust-block-text1{
+            font-size: 22px;
             margin-left: 81px;
             width: 80%;
+        }
+        .trust-block-text{
+            width: auto;
+            font-size: 22px;
         }
 
 
@@ -963,6 +975,9 @@
         .cons-textarea-field{
             width: 100%;
             margin-top: 0;
+            font-size: 22px;
+            height: 50px;
+            padding: 10px 0;
         }
         .cons-form-subtitle{
             width: 86%;
@@ -970,6 +985,7 @@
             margin-right: auto;
         }
         .cons-input-field{
+            font-size: 22px;
             width: 100%;
             margin-bottom: 40px;
         }
@@ -983,6 +999,9 @@
             width: 50%;
             margin-left: auto;
             margin-right: auto;
+        }
+        .text-button, .text-button2 {
+            font-size: 22px;
         }
 
 
@@ -998,11 +1017,14 @@
             margin: 0;
         }
         .yandex-map-address{
+            font-size: 22px;
             margin: 0;
             margin-top: 130px;
             right: 0;
+            width: auto;
         }
         .overlay{
+            display: none;
             width: 100%;
             height: 300px;
             margin-top: 200px;
@@ -1025,10 +1047,24 @@
             margin-right: auto;
             margin-left: auto;
             height: auto;
-            width: 145px;
+            width: 210px;
             font-family: "TT Fors Trial Variable", sans-serif;
             font-weight: 280;
-            font-size: 1em;
+            font-size: 24px;
+            line-height: 100%;
+            color: #585858;
+        }
+        .footer-phone-select{
+            font-size: 24px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+        .footer-item{
+            font-size: 24px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
             line-height: 100%;
             color: #585858;
         }
@@ -1056,7 +1092,7 @@
             <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
     </div>
-    <div style="display: flex; gap: 25px; margin-right: 20px">
+    <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
        <div class="market-logo">
             <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 16C16.5304 16 17.0391 16.2107 17.4142 16.5858C17.7893 16.9609 18 17.4696 18 18C18 18.5304 17.7893 19.0391 17.4142 19.4142C17.0391 19.7893 16.5304 20 16 20C15.4696 20 14.9609 19.7893 14.5858 19.4142C14.2107 19.0391 14 18.5304 14 18C14 16.89 14.89 16 16 16ZM0 0H3.27L4.21 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3C20 3.17 19.95 3.34 19.88 3.5L16.3 9.97C15.96 10.58 15.3 11 14.55 11H7.1L6.2 12.63L6.17 12.75C6.17 12.8163 6.19634 12.8799 6.24322 12.9268C6.29011 12.9737 6.3537 13 6.42 13H18V15H6C5.46957 15 4.96086 14.7893 4.58579 14.4142C4.21071 14.0391 4 13.5304 4 13C4 12.65 4.09 12.32 4.24 12.04L5.6 9.59L2 2H0V0ZM6 16C6.53043 16 7.03914 16.2107 7.41421 16.5858C7.78929 16.9609 8 17.4696 8 18C8 18.5304 7.78929 19.0391 7.41421 19.4142C7.03914 19.7893 6.53043 20 6 20C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18C4 16.89 4.89 16 6 16ZM15 9L17.78 4H5.14L7.5 9H15Z" fill="#F5F5F5" />
@@ -1259,11 +1295,53 @@
                 <option value="tel:+74955438384">+7 495 543-83-84</option>
             </select>
         </li>
-        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color:#232323;">info@medicsel.ru</a></li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color: #585858;">info@medicsel.ru</a></li>
 
     </ul>
 </div>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var arrow = document.querySelector('.footer-mobile a');
+  var trustBlock = document.querySelector('.trust-block');
+  var mainSector = document.querySelector('#main-sector');
+  var footerMobile = document.querySelector('.footer-mobile');
+  var initialArrowPosition = arrow.getBoundingClientRect().top + window.scrollY;
+
+  function handleScroll() {
+    var trustBlockPosition = trustBlock.getBoundingClientRect().top + window.scrollY;
+
+    if (window.scrollY > trustBlockPosition) {
+      arrow.style.position = 'fixed';
+      arrow.style.bottom = '20px'; // Или другое значение для позиционирования
+      arrow.style.left = '90%'; // Центрирование по горизонтали
+      arrow.style.transform = 'translateX(-50%)'; // Коррекция смещения для центрирования
+    } else if (window.scrollY < trustBlockPosition || window.scrollY < initialArrowPosition) {
+      arrow.style.position = 'absolute';
+      arrow.style.bottom = 'initial';
+      arrow.style.left = 'initial';
+      arrow.style.transform = 'initial';
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  arrow.addEventListener('click', function(event) {
+    event.preventDefault(); // Предотвращение стандартного действия ссылки
+    scrollToTop();
+  });
+
+  window.addEventListener('scroll', handleScroll);
+});
+
+
+</script>
 
 
 
@@ -1347,6 +1425,7 @@ var body = document.body;
 wrapperMenu.addEventListener('click', function() {
   wrapperMenu.classList.toggle('open');
   if (wrapperMenu.classList.contains('open')) {
+      wrapperMenu.style.height = '33px';
       fullScreenMenu.style.opacity='90%'
     fullScreenMenu.style.top = '112px'; // Показать меню
     body.style.overflow = 'hidden'; // Отключить прокрутку
@@ -1355,6 +1434,7 @@ wrapperMenu.addEventListener('click', function() {
       header.style.top="0";
       header.style.marginTop="0";
   } else {
+      wrapperMenu.style.height  = '25px';
     fullScreenMenu.style.top = '-100%'; // Скрыть меню
     body.style.overflow = ''; // Включить прокрутку обратно
     header.style.width = '90%'; // Вернуть начальную ширину
