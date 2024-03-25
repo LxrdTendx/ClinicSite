@@ -21,6 +21,11 @@
         font-weight: 400; /* Normal */
         font-style: normal;
     }
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
     :root {
         --main---red: #f22d3e;
         --main---violet: #a673d8;
@@ -136,6 +141,10 @@
         background-color: white; /* Фон для активного пункта меню */
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
 
+    }
+    .active{
+        background-color: white; /* Фон для активного пункта меню */
+        color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
     .main-page-sector{
         background-size: cover;
@@ -790,7 +799,7 @@
     background: var(--main-violet, #A673D8);
     border: none;
     width: 220px;
-    color: #F5F5F5;
+
     leading-trim: both;
     text-edge: cap;
     font-family: 'TT Fors', sans-serif;
@@ -802,6 +811,13 @@
     transition: color 0.5s;
     display: inline-block;
 }
+
+.card-button button:hover{
+        background: var(--main-violet, #232323);
+        color: var(--main-grey, white);
+    }
+
+
 .experience-icon{
     margin-top: 35px;
 }
@@ -859,7 +875,8 @@
     color: var(--main---grey);
 }
 .quantity{
-    font-size: 30px;
+    margin-top: 2px;
+    font-size: 24px;
     font-family: 'TT Fors', sans-serif;
     display: block;
 
@@ -868,6 +885,34 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+.card-button .decrease-quantity{
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    border: 1px solid #b5b5b5;
+}
+
+.card-button .increase-quantity{
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    border: 1px solid #b5b5b5;
+}
+
+.card-button .decrease-quantity:hover{
+    border: #A673D8;
+    background: #A673D8;
+
+}
+.card-button .increase-quantity:hover{
+    border: #A673D8;
+    background: #A673D8;
+
+}
+
+
 
 </style>
 
@@ -879,35 +924,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
 <title>{{object.name}}</title>
-<div class="header" style="display: flex" >
-    <div class="logo" >
-        <a href="" ><img src="">clinic slimness</a>
+<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="logo">
+        <a href=""><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
-        <ul>
-            <li>
-                <div class="main" style="">
-                    <a href="{% url 'login' %}">главная</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="production">
-                    <a href="{% url 'market' %}">аптека</a>
-                </div>
-            </li>
-            <li>
-                <div class="about-us">
-                    <a href="{% url 'about' %}">о нас</a>
-                </div>
-            </li>
-            <li>
-                <div class="cart">
-                    <a href="{% url 'cart' %}">корзина</a>
-                </div>
-            </li>
+        <ul class="menu__box">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a class="active" href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
-
     </div>
 </div>
 
@@ -1142,10 +1169,10 @@ function showQuantityControl(productId, quantity) {
     const cardButtonDiv = card.querySelector('.card-button');
 
     const quantityControlHTML = `
-        <div class="quantity-control" style="width: 200px;">
-            <button class="decrease-quantity" style="width: 45px; height: 45px">-</button>
+        <div class="quantity-control" style="width: 220px;">
+            <button class="decrease-quantity" style="">–</button>
             <span class="quantity">${quantity}</span>
-            <button class="increase-quantity" style="width: 45px; height: 45px">+</button>
+            <button class="increase-quantity" style="">+</button>
         </div>
     `;
 

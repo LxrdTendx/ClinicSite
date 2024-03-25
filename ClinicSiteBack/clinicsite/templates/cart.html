@@ -127,6 +127,10 @@
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
 
     }
+    .active{
+        background-color: white; /* Фон для активного пункта меню */
+        color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
+    }
     .footer{
         margin-top: 175px;
         margin-left: auto;
@@ -188,6 +192,37 @@
         font-family: 'Gropled',sans-serif;
         font-weight: 700;
     }
+    .title-page{
+        display: flex;
+        margin-top: 100px;
+        width: 73.75%;
+        height: 141px;
+        margin-right: auto;
+        margin-left: auto;
+
+    }
+    .title-page-text{
+
+        height: 141px;
+        color: var(--main-grey, #232323);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: Gropled,sans-serif;
+        font-size: 72px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 80%; /* 76.8px */
+    }
+
+    .count-of-product{
+        margin-top: 14px;
+        margin-left: 10px;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 160;
+        font-size: 20px;
+        line-height: 100%;
+        color: #b5b5b5;
+    }
 
     /* Для медиа запросов и адаптивности */
     @media (max-width: 768px) {
@@ -216,7 +251,7 @@
         display: block; /* или другой тип отображения, который вы используете */
     }
     .cart-total{
-        margin-top: 150px;
+
         margin-left: auto;
         margin-right: auto;
         font-family: "TT Fors", sans-serif;
@@ -248,65 +283,168 @@
     .cart-total th {
         background-color: #f2f2f2; /* Цвет фона для заголовков */
     }
+    .card-button{
+        display: flex;
+    }
+    .card-button button{
+        cursor: pointer;
+        justify-content: center;
+        height: 26px;
+        border-radius: 20px;
+        background: var(--main-violet, #A673D8);
+        border: none;
+        width: 113px;
+        color: var(--main-grey, #232323);
+        leading-trim: both;
+        text-edge: cap;
+        font-family: 'TT Fors', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 280;
+        line-height: 100%;
+        transition: background-color 0.5s;
+        transition: color 0.5s;
+    }
+    .card-button button:hover{
+        background: var(--main-violet, #232323);
+        color: var(--main-grey, white);
+    }
+    .quantity{
+        margin-top: 2px;
+        font-size: 18px;
+        font-family: 'TT Fors', sans-serif;
+        display: block;
+
+    }
+    .quantity-control{
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+    .card-button .decrease-quantity{
+        width: 27px;
+        height: 27px;
+        background: #f5f5f5;
+        border: 1px solid #b5b5b5;
+    }
+
+    .card-button .increase-quantity{
+        width: 27px;
+        height: 27px;
+        background: #f5f5f5;
+        border: 1px solid #b5b5b5;
+    }
+
+    .card-button .decrease-quantity:hover{
+        border: #A673D8;
+        background: #A673D8;
+
+    }
+    .card-button .increase-quantity:hover{
+        border: #A673D8;
+        background: #A673D8;
+
+    }
+    .cart-total th,
+    .cart-total td {
+        border: none;
+    }
+    .cart-total th {
+        background-color: transparent;
+        font-family: 'Gropled', sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 80%;
+        color: #585858;
+    }
+    .cart-total tr {
+        border-bottom: 1px solid #ccc; /* Это добавит горизонтальные линии только между строками */
+    }
+     .menu__box li .badge {
+        display: inline-block;
+        background-color: red;
+        color: white;
+        text-align: center;
+        border-radius: 50%;
+        width: 21px;
+        height: 21px;
+        line-height: 21px; /* Для вертикального центрирования текста */
+        font-size: 12px;
+        font-weight: bold;
+        position: relative;
+        top: -40px; /* Поднимает кружок над элементом меню */
+        left: 40px; /* Сдвигает кружок к правому краю элемента меню */
+     }
+
+
 
 </style>
 
 
 
 <title>Корзина</title>
-<div class="header" style="display: flex" >
-    <div class="logo" >
-        <a href="" ><img src="">clinic slimness</a>
+<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="logo">
+        <a href=""><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
-        <ul>
-            <li>
-                <div class="main " style="">
-                    <a href="{% url 'login' %}">главная</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="production">
-                    <a href="{% url 'market' %}">аптека</a>
-                </div>
-            </li>
-            <li>
-                <div class="about-us">
-                    <a href="{% url 'about' %}">о нас</a>
-                </div>
-            </li>
-            <li>
-                <div class="cart active">
-                    <a href="{% url 'cart' %}">корзина</a>
-                </div>
-            </li>
+        <ul class="menu__box">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a class="active" href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge">0</span></a></li>
         </ul>
-
     </div>
 </div>
 
-<div class="cart-total">
+<div class="title-page">
+    <div class="title-page-text">корзина</div>
+    <div class="count-of-product">4 товара</div>
+</div>
+
+
+
+<div class="cart-total" style="width: 73.75%;">
     <table>
-        <tr>
-            <th style="width: 10%;">№</th>
-            <th style="width: 30%;">Товара</th>
-            <th style="width: 20%;">Цена за шт.</th>
-            <th style="width: 20%;">Количество</th>
-            <th style="width: 20%;">Итоговая сумма</th>
+        <tr style="font-family: 'Gropled', sans-serif; font-weight: 700; font-size: 22px; line-height: 80%; color: #585858;">
+            <th style="width: 10%;">Товар</th>
+            <th style="width: 25%;">Название</th>
+            <th style="width: 10%;">Цена</th>
+            <th style="width: 15%;">Кол-во</th>
+            <th style="width: 10%;">Сумма</th>
         </tr>
         {% for item in cart_items %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ item.product.name }}</td>
-            <td>{{ item.unit_price }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.total_price }}</td>
+        <tr data-product-id="{{ item.product.id }}" style="height: 140px;">
+            <td><img src="{{ item.product.photo1.url }}" alt="{{ item.product.name }}" style="width:auto; height: 120px"></td>
+            <td>
+                <div class="product-name">
+                    {{ item.product.brand }}<br>
+                    {{ item.product.name }}<br>
+                    <div class="text-info">Дозировка: {{ item.product.dosage }}</div>
+
+                </div>
+            </td>
+            <td class="unit-price">{{ item.unit_price }} ₽</td>
+            <td>
+                <div class="card-button">
+                   <div class="quantity-control" style="width: 100px;">
+                        <button class="decrease-quantity" onclick="decreaseQuantity('{{ item.product.id }}')">–</button>
+                        <span class="quantity">{{ item.quantity }}</span>
+                        <button class="increase-quantity" onclick="increaseQuantity('{{ item.product.id }}')">+</button>
+                    </div>
+                    <svg onclick="removeItem('{{ item.product.id }}')" style="cursor: pointer; margin-left: 35px" width="26" height="27" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 3.2H13.6V2C13.6 1.46957 13.3893 0.960859 13.0142 0.585786C12.6391 0.210714 12.1304 0 11.6 0H6.8C6.26957 0 5.76086 0.210714 5.38579 0.585786C5.01071 0.960859 4.8 1.46957 4.8 2V3.2H0.4C0.293913 3.2 0.192172 3.24214 0.117157 3.31716C0.0421428 3.39217 0 3.49391 0 3.6C0 3.70609 0.0421428 3.80783 0.117157 3.88284C0.192172 3.95786 0.293913 4 0.4 4H1.6V18.8C1.6 19.1183 1.72643 19.4235 1.95147 19.6485C2.17652 19.8736 2.48174 20 2.8 20H15.6C15.9183 20 16.2235 19.8736 16.4485 19.6485C16.6736 19.4235 16.8 19.1183 16.8 18.8V4H18C18.1061 4 18.2078 3.95786 18.2828 3.88284C18.3579 3.80783 18.4 3.70609 18.4 3.6C18.4 3.49391 18.3579 3.39217 18.2828 3.31716C18.2078 3.24214 18.1061 3.2 18 3.2ZM5.6 2C5.6 1.68174 5.72643 1.37652 5.95147 1.15147C6.17652 0.926428 6.48174 0.8 6.8 0.8H11.6C11.9183 0.8 12.2235 0.926428 12.4485 1.15147C12.6736 1.37652 12.8 1.68174 12.8 2V3.2H5.6V2ZM16 18.8C16 18.9061 15.9579 19.0078 15.8828 19.0828C15.8078 19.1579 15.7061 19.2 15.6 19.2H2.8C2.69391 19.2 2.59217 19.1579 2.51716 19.0828C2.44214 19.0078 2.4 18.9061 2.4 18.8V4H16V18.8ZM7.2 8.4V14.8C7.2 14.9061 7.15786 15.0078 7.08284 15.0828C7.00783 15.1579 6.90609 15.2 6.8 15.2C6.69391 15.2 6.59217 15.1579 6.51716 15.0828C6.44214 15.0078 6.4 14.9061 6.4 14.8V8.4C6.4 8.29391 6.44214 8.19217 6.51716 8.11716C6.59217 8.04214 6.69391 8 6.8 8C6.90609 8 7.00783 8.04214 7.08284 8.11716C7.15786 8.19217 7.2 8.29391 7.2 8.4ZM12 8.4V14.8C12 14.9061 11.9579 15.0078 11.8828 15.0828C11.8078 15.1579 11.7061 15.2 11.6 15.2C11.4939 15.2 11.3922 15.1579 11.3172 15.0828C11.2421 15.0078 11.2 14.9061 11.2 14.8V8.4C11.2 8.29391 11.2421 8.19217 11.3172 8.11716C11.3922 8.04214 11.4939 8 11.6 8C11.7061 8 11.8078 8.04214 11.8828 8.11716C11.9579 8.19217 12 8.29391 12 8.4Z" fill="#F22D3E" />
+                    </svg>
+                </div>
+            </td>
+            <td class="total-price">{{ item.total_price }} ₽</td>
         </tr>
         {% endfor %}
-    </table>
 
-    <p>Общая сумма: {{ total_sum }}</p>
+    </table>
+    <div id="total-sum">{{ total_sum }} ₽</div>
+
 </div>
 
 
@@ -377,6 +515,164 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCart();
+});
+
+
+function getProductsText(count) {
+    let text = 'товаров'; // Для 0, 5-20 товаров
+    if (count % 10 === 1 && count % 100 !== 11) {
+        text = 'товар'; // Для 1 товар
+    } else if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) {
+        text = 'товара'; // Для 2-4 товара
+    }
+    return `${count} ${text}`;
+}
+function getCartCount() {
+    const params = new URLSearchParams(window.location.search);
+    const ids = params.get('ids');
+    if (!ids) {
+        return 0;
+    }
+    // Разделяем строку ID на массив и считаем количество элементов
+    return ids.split(',').length;
+}
+
+function updateProductCount() {
+    const count = getCartCount(); // Получаем количество товаров в корзине
+    const countElement = document.querySelector('.count-of-product');
+    const badgeElements = document.querySelectorAll('.badge');
+
+    // Обновляем текст в .count-of-product
+    if (countElement) {
+        countElement.textContent = getProductsText(count);
+    }
+
+    // Обновляем и скрываем .badge в зависимости от количества товаров
+    badgeElements.forEach(badge => {
+        if (count > 0) {
+            badge.textContent = count; // Устанавливаем текст равным количеству товаров
+            badge.style.display = 'inline-block'; // Показываем .badge
+        } else {
+            badge.style.display = 'none'; // Скрываем .badge, если товаров нет
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', updateProductCount);
+
+function initializeCart() {
+    document.querySelectorAll('tr[data-product-id]').forEach(row => {
+        const productId = row.dataset.productId;
+        const storedQuantity = parseInt(localStorage.getItem(`product_${productId}`) || "0");
+
+        if (storedQuantity > 0) {
+            const quantitySpan = row.querySelector('.quantity');
+            quantitySpan.innerText = storedQuantity;
+
+            // Обновляем сумму для этого продукта
+            const unitPrice = parseFloat(row.querySelector('.unit-price').innerText.replace('₽', ''));
+            const totalPriceElement = row.querySelector('.total-price');
+            totalPriceElement.innerText = `${unitPrice * storedQuantity} ₽`;
+        } else {
+            // Если количество равно нулю, удаляем строку из таблицы
+            row.remove();
+        }
+    });
+
+    // Обновляем итоговую сумму после инициализации
+    updateTotalSum();
+}
+function removeItem(productId) {
+    const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+    if (row) {
+        row.remove(); // Удалить строку товара из таблицы
+        localStorage.removeItem(`product_${productId}`); // Удалить товар из localStorage
+        updateTotalSum(); // Обновить итоговую сумму
+        updateURLAndLocalStorageAfterRemoval(productId);
+        updateProductCount();
+    }
+}
+function updateURLAndLocalStorageAfterRemoval(productId) {
+    // Здесь должен быть ваш код для обновления localStorage или URL
+    // Этот код зависит от вашей текущей реализации управления корзиной
+
+    // Пример обновления параметров URL
+    const params = new URLSearchParams(window.location.search);
+    let ids = params.get('ids').split(',');
+    let quantities = params.get('quantities').split(',');
+
+    const index = ids.indexOf(productId.toString());
+    if (index > -1) {
+        ids.splice(index, 1);
+        quantities.splice(index, 1);
+    }
+
+    params.set('ids', ids.join(','));
+    params.set('quantities', quantities.join(','));
+
+    // Обновление URL без перезагрузки страницы
+    history.replaceState(null, '', `${location.pathname}?${params}`);
+}
+function updateQuantityControl(productId, quantity) {
+    const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+
+    if (quantity > 0) {
+        const quantitySpan = row.querySelector('.quantity');
+        quantitySpan.innerText = quantity;
+        localStorage.setItem(`product_${productId}`, quantity);
+
+        // Обновляем сумму для этого продукта
+        const unitPrice = parseFloat(row.querySelector('.unit-price').innerText.replace('₽', ''));
+        const totalPriceElement = row.querySelector('.total-price');
+        totalPriceElement.innerText = `${unitPrice * quantity} ₽`;
+
+        // Обновляем итоговую сумму
+        updateTotalSum();
+    } else {
+        localStorage.removeItem(`product_${productId}`);
+        row.remove(); // Удалить строку товара из таблицы
+
+        // Обновляем итоговую сумму после удаления элемента
+        updateTotalSum();
+    }
+}
+
+function updateTotalSum() {
+    const totalSumElement = document.querySelector('#total-sum'); // Убедитесь, что у вас есть элемент с этим ID
+    let totalSum = 0;
+    document.querySelectorAll('.total-price').forEach((element) => {
+        totalSum += parseFloat(element.innerText.replace('₽', ''));
+    });
+    totalSumElement.innerText = `${totalSum} ₽`;
+}
+
+function increaseQuantity(productId) {
+    let quantity = parseInt(localStorage.getItem(`product_${productId}`) || "0");
+    updateQuantityControl(productId, ++quantity);
+}
+
+function decreaseQuantity(productId) {
+    let quantity = parseInt(localStorage.getItem(`product_${productId}`));
+    if (quantity > 1) {
+        updateQuantityControl(productId, --quantity);
+    } else {
+        localStorage.removeItem(`product_${productId}`);
+        const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+        if (row) {
+            row.remove(); // Удалить строку товара из таблицы
+        }
+        // Обновляем итоговую сумму и количество товаров после удаления элемента
+        updateTotalSum();
+        updateURLAndLocalStorageAfterRemoval(productId); // Убедитесь, что эта функция обновляет параметры URL
+        updateProductCount();
+    }
+}
 </script>
 
 {% endblock %}
