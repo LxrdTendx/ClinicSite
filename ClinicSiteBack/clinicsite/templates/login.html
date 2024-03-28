@@ -817,6 +817,7 @@
 
 
 .full-screen-menu {
+
     transition: 1s ease;
     opacity: 90%;
     position: fixed;
@@ -846,7 +847,8 @@
 .header .full-screen-menu ul li a {
   text-decoration: none;
   color: white;
-  font-size: 28px;
+  font-size: 34px;
+    width: auto;
 }
 
 .wrapper-menu.open + .full-screen-menu {
@@ -921,7 +923,7 @@
             font-weight: 600;
         }
         .second-page-text{
-            font-size: 22px;
+            font-size: 24px;
             margin-right: 0px;
             width: 80%;
         }
@@ -955,7 +957,7 @@
             content: 'путь к идеальной фигуре начинается с профессионального руководства и заботы';
         }
         .slider-page-block .text-box-1{
-            font-size: 22px;
+            font-size: 24px;
             top: 700px;
             text-align: right;
             width: 380px;
@@ -977,13 +979,13 @@
             width: auto;
         }
         .trust-block-text1{
-            font-size: 22px;
+            font-size: 24px;
             margin-left: 81px;
             width: 80%;
         }
         .trust-block-text{
             width: auto;
-            font-size: 22px;
+            font-size: 24px;
         }
 
 
@@ -996,7 +998,7 @@
         }
         .cons-form{
             width: 100%;
-            height: 100%;
+            height: 105%;
         }
         .cons-input-row{
             display: block;
@@ -1009,17 +1011,18 @@
         .cons-textarea-field{
             width: 100%;
             margin-top: 0;
-            font-size: 22px;
+            font-size: 24px;
             height: 50px;
             padding: 10px 0;
         }
         .cons-form-subtitle{
+            font-size: 24px;
             width: 86%;
             margin-left: auto;
             margin-right: auto;
         }
         .cons-input-field{
-            font-size: 22px;
+            font-size: 24px;
             width: 100%;
             margin-bottom: 40px;
         }
@@ -1035,7 +1038,7 @@
             margin-right: auto;
         }
         .text-button, .text-button2 {
-            font-size: 22px;
+            font-size: 24px;
         }
 
 
@@ -1051,7 +1054,7 @@
             margin: 0;
         }
         .yandex-map-address{
-            font-size: 22px;
+            font-size: 24px;
             margin: 0;
             margin-top: 130px;
             right: 0;
@@ -1110,6 +1113,7 @@
 
 
 </style>
+
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <title>Главная</title>
@@ -1142,7 +1146,7 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: block; width: 100px;">
+        <ul class="menu__box" style="display: block; width: 20%">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>

@@ -2,17 +2,15 @@
 {% block content %}
 
 <style>
+     * {
+      font-style: normal;
+    }
     body{
         /*background: gray;*/
         margin: 0;
         padding: 0;
         zoom: 80%;
         background: var(--main-white, #F5F5F5)
-    }
-    @media (min-width: 1920px) {
-        body {
-            zoom: 100%;
-        }
     }
     @font-face {
         font-family: 'Gropled';
@@ -25,6 +23,11 @@
         src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
         font-weight: 400; /* Normal */
         font-style: normal;
+    }
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
     }
 
     .header{
@@ -273,7 +276,6 @@
         margin-right: 20px;
     }
     .cart-total table {
-        width: 100%; /* Заставляет таблицу растягиваться на всю ширину родительского блока */
         border-collapse: collapse; /* Убирает двойные границы */
     }
 
@@ -686,7 +688,7 @@
 .header .full-screen-menu ul li a {
   text-decoration: none;
   color: white;
-  font-size: 28px;
+  font-size: 34px;
 }
 
 .wrapper-menu.open + .full-screen-menu {
@@ -862,7 +864,13 @@
             width: 100%;
         }
         .button{
+
+
+        }
+        .send-button{
             width: 100%;
+            margin-right: auto;
+            margin-left: auto;
         }
 
 
@@ -906,7 +914,7 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: block; width: 100px;">
+        <ul class="menu__box" style="display: block; width: 20%;">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
