@@ -28,6 +28,7 @@
     }
 
     .header{
+        transition: width 0.3s ease, border-radius 0.3s ease;
         margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
@@ -128,6 +129,7 @@
 
     }
     .active{
+        font-weight: 700;
         background-color: white; /* Фон для активного пункта меню */
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
@@ -224,6 +226,7 @@
         color: #b5b5b5;
     }
 
+
     /* Для медиа запросов и адаптивности */
     @media (max-width: 768px) {
         .footer-content {
@@ -251,12 +254,12 @@
         display: block; /* или другой тип отображения, который вы используете */
     }
     .cart-total{
-
+        width: 73.75%;
+        display: flex;
         margin-left: auto;
         margin-right: auto;
         font-family: "TT Fors", sans-serif;
         font-size: 24px;
-        width: 1150px;
 
 
     }
@@ -377,26 +380,542 @@
         left: 40px; /* Сдвигает кружок к правому краю элемента меню */
      }
 
+    .total-order {
+        height: auto;
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 80%;
+        color: #f22d3e;
+    }
+    .total-fl{
+        align-items: center;
+        justify-content: space-between;
+        display: flex;
+        width: 382px;
+        height: 16px;
+    }
+    .total-fl .count-of-product2{
+        font-size: 16px;
+        margin: 0;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 500;
+        line-height: 100%;
+        text-align: right;
+        color: #b5b5b5;
+    }
+    .product-name{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 100%;
+        color: #232323;
+    }
+    .text-info{
+        margin-top: 10px;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #585858;
+    }
+    .unit-price{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 280;
+        font-size: 18px;
+        line-height: 100%;
+        color: #232323;
+    }
+    .total-price{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 100%;
+        text-align: right;
+        color: #232323;
+    }
+    .total-fl-order{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        text-align: right;
+        color: #232323;
+    }
+    #total-sum{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 100%;
+        text-align: right;
+        color: #232323;
+    }
+    .sale-sum{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 100%;
+        text-align: right;
+        color: #f22d3e;
+    }
+    .total-fl-order-text{
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 80%;
+        color: #232323;
+    }
+    /*.send-button button{*/
+    /*    cursor: pointer;*/
+    /*    border: 0;*/
+    /*    border-radius: 20px;*/
+    /*    padding: 11px 20px;*/
+    /*    width: 381px;*/
+    /*    height: 60px;*/
+    /*    background: #232323;*/
+    /*    font-family: "TT Fors", sans-serif;*/
+    /*    font-weight: 500;*/
+    /*    font-size: 18px;*/
+    /*    line-height: 100%;*/
+    /*    text-align: center;*/
+    /*    color: #f5f5f5;*/
+    /*    position: relative; !* Добавлено для позиционирования псевдоэлементов *!*/
+    /*    overflow: hidden; !* Добавлено чтобы обрезать анимацию внутри границ кнопки *!*/
+    /*    transition: background-color 0.2s, color 0.2s;*/
+    /*}*/
+    /*.send-button button:hover{*/
+    /*    background: #A673D8;*/
+    /*    color: #232323;*/
+    /*    transition: 0.5s;*/
+    /*}*/
+
+    #total-sum-order{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 100%;
+        text-align: right;
+        color: #232323;
+    }
+    .button {
+        font-family: "TT Fors", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        text-align: center;
+        color: #f5f5f5;
+        position: relative;
+        border-radius: 20px;
+        padding: 11px 20px;
+        width: 381px;
+        height: 60px;
+        border: none;
+        cursor: pointer;
+        background-color: #232323;
+        transition: all 0.2s ease;
+    }
+    .button:hover{
+        background-color: #A673D8;
+        color: #232323;
+        transition: 0.5s;
+    }
+    .button:active {
+        transform: scale(0.96);
+    }
+    .button:before,
+    .button:after {
+        position: absolute;
+        content: "";
+        width: 150%;
+        left: 50%;
+        height: 100%;
+        transform: translateX(-50%);
+        z-index: -1000;
+        background-repeat: no-repeat;
+    }
+    .button.animate::before {
+        top: -70%;
+        background-image: radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, transparent 20%, #A673D8 20%, transparent 30%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #A673D8 15%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%);
+        background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%,
+        10% 10%, 18% 18%;
+        animation: greentopBubbles ease-in-out 0.6s forwards infinite;
+    }
+    @keyframes greentopBubbles {
+        0% {
+            background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+            40% 90%, 55% 90%, 70% 90%;
+        }
+        50% {
+            background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+            50% 50%, 65% 20%, 90% 30%;
+            }
+        100% {
+            background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+            50% 40%, 65% 10%, 90% 20%;
+            background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+        }
+    }
+    .button.animate::after {
+        bottom: -70%;
+        background-image: radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, #A673D8 15%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%),
+        radial-gradient(circle, #A673D8 20%, transparent 20%);
+        background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%, 18% 18%;
+        animation: greenbottomBubbles ease-in-out 0.6s forwards infinite;
+    }
+    @keyframes greenbottomBubbles {
+        0% {
+            background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+            70% -10%, 70% 0%;
+        }
+        50% {
+            background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+            105% 0%;
+        }
+        100% {
+            background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+            110% 10%;
+            background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+        }
+    }
+
+.footer-mobile{
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    margin-top: 120px;
+    width: 90%;
+}
+.market-logo{
+    display: none;
+}
+
+.wrapper-menu {
+    display: none;
+  width: 35px;
+  height: 25px;
+
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 330ms ease-out;
+}
+
+.wrapper-menu.open {
+  transform: rotate(-45deg);
+}
+
+.line-menu {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 4px;
+}
+
+.line-menu.half {
+  width: 50%;
+}
+
+.line-menu.start {
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: right;
+}
+
+.open .line-menu.start {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+.line-menu.end {
+  align-self: flex-end;
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: left;
+}
+
+.open .line-menu.end {
+  transform: rotate(-90deg) translateX(-3px);
+}
+
+@keyframes arrow-bounce-up {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+.full-screen-menu {
+    transition: 1s ease;
+    opacity: 90%;
+    position: fixed;
+    top: -100%; /* Скрыть изначально */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000; /* Убедитесь, что меню находится поверх других элементов */
+    display: flex; /* Использование flexbox для выравнивания */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+}
+
+.header .full-screen-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin-top: 50px; /* Или другое значение для отступа сверху */
+}
+
+.header .full-screen-menu ul li {
+  padding: 10px;
+}
+
+.header .full-screen-menu ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+}
+
+.wrapper-menu.open + .full-screen-menu {
+  top: 0; /* Показать меню */
+}
+.menu__box li .badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -40px; /* Поднимает кружок над элементом меню */
+    left: 40px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+
+.badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -30px; /* Поднимает кружок над элементом меню */
+    left: 50px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+.table-cart{
+    width: 63.36%;
+}
+
+@media (max-width: 1000px) {
+        body{
+            zoom: 140%;
+        }
+        .navbar{
+            display: none;
+        }
+        .header{
+            height: 6.25em;
+            width: 90%;
+        }
+        .logo{
+            margin: 0;
+            font-size: 1.5em;
+            margin-left: 20px;
+        }
+        .market-logo{
+            display: block;
+        }
+        .wrapper-menu{
+            display: flex;
+        }
+
+        .main-page-sector{
+            width: 90%;
+            height: 25.875em;
+        }
+        .main-page-text{
+            top: 20px;
+            position: relative;
+            margin-top: 20px;
+            font-size: 4em;
+            margin-left: 20px;
+            padding-top: 20px;
+            font-weight: 600;
+        }
+        .second-page-text{
+            font-size: 22px;
+            margin-right: 0px;
+            width: 80%;
+        }
+
+        .slider-page-block{
+            margin-top: 250px;
+            width: 90%;
+            height: 800px;
+        }
+
+        .slider-page-block .card-container{
+            zoom: 97%;
+            left: 0;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .slider-page-block .text-box-2{
+            left: 0px;
+            top: 546px;
+            text-align: left;
+            width: 430px;
+        }
+        .slider-page-block .number-box {
+            font-size: 22px;
+        }
+        .text-box-2 span{
+            display: none;
+        }
+        .text-box-2:after{
+            content: 'путь к идеальной фигуре начинается с профессионального руководства и заботы';
+        }
+        .slider-page-block .text-box-1{
+            font-size: 22px;
+            top: 700px;
+            text-align: right;
+            width: 380px;
+            right: 0px;
+        }
+
+
+        .footer{
+            display: none;
+        }
+        .footer-mobile{
+            height: 400px;
+            display: block;
+        }
+        .footer-title{
+            margin-top: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 2em;
+        }
+        .footer-list{
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 210px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
+            font-size: 24px;
+            line-height: 100%;
+            color: #585858;
+        }
+        .footer-phone-select{
+            font-size: 24px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+        .footer-item{
+            font-size: 24px;
+            font-family: "TT Fors Trial Variable", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+        .cart-total{
+            display: block;
+            width: 90%;
+        }
+        .title-page{
+            margin-left: 40px;
+        }
+        .cart-block{
+            zoom:140%;
+            margin-top: 50px;
+        }
+        .total-fl{
+            width: 100%;
+        }
+        .table-cart{
+            width: 100%;
+        }
+        .button{
+            width: 100%;
+        }
+
+
+    }
+
+
 
 
 </style>
 
 
-
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <title>Корзина</title>
+
 <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
     <div class="logo">
-        <a href=""><img src="">clinic slimness</a>
+        <a  href="{% url 'login' %}"><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
         <ul class="menu__box">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
-            <li><a class="active" href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge">0</span></a></li>
+            <li><a class="active" href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge" style="display: none;">0</span></a></li>
         </ul>
     </div>
+    <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
+        <a href="{% url 'cart' %}">
+            <div class="market-logo">
+               <span class="badge" style="display: none;">0</span>
+                <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 16C16.5304 16 17.0391 16.2107 17.4142 16.5858C17.7893 16.9609 18 17.4696 18 18C18 18.5304 17.7893 19.0391 17.4142 19.4142C17.0391 19.7893 16.5304 20 16 20C15.4696 20 14.9609 19.7893 14.5858 19.4142C14.2107 19.0391 14 18.5304 14 18C14 16.89 14.89 16 16 16ZM0 0H3.27L4.21 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3C20 3.17 19.95 3.34 19.88 3.5L16.3 9.97C15.96 10.58 15.3 11 14.55 11H7.1L6.2 12.63L6.17 12.75C6.17 12.8163 6.19634 12.8799 6.24322 12.9268C6.29011 12.9737 6.3537 13 6.42 13H18V15H6C5.46957 15 4.96086 14.7893 4.58579 14.4142C4.21071 14.0391 4 13.5304 4 13C4 12.65 4.09 12.32 4.24 12.04L5.6 9.59L2 2H0V0ZM6 16C6.53043 16 7.03914 16.2107 7.41421 16.5858C7.78929 16.9609 8 17.4696 8 18C8 18.5304 7.78929 19.0391 7.41421 19.4142C7.03914 19.7893 6.53043 20 6 20C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18C4 16.89 4.89 16 6 16ZM15 9L17.78 4H5.14L7.5 9H15Z" fill="#F5F5F5" />
+                </svg>
+            </div>
+        </a>
+        <div class="wrapper-menu">
+          <div class="line-menu half start"></div>
+          <div class="line-menu"></div>
+          <div class="line-menu half end"></div>
+        </div>
+    </div>
+    <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
+        <ul class="menu__box" style="display: block; width: 100px;">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
+        </ul>
+    </div>
+
 </div>
+
 
 <div class="title-page">
     <div class="title-page-text">корзина</div>
@@ -405,8 +924,8 @@
 
 
 
-<div class="cart-total" style="width: 73.75%;">
-    <table>
+<div class="cart-total" style=" justify-content: space-between">
+    <table class="table-cart" style="">
         <tr style="font-family: 'Gropled', sans-serif; font-weight: 700; font-size: 22px; line-height: 80%; color: #585858;">
             <th style="width: 10%;">Товар</th>
             <th style="width: 25%;">Название</th>
@@ -443,8 +962,29 @@
         {% endfor %}
 
     </table>
-    <div id="total-sum">{{ total_sum }} ₽</div>
 
+    <div class="cart-block">
+        <div class="total-fl" style="margin-bottom: 36px">
+            <div class="total-order">Сумма заказа</div>
+            <div class="count-of-product2">4 товара</div>
+        </div>
+        <div class="total-fl" style="margin-bottom: 10px">
+            <div class="total-fl-order"><span class="count-of-product3">4 товара</span> на сумму</div>
+            <div id="total-sum">{{ total_sum }} ₽</div>
+        </div>
+        <div class="total-fl" style="margin-bottom: 37px">
+            <div class="total-fl-order">скидка</div>
+            <div class="sale-sum">– 0 ₽</div>
+        </div>
+        <div class="total-fl" style="margin-bottom: 40px">
+            <div class="total-fl-order-text">Итого</div>
+            <div id="total-sum-order">{{ total_sum }} ₽</div>
+        </div>
+        <div class="send-button">
+            <button class="button">Перейти к оформлению</button>
+        </div>
+
+    </div>
 </div>
 
 
@@ -492,6 +1032,35 @@
     </div>
 </div>
 
+
+<div class="footer-mobile">
+    <a href="#main-sector">
+        <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
+      <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
+      <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
+    </svg>
+    </a>
+
+    <hr>
+    <div class="footer-section">
+        <h2 class="footer-title red">clinic slimness</h2>
+    </div>
+    <ul class="footer-list">
+        <li class="footer-item">
+            <!-- Выпадающий список телефонных номеров -->
+            <select class="footer-phone-select" onchange="location = this.value;">
+                <option value="tel:+74956080101">+7 495 608-01-01</option>
+                <option value="tel:+74956077950">+7 495 607-79-50</option>
+                <option value="tel:+74956073701">+7 495 607-37-01</option>
+                <option value="tel:+74955438384">+7 495 543-83-84</option>
+            </select>
+        </li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color: #585858;">info@medicsel.ru</a></li>
+
+    </ul>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     if (!window.location.search) {  // Проверяем, есть ли уже параметры в URL
@@ -516,6 +1085,85 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+
+<script>
+  AOS.init();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var arrow = document.querySelector('.footer-mobile a');
+  var trustBlock = document.querySelector('.trust-block');
+  var mainSector = document.querySelector('#main-sector');
+  var footerMobile = document.querySelector('.footer-mobile');
+  var initialArrowPosition = arrow.getBoundingClientRect().top + window.scrollY;
+
+  function handleScroll() {
+    var trustBlockPosition = trustBlock.getBoundingClientRect().top + window.scrollY;
+
+    if (window.scrollY > trustBlockPosition) {
+      arrow.style.position = 'fixed';
+      arrow.style.bottom = '20px'; // Или другое значение для позиционирования
+      arrow.style.left = '90%'; // Центрирование по горизонтали
+      arrow.style.transform = 'translateX(-50%)'; // Коррекция смещения для центрирования
+    } else if (window.scrollY < trustBlockPosition || window.scrollY < initialArrowPosition) {
+      arrow.style.position = 'absolute';
+      arrow.style.bottom = 'initial';
+      arrow.style.left = 'initial';
+      arrow.style.transform = 'initial';
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  arrow.addEventListener('click', function(event) {
+    event.preventDefault(); // Предотвращение стандартного действия ссылки
+    scrollToTop();
+  });
+
+  window.addEventListener('scroll', handleScroll);
+});
+
+
+</script>
+
+
+<script>
+var wrapperMenu = document.querySelector('.wrapper-menu');
+var fullScreenMenu = document.querySelector('.full-screen-menu');
+var header = document.querySelector('.header'); // Получаем элемент header
+var body = document.body;
+
+wrapperMenu.addEventListener('click', function() {
+  wrapperMenu.classList.toggle('open');
+  if (wrapperMenu.classList.contains('open')) {
+        wrapperMenu.style.height = '33px';
+        fullScreenMenu.style.opacity='90%'
+        fullScreenMenu.style.top = '112px'; // Показать меню
+        body.style.overflow = 'hidden'; // Отключить прокрутку
+        header.style.width = '100%'; // Устанавливаем ширину header на 100%
+        header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
+        header.style.top="0";
+        header.style.marginTop="0";
+  } else {
+        wrapperMenu.style.height  = '25px';
+        fullScreenMenu.style.top = '-100%'; // Скрыть меню
+        body.style.overflow = ''; // Включить прокрутку обратно
+        header.style.width = '90%'; // Вернуть начальную ширину
+        header.style.borderRadius = '20px'; // Вернуть начальный border-radius
+        fullScreenMenu.style.opacity='0%'
+        header.style.top="10";
+        header.style.marginTop="10px";
+  }
+});
+</script>
+
 
 <script>
 
@@ -546,11 +1194,15 @@ function getCartCount() {
 function updateProductCount() {
     const count = getCartCount(); // Получаем количество товаров в корзине
     const countElement = document.querySelector('.count-of-product');
+    const count2Element = document.querySelector('.count-of-product2');
+    const count3Element = document.querySelector('.count-of-product3');
     const badgeElements = document.querySelectorAll('.badge');
 
     // Обновляем текст в .count-of-product
     if (countElement) {
         countElement.textContent = getProductsText(count);
+        count2Element.textContent = getProductsText(count);
+        count3Element.textContent = getProductsText(count);
     }
 
     // Обновляем и скрываем .badge в зависимости от количества товаров
@@ -645,11 +1297,13 @@ function updateQuantityControl(productId, quantity) {
 
 function updateTotalSum() {
     const totalSumElement = document.querySelector('#total-sum'); // Убедитесь, что у вас есть элемент с этим ID
+    const totalSumOrderElement = document.querySelector('#total-sum-order');
     let totalSum = 0;
     document.querySelectorAll('.total-price').forEach((element) => {
         totalSum += parseFloat(element.innerText.replace('₽', ''));
     });
     totalSumElement.innerText = `${totalSum} ₽`;
+    totalSumOrderElement.innerHTML = `${totalSum} ₽`;
 }
 
 function increaseQuantity(productId) {
@@ -673,6 +1327,16 @@ function decreaseQuantity(productId) {
         updateProductCount();
     }
 }
+</script>
+<script>
+  const button = document.querySelector(".button");
+  button.addEventListener("click", (e) => {
+    e.preventDefault;
+    button.classList.add("animate");
+    setTimeout(() => {
+      button.classList.remove("animate");
+    }, 600);
+  });
 </script>
 
 {% endblock %}
