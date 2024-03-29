@@ -949,7 +949,9 @@
         </tr>
         {% for item in cart_items %}
         <tr data-product-id="{{ item.product.id }}" style="height: 140px;">
-            <td><img src="{{ item.product.photo1.url }}" alt="{{ item.product.name }}" style="width:auto; height: 120px"></td>
+            <td style="display: flex; justify-content: center; align-items: center; height: 140px;">
+                <img src="{{ item.product.photo1.url }}" alt="{{ item.product.name }}" style="max-width:100%; max-height:120px;">
+            </td>
             <td>
                 <div class="product-name">
                     {{ item.product.brand }}<br>
