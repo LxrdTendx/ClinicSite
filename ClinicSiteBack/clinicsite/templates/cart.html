@@ -736,15 +736,19 @@
         .navbar{
             display: none;
         }
-        .header{
+        .header {
+            align-items: normal;
             height: 6.25em;
             width: 90%;
             zoom: 120%;
         }
-        .logo{
+        .logo {
             margin: 0;
             font-size: 1.5em;
             margin-left: 20px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 24px;
         }
         .market-logo{
             display: block;
@@ -887,7 +891,7 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <title>Корзина</title>
 
-<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+<div class="header" style="display: flex; justify-content: space-between; ">
     <div class="logo">
         <a  href="{% url 'login' %}"><img src="">clinic slimness</a>
     </div>
