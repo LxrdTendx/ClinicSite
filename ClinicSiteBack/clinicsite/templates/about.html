@@ -2,17 +2,15 @@
 {% block content %}
 
 <style>
+     * {
+      font-style: normal;
+    }
     body{
         /*background: gray;*/
         margin: 0;
         padding: 0;
         zoom: 80%;
         background: var(--main-white, #F5F5F5)
-    }
-    @media (min-width: 1920px) {
-        body {
-            zoom: 100%;
-        }
     }
     @font-face {
         font-family: 'Gropled';
@@ -26,8 +24,15 @@
         font-weight: 400; /* Normal */
         font-style: normal;
     }
-
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
     .header{
+        align-items: center;
+        transition: width 0.3s ease, border-radius 0.3s ease;
+        margin-bottom: 10px;
         margin-top: 10px;
         margin-right: auto;
         margin-left: auto;
@@ -94,6 +99,8 @@
         color: var(--main-grey, #232323);
         transition: 0.5s;
     }
+
+
     .main a {
         background-color: var(--main-grey, #232323); /* Фон для 'главная' */
         color: white; /* Цвет текста для 'главная' */
@@ -132,6 +139,11 @@
         background-color: white; /* Фон для активного пункта меню */
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
+
+
+
+
+
     .profile {
         margin-top: 100px;
         width: 1086px;
@@ -155,6 +167,8 @@
     border-radius: 20px;
     border: 2px #232323 solid;
     background-image: url("/static/profile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-name {
@@ -184,7 +198,7 @@
 
 .profile-tags {
     width: 673px;
-    height: 40px;
+    height: 50px;
     left: 400px;
     top: 260px;
     position: absolute;
@@ -862,6 +876,352 @@
  }
 
 
+.footer-mobile{
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    margin-top: 120px;
+    width: 90%;
+}
+.market-logo{
+    display: none;
+}
+
+.wrapper-menu {
+    display: none;
+  width: 35px;
+  height: 25px;
+
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 330ms ease-out;
+}
+
+.wrapper-menu.open {
+  transform: rotate(-45deg);
+}
+
+.line-menu {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 4px;
+}
+
+.line-menu.half {
+  width: 50%;
+}
+
+.line-menu.start {
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: right;
+}
+
+.open .line-menu.start {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+.line-menu.end {
+  align-self: flex-end;
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: left;
+}
+
+.open .line-menu.end {
+  transform: rotate(-90deg) translateX(-3px);
+}
+
+@keyframes arrow-bounce-up {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+
+.full-screen-menu {
+
+    transition: 1s ease;
+    opacity: 90%;
+    position: fixed;
+    top: -100%; /* Скрыть изначально */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000; /* Убедитесь, что меню находится поверх других элементов */
+    display: flex; /* Использование flexbox для выравнивания */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+}
+
+.header .full-screen-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin-top: 50px; /* Или другое значение для отступа сверху */
+}
+
+.header .full-screen-menu ul li {
+  padding: 10px 0 ;
+    width: auto;
+}
+
+.header .full-screen-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    width: auto;
+}
+
+.wrapper-menu.open + .full-screen-menu {
+  top: 0; /* Показать меню */
+}
+.menu__box li .badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -40px; /* Поднимает кружок над элементом меню */
+    left: 40px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+
+.badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -30px; /* Поднимает кружок над элементом меню */
+    left: 50px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+    .experience hr {
+        width: 880px;
+    }
+    .hr-block{
+        width: 880px;
+    }
+
+
+@media (max-width: 1000px) {
+
+        body {
+            zoom: 140%;
+        }
+
+        .navbar {
+            display: none;
+        }
+
+        .header {
+            align-items: normal;
+            height: 6.25em;
+            width: 90%;
+            zoom: 120%;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 1.5em;
+            margin-left: 20px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 24px;
+        }
+
+        .market-logo {
+            display: block;
+        }
+
+        .wrapper-menu {
+            display: flex;
+        }
+
+
+        .footer {
+            display: none;
+        }
+
+        .footer-mobile {
+            height: 400px;
+            display: block;
+        }
+
+        .footer-title {
+            margin-top: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 3em;
+        }
+
+        .footer-list {
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 282px;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            font-size: 1em;
+            line-height: 100%;
+            color: #585858;
+        }
+
+        .footer-list li{
+            font-size: 2em;
+        }
+
+        .footer-phone-select {
+            font-size: 1em;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+
+        .footer-item {
+            width: auto;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+
+
+
+        .profile {
+            width: 90%;
+            height: 1100px;
+        }
+        .profile-photo, .profile-name, .profile-tags, .profile-description{
+            position: unset;
+        }
+        .profile-photo {
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+            height: 650px;
+        }
+        .profile-description {
+            width: 100%;
+            font-size: 24px;
+        }
+        .profile-tags {
+            width: 100%;
+            height: auto;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 24px;
+        }
+        .profile-name, .profile-tags, .profile-photo{
+            margin-bottom: 10px;
+        }
+
+
+        .experience{
+            width: 90%;
+            height: 470px;
+        }
+        .experience hr{
+            width: 100%;
+        }
+
+
+        .hr-block{
+            width: 100%;
+            margin-top: 20px;
+        }
+        .experience-point {
+            height: 70px;
+            width: 100%;
+            font-size: 24px;
+        }
+        .experience-text-year {
+            font-size: 24px;
+        }
+        .scientific-work{
+            width: 90%;
+            height: 1000px;
+        }
+        .scientific-header{
+            left: 0;
+            top: 0;
+        }
+        .scientific-image{
+            left: 0;
+            top: 130px;
+        }
+        .scientific-content{
+            width: 100%;
+            z-index: 2;
+            top: auto;
+            bottom: 100px;
+            right: auto;
+            left: 0;
+        }
+        .scientific-description{
+            font-size: 24px;
+            right: auto;
+            left: 0;
+            width: 100%;
+            line-height: 20px;
+
+        }
+        .scientific-title{
+            right: 0;
+            left: auto;
+            font-size: 30px;
+        }
+        .scientific-panel{
+            left: 340px;
+            top: 130px;
+        }
+        .panel-text{
+            font-size: 24px;
+        }
+        .panel-background {
+            height: 180px;
+        }
+        .scientific-back{
+            top: 320px;
+            left: 390px;
+        }
+
+
+
+
+
+
+
+
+        .reviews, .certificates {
+            display: none;
+        }
+
+
+    }
+
+
+
+
 </style>
 <title>О нас</title>
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -870,9 +1230,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
 
-<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+<div class="header" style="display: flex; justify-content: space-between;">
     <div class="logo">
-        <a href=""><img src="">clinic slimness</a>
+        <a href="{% url 'login' %}"><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
         <ul class="menu__box">
@@ -882,20 +1242,49 @@
             <li><a href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge" style="display: none;">0</span></a></li>
         </ul>
     </div>
+    <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
+        <a href="{% url 'cart' %}">
+            <div class="market-logo">
+               <span class="badge" style="display: none;">0</span>
+                <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 16C16.5304 16 17.0391 16.2107 17.4142 16.5858C17.7893 16.9609 18 17.4696 18 18C18 18.5304 17.7893 19.0391 17.4142 19.4142C17.0391 19.7893 16.5304 20 16 20C15.4696 20 14.9609 19.7893 14.5858 19.4142C14.2107 19.0391 14 18.5304 14 18C14 16.89 14.89 16 16 16ZM0 0H3.27L4.21 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3C20 3.17 19.95 3.34 19.88 3.5L16.3 9.97C15.96 10.58 15.3 11 14.55 11H7.1L6.2 12.63L6.17 12.75C6.17 12.8163 6.19634 12.8799 6.24322 12.9268C6.29011 12.9737 6.3537 13 6.42 13H18V15H6C5.46957 15 4.96086 14.7893 4.58579 14.4142C4.21071 14.0391 4 13.5304 4 13C4 12.65 4.09 12.32 4.24 12.04L5.6 9.59L2 2H0V0ZM6 16C6.53043 16 7.03914 16.2107 7.41421 16.5858C7.78929 16.9609 8 17.4696 8 18C8 18.5304 7.78929 19.0391 7.41421 19.4142C7.03914 19.7893 6.53043 20 6 20C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18C4 16.89 4.89 16 6 16ZM15 9L17.78 4H5.14L7.5 9H15Z" fill="#F5F5F5" />
+                </svg>
+            </div>
+        </a>
+        <div class="wrapper-menu">
+          <div class="line-menu half start"></div>
+          <div class="line-menu"></div>
+          <div class="line-menu half end"></div>
+        </div>
+    </div>
+    <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
+        <ul class="menu__box" style="display: block; width: 20%">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
+        </ul>
+    </div>
+
 </div>
 
 <div class="profile" >
     <div class="profile-wrapper">
         <div class="profile-photo"></div>
         <div class="profile-name">Исламбеков<br/>Рашид Раджабович</div>
-        <div class="profile-description">Основатель Clinic Slimness. Врач-эндокринолог, кандидат медицинских наук. Член-корреспондент академии медико-технических наук Российской Федерации. Автор множества научных работ на темы сахарного диабета и его поздних осложнений, диабетической полинейропатии, коррекции метаболических нарушений, лечения ожирения.</div>
         <div class="profile-tags">
             <div class="tag">эндокринолог</div>
-            <div class="tag">андролог</div>
             <div class="tag">врач общей практики</div>
+            <div class="tag">андролог</div>
+
         </div>
+        <div class="profile-description">Основатель Clinic Slimness. Врач-эндокринолог, кандидат медицинских наук. Член-корреспондент академии медико-технических наук Российской Федерации. Автор множества научных работ на темы сахарного диабета и его поздних осложнений, диабетической полинейропатии, коррекции метаболических нарушений, лечения ожирения.</div>
+
     </div>
 </div>
+
+
+
 <div class="experience">
     <div style="display: flex; width: 470px;height: 106px">
         <div class="experience-text">образование и опыт</div>
@@ -907,29 +1296,29 @@
            </svg>
         </div>
     </div>
-    <div style="margin-right:0px; margin-left:auto; width: 880px; height: auto">
-        <hr style="margin-top: 0px;width: 880px; border-color: #B5B5B5; margin-bottom: 30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+    <div class="hr-block" style="margin-right:0px; margin-left:auto; height: auto">
+        <hr style="margin-top: 0px; border-color: #B5B5B5; margin-bottom: 30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
         <div class="experience-point" style="gap: 47px; align-items: center">
             <div class="experience-year">
                 1983
             </div>
             <div class="experience-text-year">Лечебный факультет Московского медико-стоматологического института им. Евдокимова, специальность “Лечебное дело”</div>
         </div>
-        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <hr style=" border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
         <div class="experience-point" style="gap: 47px; align-items: center">
             <div class="experience-year">
                 1983<br>1985
             </div>
             <div class="experience-text-year">Интернатура по специальности “Терапия” и работа в отделении кардиологии на базе ГКБ №33 им. Остроумова</div>
         </div>
-        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <hr style=" border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
         <div class="experience-point" style="gap: 41px; align-items: center">
             <div class="experience-year">
                 1985<br>2009
             </div>
             <div class="experience-text-year">Кафедра Эндокринологии факультета “Усовершенствования врачей” медицинской академии им. Сеченова</div>
         </div>
-        <hr style="width: 880px; border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
+        <hr style="border-color: #B5B5B5; margin-bottom: 30px; margin-top:30px;height:1px;border:none;color:#B5B5B5;background-color:#B5B5B5;">
 
     </div>
 
@@ -961,7 +1350,7 @@
             <div class="back-background">
                 <div class="back-navigation">
                     <div class="navigation-text-back">назад</div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                       <path d="M20 10C20 4.47059 15.5294 0 10 0C4.47059 0 0 4.47059 0 10C0 15.5294 4.47059 20 10 20C15.5294 20 20 15.5294 20 10ZM1.17647 10C1.17647 5.11765 5.11765 1.17647 10 1.17647C14.8824 1.17647 18.8235 5.11765 18.8235 10C18.8235 14.8824 14.8824 18.8235 10 18.8235C5.11765 18.8235 1.17647 14.8824 1.17647 10Z" fill="#F5F5F5"/>
                       <path d="M10.9996 14.8825L6.11727 10.0002L10.9996 5.11784L10.1761 4.29431L4.47021 10.0002L10.1761 15.7061L10.9996 14.8825Z" fill="#F5F5F5"/>
                       <path d="M5.29395 9.4118V10.5883H15.2939V9.4118H5.29395Z" fill="#F5F5F5"/>
@@ -1157,12 +1546,72 @@
 </div>
 
 
+<div class="footer-mobile">
+    <a href="#main-sector">
+        <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
+      <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
+      <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
+    </svg>
+    </a>
 
+    <hr>
+    <div class="footer-section">
+        <h2 class="footer-title red">clinic slimness</h2>
+    </div>
+    <ul class="footer-list">
+        <li class="footer-item">
+            <!-- Выпадающий список телефонных номеров -->
+            <select class="footer-phone-select" onchange="location = this.value;">
+                <option value="tel:+74956080101">+7 495 608-01-01</option>
+                <option value="tel:+74956077950">+7 495 607-79-50</option>
+                <option value="tel:+74956073701">+7 495 607-37-01</option>
+                <option value="tel:+74955438384">+7 495 543-83-84</option>
+            </select>
+        </li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color: #585858;">info@medicsel.ru</a></li>
+
+    </ul>
+</div>
 
 
 
 <!-- Подключаем jQuery для удобства -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  AOS.init();
+</script>
+
+<script>
+var wrapperMenu = document.querySelector('.wrapper-menu');
+var fullScreenMenu = document.querySelector('.full-screen-menu');
+var header = document.querySelector('.header'); // Получаем элемент header
+var body = document.body;
+
+wrapperMenu.addEventListener('click', function() {
+  wrapperMenu.classList.toggle('open');
+  if (wrapperMenu.classList.contains('open')) {
+        wrapperMenu.style.height = '33px';
+        fullScreenMenu.style.opacity='90%'
+        fullScreenMenu.style.top = '112px'; // Показать меню
+        body.style.overflow = 'hidden'; // Отключить прокрутку
+        header.style.width = '100%'; // Устанавливаем ширину header на 100%
+        header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
+        header.style.top="0";
+        header.style.marginTop="0";
+  } else {
+        wrapperMenu.style.height  = '25px';
+        fullScreenMenu.style.top = '-100%'; // Скрыть меню
+        body.style.overflow = ''; // Включить прокрутку обратно
+        header.style.width = '90%'; // Вернуть начальную ширину
+        header.style.borderRadius = '20px'; // Вернуть начальный border-radius
+        fullScreenMenu.style.opacity='0%'
+        header.style.top="10";
+        header.style.marginTop="10px";
+  }
+});
+</script>
 
 <script>
 document.querySelectorAll('.certificate').forEach((element) => {
