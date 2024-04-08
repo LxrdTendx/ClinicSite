@@ -181,6 +181,10 @@
         display: flex;
         gap: 20px; /* Расстояние между элементами */
     }
+    input[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
 
     .search input[type="search"] {
         background-color: #f5f5f5;
@@ -198,7 +202,7 @@
         outline: none; /* Убираем контур при фокусе */
         background-image: url('/static/searchicon.svg');
         background-repeat: no-repeat;
-        background-position: calc(100% - 40px) center;  /* Позиция иконки внутри поля */
+        background-position: calc(100% - 25px) center;  /* Позиция иконки внутри поля */
 
     }
 
@@ -815,6 +819,14 @@
     background: #A673D8;
 
 }
+.footer-mobile{
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    margin-top: 120px;
+    width: 90%;
+}
 .market-logo{
     display: none;
 }
@@ -872,7 +884,10 @@
         transform: translateY(5px);
       }
     }
+
+
 .full-screen-menu {
+
     transition: 1s ease;
     opacity: 90%;
     position: fixed;
@@ -896,13 +911,15 @@
 }
 
 .header .full-screen-menu ul li {
-  padding: 10px;
+  padding: 10px 0 ;
+    width: auto;
 }
 
 .header .full-screen-menu ul li a {
-  text-decoration: none;
-  color: white;
-  font-size: 28px;
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    width: auto;
 }
 
 .wrapper-menu.open + .full-screen-menu {
@@ -923,6 +940,7 @@
     top: -40px; /* Поднимает кружок над элементом меню */
     left: 40px; /* Сдвигает кружок к правому краю элемента меню */
  }
+
 .badge {
     display: inline-block;
     background-color: red;
@@ -938,226 +956,276 @@
     top: -30px; /* Поднимает кружок над элементом меню */
     left: 50px; /* Сдвигает кружок к правому краю элемента меню */
  }
+.market-cards{
+    display: block;
+    margin-left: 20px
+}
+.filter-btn{
+    display: none;
+    -webkit-appearance: none;  /* Убрать стандартный стиль в Chrome и Safari */
+    -moz-appearance: none;     /* Убрать стандартный стиль в Firefox */
+    appearance: none;          /* Убрать стандартный стиль для стандартных браузеров */
+    border-radius: 50px;
+    border: 1px solid #585858;
+    width: 180px;
+    height: 57px;
+    color: #585858;
+    font-family: 'TT Fors', sans-serif;
+    font-size: 18px;
+    font-weight: 280;
+    line-height: 18px;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url('/static/filter.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+    padding: 0 45px 0 0; /* Подгоните отступы по необходимости */
+    outline: none;
+}
+.type-product-flex{
+    display: block;
+}
+
 
 
 @media (max-width: 1000px) {
-        body{
+
+        body {
             zoom: 140%;
         }
-        .navbar{
+
+        .navbar {
             display: none;
         }
-        .header{
+
+        .header {
+            align-items: normal;
             height: 6.25em;
             width: 90%;
+            zoom: 120%;
         }
-        .logo{
+
+        .logo {
             margin: 0;
             font-size: 1.5em;
             margin-left: 20px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 24px;
         }
-        .market-logo{
+
+        .market-logo {
             display: block;
         }
-        .wrapper-menu{
+
+        .wrapper-menu {
             display: flex;
         }
 
-        .main-page-sector{
-            width: 90%;
-            height: 25.875em;
-        }
-        .main-page-text{
-            top: 20px;
-            position: relative;
-            margin-top: 20px;
-            font-size: 4em;
-            margin-left: 20px;
-            padding-top: 20px;
-            font-weight: 600;
-        }
-        .second-page-text{
-            font-size: 22px;
-            margin-right: 0px;
-            width: 80%;
-        }
 
-        .slider-page-block{
-            margin-top: 250px;
-            width: 90%;
-            height: 800px;
-        }
-
-        .slider-page-block .card-container{
-            zoom: 97%;
-            left: 0;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .slider-page-block .text-box-2{
-            left: 0px;
-            top: 546px;
-            text-align: left;
-            width: 430px;
-        }
-        .slider-page-block .number-box {
-            font-size: 22px;
-        }
-        .text-box-2 span{
+        .footer {
             display: none;
         }
-        .text-box-2:after{
-            content: 'путь к идеальной фигуре начинается с профессионального руководства и заботы';
-        }
-        .slider-page-block .text-box-1{
-            font-size: 22px;
-            top: 700px;
-            text-align: right;
-            width: 380px;
-            right: 0px;
-        }
 
-
-        .trust-block{
-            display: block;
-            width: 90%;
-            height: auto;
-        }
-        .trust-block-pointers{
-            width: auto;
-            height: 440px;
-            margin-left: 81px;
-        }
-        .trust-block-pointer{
-            width: auto;
-        }
-        .trust-block-text1{
-            font-size: 22px;
-            margin-left: 81px;
-            width: 80%;
-        }
-        .trust-block-text{
-            width: auto;
-            font-size: 22px;
-        }
-
-
-        .consultation{
-            width: 90%;
-            height: 700px;
-        }
-        .cons-wrapper{
-            display: none;
-        }
-        .cons-form{
-            width: 100%;
-            height: 100%;
-        }
-        .cons-input-row{
-            display: block;
-        }
-        .cons-form-title{
-            width: 86%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .cons-textarea-field{
-            width: 100%;
-            margin-top: 0;
-            font-size: 22px;
-            height: 50px;
-            padding: 10px 0;
-        }
-        .cons-form-subtitle{
-            width: 86%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .cons-input-field{
-            font-size: 22px;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-        .cons-submit-btn{
-            height: 40px;
-            width: 100%;
-        }
-        .cons-social-link{
-            height: 40px;
-            margin-top: 20px;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .text-button, .text-button2 {
-            font-size: 22px;
-        }
-
-
-        .yandex-map{
-            width: 90%;
-        }
-        .yandex-map-api{
-            width: 100%;
-            height: 300px;
-            margin-top: 200px;
-        }
-        .yandex-map-text{
-            margin: 0;
-        }
-        .yandex-map-address{
-            font-size: 22px;
-            margin: 0;
-            margin-top: 130px;
-            right: 0;
-            width: auto;
-        }
-        .overlay{
-            display: none;
-            width: 100%;
-            height: 300px;
-            margin-top: 200px;
-        }
-
-        .footer{
-            display: none;
-        }
-        .footer-mobile{
+        .footer-mobile {
             height: 400px;
             display: block;
         }
-        .footer-title{
+
+        .footer-title {
             margin-top: 60px;
             margin-left: auto;
             margin-right: auto;
-            font-size: 2em;
+            font-size: 3em;
         }
-        .footer-list{
+
+        .footer-list {
             margin-right: auto;
             margin-left: auto;
             height: auto;
-            width: 210px;
-            font-family: "TT Fors Trial Variable", sans-serif;
+            width: 282px;
+            font-family: "TT Fors", sans-serif;
             font-weight: 280;
-            font-size: 24px;
+            font-size: 1em;
             line-height: 100%;
             color: #585858;
         }
-        .footer-phone-select{
-            font-size: 24px;
-            font-family: "TT Fors Trial Variable", sans-serif;
-            font-weight: 280;
-            line-height: 100%;
-            color: #585858;
+
+        .footer-list li{
+            font-size: 2em;
         }
-        .footer-item{
-            font-size: 24px;
-            font-family: "TT Fors Trial Variable", sans-serif;
+
+        .footer-phone-select {
+            font-size: 1em;
+            font-family: "TT Fors", sans-serif;
             font-weight: 280;
             line-height: 100%;
             color: #585858;
         }
+
+        .footer-item {
+            width: auto;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+
+
+        .title-page{
+            width: 90%;
+        }
+        .market{
+            width: 90%;
+        }
+        .market-sorting{
+
+            display: none;
+        }
+        .search-sorting{
+            flex-wrap: wrap;
+            height: auto;
+            width: 100%;
+            justify-content: unset;
+        }
+        .market-cards{
+            width: 100%;
+            margin-left: 0;
+        }
+        .card-container{
+            justify-content: space-between;
+        }
+        .card{
+            width: 300px;
+        }
+        .load-more{
+            font-size: 24px;
+            margin-left: 30%;
+
+        }
+        .market-sorting {
+            display: none;
+            position: fixed;
+            width: 90%;
+            height: 600px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 1002; /* Повысим z-index для самого окна */
+            align-items: center;
+            justify-content: center;
+        }
+        .type-card-text, .country-card-text, .price-card-text{
+            font-size: 24px;
+        }
+        .type-card{
+            width: 90%;
+        }
+        .count-card{
+            width: 90%;
+        }
+        .type-card-select, .type-card-select-country{
+            font-size: 24px;
+        }
+        .market-sorting-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001; /* Затемненный фон должен быть ниже .market-sorting */
+        }
+        .filter-btn{
+            font-size: 24px;
+            display: block;
+        }
+        .search{
+            width: 100%;
+        }
+        .search input[type="search"] {
+            width: 100%;
+            font-size: 24px;
+        }
+        .sort-select{
+            font-size: 24px;
+        }
+        .card-subtitle{
+            font-size: 20px;
+        }
+        .card-title, .card-price{
+            font-size: 24px;
+        }
+        .quantity{
+            font-size: 22px;
+        }
+        .increase-quantity, .decrease-quantity{
+            width: 30px !important;
+            height: 30px !important;
+            font-size: 24px !important;
+        }
+        .type-product-flex{
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+        .type-block, .type-card-select{
+            width: auto !important;
+        }
+        hr{
+            width: 90% !important;
+        }
+        .price-input .field, .field input {
+            font-size: 24px;
+            height: auto;
+        }
+        .price-card{
+            height: auto;
+            width: 90%;
+        }
+        .price-input{
+            width: 100%;
+        }
+        .field input {
+            width: 100px;
+        }
+        .slider-price {
+            height: 20px;
+        }
+        .slider-price .progress {
+            border-radius: 30px;
+        }
+        .button-sorting{
+            height: auto;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .accept, .clear-sort{
+            font-size: 24px;
+
+        }
+        .accept{
+            height: 40px;
+            width: 50%;
+        }
+        .clear-sort{
+            width: 45%;
+            height: 40px;
+            text-align: center;
+        }
+        .clear-sort:hover {
+            font-size: 24px;
+        }
+        .range-input input {
+            height: 20px;
+            top: -23px;
+        }
+
 
 
     }
@@ -1169,9 +1237,9 @@
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
-<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+<div class="header" style="display: flex; justify-content: space-between;">
     <div class="logo">
-        <a href=""><img src="">clinic slimness</a>
+        <a href="{% url 'login' %}"><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
         <ul class="menu__box">
@@ -1197,15 +1265,16 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: block; width: 100px;">
+        <ul class="menu__box" style="display: block; width: 20%">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
-            <li><a href="{% url 'cart' %}">корзина<span class="badge" style="display: none;">0</span></a></li>
+            <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
     </div>
 
 </div>
+
 
 
 <div class="title-page">
@@ -1213,21 +1282,25 @@
 </div>
 <div class="market">
     <div style="display: flex">
+        <div class="market-sorting-overlay" style="display: none;"></div>
         <div class="market-sorting">
             <div class="type-card">
                 <div class="type-card-text">Тип</div>
-                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px" class="type-block">
+                <div class="type-product-flex">
+                    <div style="width: 187px;height: 36px; display: flex; margin-top: 15px" class="type-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
                       <path d="M1 4.13726L4.46154 7.66667L11 1" class="svg-tick" stroke-linecap="square"/>
                     </svg>
                     <div class="type-card-select" data-type="medicine">фармацевтические препараты</div>
                 </div>
-                <div style="width: 187px;height: 36px; display: flex; margin-top: 15px" class="type-block">
+                    <div style="width: 187px;height: 36px; display: flex; margin-top: 15px" class="type-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="9" viewBox="0 0 12 9" fill="none" style="margin-top: 3px; margin-right: 7px">
                       <path d="M1 4.13726L4.46154 7.66667L11 1" class="svg-tick" stroke-linecap="square"/>
                     </svg>
                     <div class="type-card-select" data-type="supplement">БАДы</div>
                 </div>
+                </div>
+
             </div>
             <hr style="width: 240px; margin-left: auto;margin-right: auto; border-color: black; margin-top: 30px; margin-bottom: 30px;height:1px;border:none;color:#333;background-color:#333;">
             <div class="count-card">
@@ -1275,7 +1348,7 @@
                 <button type="button" class="clear-sort" onclick="resetForm()">очистить выбор</button>
             </div>
          </div>
-        <div style="display: block; margin-left: 20px">
+        <div class="market-cards" style="">
             <div class="search-sorting">
                 <div class="search">
                     <input type="search" placeholder="Поиск продукции по категории">
@@ -1286,6 +1359,7 @@
                         <option value="desc">По убыванию</option>
                     </select>
                 </div>
+                <button id="filter-btn" class="filter-btn">Фильтры</button>
             </div>
             <div class="card-container">
                 {% include 'product_cards.html' with products=first_three_products %}
@@ -1342,8 +1416,58 @@
 </div>
 
 
+<div class="footer-mobile">
+    <a href="#main-sector">
+        <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
+      <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
+      <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
+    </svg>
+    </a>
+
+    <hr>
+    <div class="footer-section">
+        <h2 class="footer-title red">clinic slimness</h2>
+    </div>
+    <ul class="footer-list">
+        <li class="footer-item">
+            <!-- Выпадающий список телефонных номеров -->
+            <select class="footer-phone-select" onchange="location = this.value;">
+                <option value="tel:+74956080101">+7 495 608-01-01</option>
+                <option value="tel:+74956077950">+7 495 607-79-50</option>
+                <option value="tel:+74956073701">+7 495 607-37-01</option>
+                <option value="tel:+74955438384">+7 495 543-83-84</option>
+            </select>
+        </li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color: #585858;">info@medicsel.ru</a></li>
+
+    </ul>
+</div>
+
+<script>
+  AOS.init();
+</script>
 
 
+<script>
+
+document.getElementById('filter-btn').addEventListener('click', function() {
+    document.querySelector('.market-sorting').style.display = 'block';
+    document.querySelector('.market-sorting-overlay').style.display = 'block';
+});
+
+document.querySelector('.accept').addEventListener('click', function() {
+    document.querySelector('.market-sorting').style.display = 'none';
+    document.querySelector('.market-sorting-overlay').style.display = 'none';
+});
+
+document.querySelector('.market-sorting-overlay').addEventListener('click', function() {
+    this.style.display = 'none';
+    document.querySelector('.market-sorting').style.display = 'none';
+});
+
+
+</script>
 
 <script>
 // Этот код можно разместить в общем файле скриптов или в базовом шаблоне
