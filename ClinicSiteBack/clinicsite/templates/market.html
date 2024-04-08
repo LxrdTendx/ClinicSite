@@ -2,17 +2,15 @@
 {% block content %}
 
 <style>
+      * {
+      font-style: normal;
+    }
     body{
         /*background: gray;*/
         margin: 0;
         padding: 0;
         zoom: 80%;
         background: var(--main-white, #F5F5F5)
-    }
-    @media (min-width: 1920px) {
-        body {
-            zoom: 100%;
-        }
     }
     @font-face {
         font-family: 'Gropled';
@@ -26,8 +24,14 @@
         font-weight: 400; /* Normal */
         font-style: normal;
     }
-
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
     .header{
+        align-items: center;
+        transition: width 0.3s ease, border-radius 0.3s ease;
         margin-bottom: 10px;
         margin-top: 10px;
         margin-right: auto;
@@ -43,7 +47,7 @@
         line-height: normal;
         position: sticky;
         top: 10px;
-        z-index: 20;
+        z-index: 10;
         border-radius: 20px;
     }
     .navbar{
@@ -95,6 +99,8 @@
         color: var(--main-grey, #232323);
         transition: 0.5s;
     }
+
+
     .main a {
         background-color: var(--main-grey, #232323); /* Фон для 'главная' */
         color: white; /* Цвет текста для 'главная' */
@@ -133,6 +139,8 @@
         background-color: white; /* Фон для активного пункта меню */
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
+
+
     .title-page{
         margin-top: 100px;
         width: 73.75%;
@@ -1079,7 +1087,9 @@
             width: 90%;
         }
         .market-sorting{
-
+            opacity: 0; /* Сделаем блок невидимым по умолчанию */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Плавное изменение прозрачности и трансформации */
+            transform: scale(0.95); /* Начальное состояние трансформации */
             display: none;
         }
         .search-sorting{
@@ -1104,6 +1114,9 @@
 
         }
         .market-sorting {
+
+            opacity: 0;
+            transform: scale(0.95);
             display: none;
             position: fixed;
             width: 90%;
@@ -1131,6 +1144,7 @@
         }
         .market-sorting-overlay {
             display: none;
+            transition: background-color 0.3s ease; /* Плавное изменение фона */
             position: fixed;
             top: 0;
             left: 0;
@@ -1225,6 +1239,14 @@
             height: 20px;
             top: -23px;
         }
+        .currency{
+            font-size: 0.9em;
+        }
+        .card-button button {
+            font-size: 22px;
+            width: 140px;
+            height: 31px;
+        }
 
 
 
@@ -1283,7 +1305,7 @@
 <div class="market">
     <div style="display: flex">
         <div class="market-sorting-overlay" style="display: none;"></div>
-        <div class="market-sorting">
+        <div class="market-sorting" >
             <div class="type-card">
                 <div class="type-card-text">Тип</div>
                 <div class="type-product-flex">
@@ -1452,18 +1474,46 @@
 <script>
 
 document.getElementById('filter-btn').addEventListener('click', function() {
-    document.querySelector('.market-sorting').style.display = 'block';
-    document.querySelector('.market-sorting-overlay').style.display = 'block';
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+    body.style.overflow = 'hidden';
+
+    // Добавляем небольшую задержку перед анимацией
+    setTimeout(() => {
+        modal.style.opacity = 1;
+        modal.style.transform = 'scale(1)';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    }, 300);
 });
 
 document.querySelector('.accept').addEventListener('click', function() {
-    document.querySelector('.market-sorting').style.display = 'none';
-    document.querySelector('.market-sorting-overlay').style.display = 'none';
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.opacity = 0;
+    modal.style.transform = 'scale(0.95)';
+    body.style.overflow = '';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 300); // Задержка должна соответствовать продолжительности анимации
 });
-
 document.querySelector('.market-sorting-overlay').addEventListener('click', function() {
-    this.style.display = 'none';
-    document.querySelector('.market-sorting').style.display = 'none';
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.opacity = 0;
+    modal.style.transform = 'scale(0.95)';
+    body.style.overflow = '';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 300);
 });
 
 
