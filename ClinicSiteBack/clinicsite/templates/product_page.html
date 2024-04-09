@@ -41,7 +41,36 @@
       --third-family: "Gropled", sans-serif;
     }
 
+       * {
+      font-style: normal;
+    }
+    body{
+        /*background: gray;*/
+        margin: 0;
+        padding: 0;
+        zoom: 80%;
+        background: var(--main-white, #F5F5F5)
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
     .header{
+        align-items: center;
+        transition: width 0.3s ease, border-radius 0.3s ease;
         margin-bottom: 10px;
         margin-top: 10px;
         margin-right: auto;
@@ -109,6 +138,8 @@
         color: var(--main-grey, #232323);
         transition: 0.5s;
     }
+
+
     .main a {
         background-color: var(--main-grey, #232323); /* Фон для 'главная' */
         color: white; /* Цвет текста для 'главная' */
@@ -147,6 +178,7 @@
         background-color: white; /* Фон для активного пункта меню */
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
+
     .main-page-sector{
         background-size: cover;
         background-repeat: no-repeat;
@@ -912,6 +944,467 @@
     background: #A673D8;
 
 }
+.footer-mobile{
+    height: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    margin-top: 120px;
+    width: 90%;
+}
+.market-logo{
+    display: none;
+}
+
+.wrapper-menu {
+    display: none;
+  width: 35px;
+  height: 25px;
+
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 330ms ease-out;
+}
+
+.wrapper-menu.open {
+  transform: rotate(-45deg);
+}
+
+.line-menu {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100%;
+  height: 4px;
+}
+
+.line-menu.half {
+  width: 50%;
+}
+
+.line-menu.start {
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: right;
+}
+
+.open .line-menu.start {
+  transform: rotate(-90deg) translateX(3px);
+}
+
+.line-menu.end {
+  align-self: flex-end;
+  transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+  transform-origin: left;
+}
+
+.open .line-menu.end {
+  transform: rotate(-90deg) translateX(-3px);
+}
+
+@keyframes arrow-bounce-up {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+
+.full-screen-menu {
+    transition: 1s ease;
+    opacity: 90%;
+    position: fixed;
+    top: -100%; /* Скрыть изначально */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #232323;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000; /* Убедитесь, что меню находится поверх других элементов */
+    display: flex; /* Использование flexbox для выравнивания */
+    justify-content: center; /* Центрирование содержимого по горизонтали */
+    align-items: center; /* Центрирование содержимого по вертикали */
+}
+
+.header .full-screen-menu ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin-top: 50px; /* Или другое значение для отступа сверху */
+}
+
+.header .full-screen-menu ul li {
+  padding: 10px 0 ;
+    width: auto;
+}
+
+.header .full-screen-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 32px;
+    width: auto;
+}
+
+.wrapper-menu.open + .full-screen-menu {
+  top: 0; /* Показать меню */
+}
+.menu__box li .badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -40px; /* Поднимает кружок над элементом меню */
+    left: 40px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+
+.badge {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px; /* Для вертикального центрирования текста */
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    top: -30px; /* Поднимает кружок над элементом меню */
+    left: 50px; /* Сдвигает кружок к правому краю элемента меню */
+ }
+
+.product-info-name{
+    margin-left: 20px;
+}
+.instruction-title{
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    width: 73.75%;
+    margin-top: 80px;
+    max-width: 1180px;
+}
+
+@media (max-width: 1000px) {
+
+        body {
+            zoom: 140%;
+        }
+
+        .navbar {
+            display: none;
+        }
+
+        .header {
+            align-items: normal;
+            height: 6.25em;
+            width: 90%;
+            zoom: 120%;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 1.5em;
+            margin-left: 20px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 24px;
+        }
+
+        .market-logo {
+            display: block;
+        }
+
+        .wrapper-menu {
+            display: flex;
+        }
+
+
+        .footer {
+            display: none;
+        }
+
+        .footer-mobile {
+            height: 400px;
+            display: block;
+        }
+
+        .footer-title {
+            margin-top: 60px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 3em;
+        }
+
+        .footer-list {
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 282px;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            font-size: 1em;
+            line-height: 100%;
+            color: #585858;
+        }
+
+        .footer-list li{
+            font-size: 2em;
+        }
+
+        .footer-phone-select {
+            font-size: 1em;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+
+        .footer-item {
+            width: auto;
+            font-family: "TT Fors", sans-serif;
+            font-weight: 280;
+            line-height: 100%;
+            color: #585858;
+        }
+
+
+        .title-page{
+            width: 90%;
+        }
+        .market{
+            width: 90%;
+        }
+        .market-sorting{
+            opacity: 0; /* Сделаем блок невидимым по умолчанию */
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Плавное изменение прозрачности и трансформации */
+            transform: scale(0.95); /* Начальное состояние трансформации */
+            display: none;
+        }
+        .search-sorting{
+            flex-wrap: wrap;
+            height: auto;
+            width: 100%;
+            justify-content: unset;
+        }
+        .market-cards{
+            width: 100%;
+            margin-left: 0;
+        }
+        .card-container{
+            justify-content: space-between;
+        }
+        .card{
+            width: 300px;
+        }
+        .load-more{
+            font-size: 24px;
+            margin-left: 30%;
+
+        }
+        .market-sorting {
+
+            opacity: 0;
+            transform: scale(0.95);
+            display: none;
+            position: fixed;
+            width: 90%;
+            height: 600px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 1002; /* Повысим z-index для самого окна */
+            align-items: center;
+            justify-content: center;
+        }
+        .type-card-text, .country-card-text, .price-card-text{
+            font-size: 24px;
+        }
+        .type-card{
+            width: 90%;
+        }
+        .count-card{
+            width: 90%;
+        }
+        .type-card-select, .type-card-select-country{
+            font-size: 24px;
+        }
+        .market-sorting-overlay {
+            display: none;
+            transition: background-color 0.3s ease; /* Плавное изменение фона */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001; /* Затемненный фон должен быть ниже .market-sorting */
+        }
+        .filter-btn{
+            font-size: 24px;
+            display: block;
+        }
+        .search{
+            width: 100%;
+        }
+        .search input[type="search"] {
+            width: 100%;
+            font-size: 24px;
+        }
+        .sort-select{
+            font-size: 24px;
+        }
+        .card-subtitle{
+            font-size: 20px;
+        }
+        .card-title, .card-price{
+            font-size: 24px;
+        }
+        .quantity{
+            font-size: 26px;
+        }
+        .increase-quantity, .decrease-quantity{
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 24px !important;
+        }
+        .type-product-flex{
+            width: 100%;
+            display: flex;
+            gap: 20px;
+        }
+        .type-block, .type-card-select{
+            width: auto !important;
+        }
+        hr{
+            width: 100%
+        }
+        .price-input .field, .field input {
+            font-size: 24px;
+            height: auto;
+        }
+        .price-card{
+            height: auto;
+            width: 90%;
+        }
+        .price-input{
+            width: 100%;
+        }
+        .field input {
+            width: 100px;
+        }
+        .slider-price {
+            height: 20px;
+        }
+        .slider-price .progress {
+            border-radius: 30px;
+        }
+        .button-sorting{
+            height: auto;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .accept, .clear-sort{
+            font-size: 24px;
+
+        }
+        .accept{
+            height: 50px;
+            width: 50%;
+        }
+        .clear-sort{
+            width: 45%;
+            height: 50px;
+            text-align: center;
+        }
+        .clear-sort:hover {
+            font-size: 24px;
+        }
+        .range-input input {
+            height: 20px;
+            top: -23px;
+        }
+        .currency{
+            font-size: 0.9em;
+        }
+        .card-button button {
+            font-size: 22px;
+            width: 150px;
+            height: 31px;
+        }
+
+        .product-block{
+            flex-wrap: wrap;
+            width: 90%;
+            height: 1100px;
+        }
+        .product-info-name{
+            width: 100%;
+            margin-left: 0;
+        }
+        .product-name{
+            width: 100%;
+
+        }
+        .product-info hr{
+            width: 100%;
+        }
+        .text-info, .text-info-object{
+            font-size: 24px;
+        }
+        .country, .company{
+            font-size: 24px;
+        }
+        .market-link, .market-link a{
+            font-size: 24px;
+            width: 90%;
+        }
+        .main-photo-review {
+            height: 485px;
+        }
+        .lightboxOverlay {
+            width: 100% !important;
+            height: 5210px !important;
+        }
+        .lb-outerContainer {
+            width: 90% !important;
+        }
+        .lb-image{
+            width: 100% !important;
+            height: auto !important;
+        }
+        .instruction{
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .instruction-title{
+            width: 100%;
+        }
+        .instruction hr{
+            width: 100%;
+        }
+        .instruction-info, .title-text, .text, .first-section, .second-section{
+            width: 100%;
+        }
+        .text{
+            max-width: unset;
+        }
+
+
+    }
 
 
 
@@ -925,18 +1418,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
 
 <title>{{object.name}}</title>
-<div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+<div class="header" style="display: flex; justify-content: space-between;">
     <div class="logo">
-        <a href=""><img src="">clinic slimness</a>
+        <a href="{% url 'login' %}"><img src="">clinic slimness</a>
     </div>
     <div class="navbar">
         <ul class="menu__box">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a class="active" href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
+            <li><a href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge" style="display: none;">0</span></a></li>
+        </ul>
+    </div>
+    <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
+        <a href="{% url 'cart' %}">
+            <div class="market-logo">
+               <span class="badge" style="display: none;">0</span>
+                <svg width="35" height="35" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 16C16.5304 16 17.0391 16.2107 17.4142 16.5858C17.7893 16.9609 18 17.4696 18 18C18 18.5304 17.7893 19.0391 17.4142 19.4142C17.0391 19.7893 16.5304 20 16 20C15.4696 20 14.9609 19.7893 14.5858 19.4142C14.2107 19.0391 14 18.5304 14 18C14 16.89 14.89 16 16 16ZM0 0H3.27L4.21 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3C20 3.17 19.95 3.34 19.88 3.5L16.3 9.97C15.96 10.58 15.3 11 14.55 11H7.1L6.2 12.63L6.17 12.75C6.17 12.8163 6.19634 12.8799 6.24322 12.9268C6.29011 12.9737 6.3537 13 6.42 13H18V15H6C5.46957 15 4.96086 14.7893 4.58579 14.4142C4.21071 14.0391 4 13.5304 4 13C4 12.65 4.09 12.32 4.24 12.04L5.6 9.59L2 2H0V0ZM6 16C6.53043 16 7.03914 16.2107 7.41421 16.5858C7.78929 16.9609 8 17.4696 8 18C8 18.5304 7.78929 19.0391 7.41421 19.4142C7.03914 19.7893 6.53043 20 6 20C5.46957 20 4.96086 19.7893 4.58579 19.4142C4.21071 19.0391 4 18.5304 4 18C4 16.89 4.89 16 6 16ZM15 9L17.78 4H5.14L7.5 9H15Z" fill="#F5F5F5" />
+                </svg>
+            </div>
+        </a>
+        <div class="wrapper-menu">
+          <div class="line-menu half start"></div>
+          <div class="line-menu"></div>
+          <div class="line-menu half end"></div>
+        </div>
+    </div>
+    <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
+        <ul class="menu__box" style="display: block; width: 20%">
+            <li><a href="{% url 'login' %}">главная</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'about' %}">о нас</a></li>
             <li><a href="{% url 'cart' %}">корзина</a></li>
         </ul>
     </div>
+
 </div>
 
 <div class="market-link"><a href="{% url 'market' %}">Аптека > </a>{{object.brand}} {{object.name}}</div>
@@ -988,7 +1505,7 @@
         </a>
         {% endif %}
     </div>
-    <div style="margin-left: 20px">
+    <div class="product-info-name" >
         <div class="product-name">
             {{object.brand}}<br>
             {{object.name}}
@@ -1049,7 +1566,7 @@
 
 </div>
 <div class="instruction">
-    <div style="display: flex;  margin-right: auto;margin-left: auto;width: 73.75%; margin-top: 80px; max-width: 1180px;">
+    <div class="instruction-title" style="">
         <div style="font-weight: 700;font-size: 52px;line-height: 80%; color: #F22D3E; font-family: Gropled, sans-serif;height: 77px;">
             инструкция <br>по применению
         </div>
@@ -1162,7 +1679,118 @@
         </div>
     </div>
 </div>
+<div class="footer-mobile">
+    <a href="#main-sector">
+        <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 20C4.47059 20 0 15.5294 0 10C0 4.47059 4.47059 0 10 0C15.5294 0 20 4.47059 20 10C20 15.5294 15.5294 20 10 20ZM10 1.17647C5.11765 1.17647 1.17647 5.11765 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10C18.8235 5.11765 14.8824 1.17647 10 1.17647Z" fill="#585858" />
+      <path d="M14.8824 10.9996L10.0001 6.11727L5.11772 10.9996L4.29419 10.1761L10.0001 4.47021L15.706 10.1761L14.8824 10.9996Z" fill="#585858" />
+      <path d="M9.41168 5.29395H10.5882V15.2939H9.41168V5.29395Z" fill="#585858" />
+    </svg>
+    </a>
 
+    <hr>
+    <div class="footer-section">
+        <h2 class="footer-title red">clinic slimness</h2>
+    </div>
+    <ul class="footer-list">
+        <li class="footer-item">
+            <!-- Выпадающий список телефонных номеров -->
+            <select class="footer-phone-select" onchange="location = this.value;">
+                <option value="tel:+74956080101">+7 495 608-01-01</option>
+                <option value="tel:+74956077950">+7 495 607-79-50</option>
+                <option value="tel:+74956073701">+7 495 607-37-01</option>
+                <option value="tel:+74955438384">+7 495 543-83-84</option>
+            </select>
+        </li>
+        <li class="footer-item"><a href="mailto:info@medicsel.ru" style="color: #585858;">info@medicsel.ru</a></li>
+
+    </ul>
+</div>
+
+
+
+
+
+
+<script>
+  AOS.init();
+</script>
+
+<script>
+
+document.getElementById('filter-btn').addEventListener('click', function() {
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+    body.style.overflow = 'hidden';
+
+    // Добавляем небольшую задержку перед анимацией
+    setTimeout(() => {
+        modal.style.opacity = 1;
+        modal.style.transform = 'scale(1)';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    }, 300);
+});
+
+document.querySelector('.accept').addEventListener('click', function() {
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.opacity = 0;
+    modal.style.transform = 'scale(0.95)';
+    body.style.overflow = '';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 300); // Задержка должна соответствовать продолжительности анимации
+});
+document.querySelector('.market-sorting-overlay').addEventListener('click', function() {
+    var modal = document.querySelector('.market-sorting');
+    var body = document.body;
+    var overlay = document.querySelector('.market-sorting-overlay');
+    modal.style.opacity = 0;
+    modal.style.transform = 'scale(0.95)';
+    body.style.overflow = '';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    setTimeout(() => {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+    }, 300);
+});
+
+
+</script>
+
+<script>
+// Этот код можно разместить в общем файле скриптов или в базовом шаблоне
+document.addEventListener('DOMContentLoaded', function() {
+    updateProductCount();
+});
+
+// Функция getCartCount() должна быть адаптирована под ваш способ хранения информации о корзине
+// Здесь просто примерная реализация
+function getCartCount() {
+    // Это предполагает, что у вас есть ключи в localStorage типа "product_1", "product_2" и т.д.
+    return Object.keys(localStorage)
+                 .filter(key => key.startsWith('product_'))
+                 .length;
+}
+
+function updateProductCount() {
+    const count = getCartCount();
+    const badgeElements = document.querySelectorAll('.badge');
+
+    badgeElements.forEach(badge => {
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'inline-block' : 'none';
+    });
+}
+
+// Обновите остальные функции в соответствии с вашей логикой корзины
+</script>
 
 <script>
 function showQuantityControl(productId, quantity) {
