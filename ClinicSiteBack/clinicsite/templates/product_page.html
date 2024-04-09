@@ -1792,6 +1792,37 @@ function updateProductCount() {
 // Обновите остальные функции в соответствии с вашей логикой корзины
 </script>
 
+
+<script>
+var wrapperMenu = document.querySelector('.wrapper-menu');
+var fullScreenMenu = document.querySelector('.full-screen-menu');
+var header = document.querySelector('.header'); // Получаем элемент header
+var body = document.body;
+
+wrapperMenu.addEventListener('click', function() {
+  wrapperMenu.classList.toggle('open');
+  if (wrapperMenu.classList.contains('open')) {
+        wrapperMenu.style.height = '33px';
+        fullScreenMenu.style.opacity='90%'
+        fullScreenMenu.style.top = '112px'; // Показать меню
+        body.style.overflow = 'hidden'; // Отключить прокрутку
+        header.style.width = '100%'; // Устанавливаем ширину header на 100%
+        header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
+        header.style.top="0";
+        header.style.marginTop="0";
+  } else {
+        wrapperMenu.style.height  = '25px';
+        fullScreenMenu.style.top = '-100%'; // Скрыть меню
+        body.style.overflow = ''; // Включить прокрутку обратно
+        header.style.width = '90%'; // Вернуть начальную ширину
+        header.style.borderRadius = '20px'; // Вернуть начальный border-radius
+        fullScreenMenu.style.opacity='0%'
+        header.style.top="10";
+        header.style.marginTop="10px";
+  }
+});
+</script>
+
 <script>
 function showQuantityControl(productId, quantity) {
     const card = document.querySelector(`.product-block[data-product-id="${productId}"]`);
