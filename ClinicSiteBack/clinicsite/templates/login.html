@@ -173,7 +173,7 @@
         width: 397px;
         height: 141px;
     }
-    .second-page-text{
+    .second-page-text, .second-page-text2{
         width: 320px;
         color: #000;
         text-align: right;
@@ -186,6 +186,10 @@
         margin-left: auto;
         margin-right: 80px;
         margin-top: 285px;
+    }
+    .second-page-text2{
+
+        display: none;
     }
     .slider-page-block{
         margin-top: 200px;
@@ -937,10 +941,18 @@
             font-weight: 600;
         }
 
-        .second-page-text {
+        .second-page-text, .second-page-text2 {
             font-size: 24px;
             margin-right: 0px;
             width: 80%;
+        }
+        .second-page-text{
+            display: none;
+
+        }
+        .second-page-text2{
+            display: block;
+            width: 90%;
         }
 
         .slider-page-block {
@@ -1175,6 +1187,9 @@
             line-height: 100%;
             color: #585858;
         }
+        i{
+            font-style: italic;
+        }
 
 
     }
@@ -1233,7 +1248,11 @@
         clinic slimness
     </div>
     <div class="second-page-text">
-        Lorem ipsum dolor sit amet consectetur. Aliquam ac diam lobortis non ultrices. Ac aliquet mi massa proin. Faucibus luctus at ut lectus tortor fusce mattis phasellu
+        Современные технологии на службе здоровья и красоты, улучшая качество жизни каждого.
+    </div>
+    <div class="second-page-text2">
+            «Gracilis figura diu, magna massa temporalis est»<br>
+            <i>Стройная фигура надолго, большая масса временна.</i>
     </div>
 </div>
 
