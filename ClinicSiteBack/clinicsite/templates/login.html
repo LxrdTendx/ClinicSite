@@ -1262,14 +1262,14 @@
         <div class="text-box text-box-1">Lorem ipsum dolor sit amet consectetur. Elit et magna viverra adipiscing imperdiet est donec in. Quis neque sit arcu euismod faucibus cras faucibus pulvinar. Lectus sit ut sociis non suspendisse nisl. Elementum nunc id sit ac integer a.Lorem ipsum dolor sit amet consectetur</div>
         <div class="text-box text-box-2"><span>путь<br> к идеальной фигуре начинается с профессионального руководства и заботы</span></div>
         <div class="card-container">
-            <div class="card card-red">
+            <div class="card card-red" id="card1">
                 <div class="number-box number-3">3</div>
             </div>
-            <div class="card card-purple">
+            <div class="card card-purple" id="card2">
                 <div class="number-box number-1">2</div>
             </div>
 
-            <div class="card card-black">
+            <div class="card card-black" id="card3">
                 <div class="number-box number-box-service">Карточка услуги 1</div>
 
             </div>
@@ -1510,57 +1510,133 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   var rightArrow = document.querySelector('.arrow-svg.right');
+  var cardContainer = document.querySelector('.card-container');
   var textBox = document.querySelector('.text-box-1');
   var cardTexts = [
     "Описание услуги 2",
     "Описание услуги 1",
     "Описание услуги 3"
   ];
+  var cardTextsById = {
+      'card1': "Описание услуги 2",
+      'card2': "Описание услуги 1",
+      'card3': "Описание услуги 3"
+    };
+  var isLocked = false;
 
-  rightArrow.addEventListener('click', function() {
-    // Получаем элементы карточек
-    var cards = document.querySelectorAll('.card');
+  rightArrow.addEventListener('click', rotateRight);
 
-    // Получаем элементы номеров на карточках
-    var numbers = document.querySelectorAll('.number-box');
+  cardContainer.addEventListener('touchstart', handleTouchStart, false);
+  cardContainer.addEventListener('touchmove', handleTouchMove, false);
 
-    // Находим индекс активной карточки
-    var activeCardIndex = Array.from(cards).findIndex(card =>
-      card.querySelector('.number-box').classList.contains('number-box-service'));
+  var xDown = null;
+  var yDown = null;
 
-    // Обновляем индекс для следующей карточки
-    var nextActiveCardIndex = (activeCardIndex + 1) % cards.length;
+  function handleTouchStart(evt) {
+      xDown = evt.touches[0].clientX;
+      yDown = evt.touches[0].clientY;
+  };
 
-    // Обновляем текст в text-box-1 для следующей активной карточки
-    textBox.textContent = cardTexts[nextActiveCardIndex];
-
-    // Убираем текст "Карточка услуги" у текущей активной карточки
-    numbers[activeCardIndex].textContent = numbers[activeCardIndex].textContent.replace('Карточка услуги ', '');
-
-    // Сохраняем классы номеров, чтобы переместить их на новые карточки
-    var numbersClasses = Array.from(numbers).map(number => number.className);
-
-    // Вращаем классы номеров
-    var newNumbersClasses = numbersClasses.map((_, index) =>
-      numbersClasses[(index + 1) % numbersClasses.length]);
-
-    // Применяем новые классы к номерам и обновляем текст, если номер стал активным
-    numbers.forEach((number, index) => {
-      number.className = newNumbersClasses[index];
-      if(number.classList.contains('number-box-service')) {
-        number.textContent = 'Карточка услуги ' + number.textContent;
+  function handleTouchMove(evt) {
+      if ( ! xDown || ! yDown ) {
+          return;
       }
-    });
 
-    // Вращаем стили карточек
-    var redCardStyles = window.getComputedStyle(cards[0]);
-    var purpleCardStyles = window.getComputedStyle(cards[1]);
-    var blackCardStyles = window.getComputedStyle(cards[2]);
+      var xUp = evt.touches[0].clientX;
+      var yUp = evt.touches[0].clientY;
 
-    setCardStyles(cards[0], purpleCardStyles);
-    setCardStyles(cards[1], blackCardStyles);
-    setCardStyles(cards[2], redCardStyles);
-  });
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+          if ( xDiff > 0 ) {
+              rotateRight(); /* left swipe */
+          } else {
+              return;
+          }
+      }
+      // Reset values
+      xDown = null;
+      yDown = null;
+  };
+
+    function rotateRight() {
+      if (isLocked) return;
+      isLocked = true;
+
+      setTimeout(function() {
+        isLocked = false;
+      }, 700);
+
+      updateCardContent('right');
+      applyCardStyles('right');
+    };
+    function rotateLeft() {
+      if (isLocked) return;
+      isLocked = true;
+
+      setTimeout(function() {
+        isLocked = false;
+      }, 700);
+
+      updateCardContent('left');
+      applyCardStyles('left');
+    };
+
+  function applyCardStyles(direction = 'right') {
+      var cards = document.querySelectorAll('.card');
+
+      // Получаем стили карточек
+      var redCardStyles = window.getComputedStyle(cards[0]);
+      var purpleCardStyles = window.getComputedStyle(cards[1]);
+      var blackCardStyles = window.getComputedStyle(cards[2]);
+
+      if (direction === 'right') {
+        // Вращение вправо
+        setCardStyles(cards[0], purpleCardStyles);
+        setCardStyles(cards[1], blackCardStyles);
+        setCardStyles(cards[2], redCardStyles);
+      } else {
+        // Вращение влево
+        setCardStyles(cards[0], blackCardStyles);
+        setCardStyles(cards[1], redCardStyles);
+        setCardStyles(cards[2], purpleCardStyles);
+      }
+    }
+    function updateCardContent(direction) {
+      var cards = document.querySelectorAll('.card');
+      var numbers = document.querySelectorAll('.number-box');
+      var activeCardIndex = Array.from(cards).findIndex(card => card.querySelector('.number-box').classList.contains('number-box-service'));
+      var newActiveCardIndex;
+
+      if (direction === 'right') {
+        newActiveCardIndex = (activeCardIndex + 1) % cards.length;
+      } else {
+        // newActiveCardIndex = (activeCardIndex - 1 + cards.length) % cards.length;
+        return
+      }
+
+      // Получаем ID новой активной карточки
+      var newActiveCardId = cards[newActiveCardIndex].id;
+
+      console.log(`Active Index: ${activeCardIndex}, New Index: ${newActiveCardIndex}, New ID: ${newActiveCardId}`);
+
+      // Обновление текста в textBox на основе ID новой активной карточки
+      textBox.textContent = cardTextsById[newActiveCardId];
+
+      // Обновление текста на карточках и их номеров
+      numbers[activeCardIndex].textContent = numbers[activeCardIndex].textContent.replace('Карточка услуги ', '');
+      var numbersClasses = Array.from(numbers).map(number => number.className);
+      var newNumbersClasses = numbersClasses.map((_, index) =>
+        numbersClasses[(index + (direction === 'right' ? 1 : -1) + numbersClasses.length) % numbersClasses.length]);
+
+      numbers.forEach((number, index) => {
+        number.className = newNumbersClasses[index];
+        if (number.classList.contains('number-box-service')) {
+          number.textContent = 'Карточка услуги ' + number.textContent;
+        }
+      });
+    }
 
   function setCardStyles(card, styles) {
     card.style.left = styles.left;
@@ -1570,8 +1646,6 @@ document.addEventListener("DOMContentLoaded", function() {
     card.style.zIndex = styles.zIndex;
   }
 });
-
-
 </script>
 
 <script>
