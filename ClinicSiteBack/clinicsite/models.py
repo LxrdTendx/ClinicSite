@@ -81,3 +81,18 @@ class Certificates(models.Model):
     class Meta:
         verbose_name = 'Сертификаты'
         verbose_name_plural = 'Сертификат'
+
+
+class Service(models.Model):
+    photo = models.ImageField(upload_to='services_photos/', verbose_name="Фото")
+    price = models.CharField(max_length=255, verbose_name="Цена")
+    name = models.CharField(max_length=255, verbose_name="Название услуги")
+    description = models.TextField(verbose_name="Описание")
+    tag = models.CharField(max_length=100, verbose_name="Тег")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"

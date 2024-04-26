@@ -4,10 +4,14 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
 from math import ceil
-from .models import Product, Scientific, Certificates
+from .models import Product, Scientific, Certificates, Service
 
 def login_view(request):
     return render(request, 'login.html')
+
+def service_view(request):
+    services = Service.objects.all()
+    return render(request, 'services.html', {'services': services})
 
 def cart_view(request):
     product_ids = request.GET.get('ids', '')

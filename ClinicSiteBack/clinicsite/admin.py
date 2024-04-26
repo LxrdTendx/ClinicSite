@@ -1,7 +1,11 @@
 from django.contrib import admin
 
-from .models import Product, Scientific, Certificates
+from .models import Product, Scientific, Certificates, Service
 
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price', 'tag']
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
