@@ -939,6 +939,14 @@
         margin-right: auto;
         width: 73.75%;
     }
+    .profile-svg{
+        fill: #585858; /* Default color */
+        transition: fill 0.3s;
+        cursor: pointer;
+    }
+    .profile-svg:hover{
+        fill: #ffffff;
+    }
 
 
 
@@ -1290,6 +1298,9 @@
         }
         .login > input {
             font-size: 24px;
+        }
+        .profile-svg{
+            display: none;
         }
 
 
@@ -1655,6 +1666,19 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+    function handleProfileRedirect() {
+        // Check if the user is authenticated
+        var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+
+        // Redirect based on authentication status
+        if (isAuthenticated) {
+            window.location.href = "{% url 'profile' %}";
+        } else {
+            window.location.href = "{% url 'auth' %}";
+        }
+    }
+</script>
 
 {% endblock %}
 
