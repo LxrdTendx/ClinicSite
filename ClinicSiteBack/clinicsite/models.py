@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from decimal import Decimal, ROUND_HALF_UP
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
@@ -96,3 +97,49 @@ class Service(models.Model):
     class Meta:
         verbose_name = "Услуга"
         verbose_name_plural = "Услуги"
+
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    photo = models.ImageField(upload_to='profiles/', verbose_name="Фото профиля", null=True, blank=True)
+    full_name = models.CharField(max_length=255, verbose_name="ФИО")
+    age = models.IntegerField(verbose_name="Возраст")
+    city = models.CharField(max_length=100, verbose_name="Город проживания")
+    diagnosis = models.TextField(verbose_name="Диагноз")
+
+    class Meta:
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
+
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    name = models.CharField(max_length=255, verbose_name="Название")
+    date = models.DateField(verbose_name="Дата")
+    time = models.TimeField(verbose_name="Время")
+    description = models.TextField(verbose_name="Описание")
+
+    class Meta:
+        verbose_name = "Событие"
+        verbose_name_plural = "События"
+
+
+class Note(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    title = models.CharField(max_length=255, verbose_name="Заголовок")
+    note_description = models.TextField(verbose_name="Описание заметки")
+
+    class Meta:
+        verbose_name = "Заметка"
+        verbose_name_plural = "Заметки"
+
+
+class TreatmentCourse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    products = models.ManyToManyField(Product, verbose_name="Продукты")
+
+    class Meta:
+        verbose_name = "Курс лечения"
+        verbose_name_plural = "Курсы лечения"

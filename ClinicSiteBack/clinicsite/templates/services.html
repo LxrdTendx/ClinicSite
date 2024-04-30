@@ -1226,7 +1226,7 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: block; width: 20%">
+        <ul class="menu__box" style="display: none; width: 20%">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
@@ -1449,8 +1449,10 @@ function updateProductCount() {
 <script>
 var wrapperMenu = document.querySelector('.wrapper-menu');
 var fullScreenMenu = document.querySelector('.full-screen-menu');
-var header = document.querySelector('.header'); // Получаем элемент header
+var menuBox = document.querySelector('.header .full-screen-menu ul'); // Get the menu box element
+var header = document.querySelector('.header');
 var body = document.body;
+
 
 wrapperMenu.addEventListener('click', function() {
   wrapperMenu.classList.toggle('open');
@@ -1458,11 +1460,13 @@ wrapperMenu.addEventListener('click', function() {
         wrapperMenu.style.height = '33px';
         fullScreenMenu.style.opacity='90%'
         fullScreenMenu.style.top = '112px'; // Показать меню
+        menuBox.style.display = 'block';
         body.style.overflow = 'hidden'; // Отключить прокрутку
         header.style.width = '100%'; // Устанавливаем ширину header на 100%
         header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
         header.style.top="0";
         header.style.marginTop="0";
+
   } else {
         wrapperMenu.style.height  = '25px';
         fullScreenMenu.style.top = '-100%'; // Скрыть меню
@@ -1472,6 +1476,7 @@ wrapperMenu.addEventListener('click', function() {
         fullScreenMenu.style.opacity='0%'
         header.style.top="10";
         header.style.marginTop="10px";
+        menuBox.style.display = 'none';
   }
 });
 </script>

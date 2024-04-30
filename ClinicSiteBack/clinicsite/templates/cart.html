@@ -46,7 +46,7 @@
         line-height: normal;
         position: sticky;
         top: 10px;
-        z-index: 10;
+        z-index: 99;
         border-radius: 20px;
     }
     .navbar{
@@ -726,9 +726,31 @@
     top: -30px; /* Поднимает кружок над элементом меню */
     left: 50px; /* Сдвигает кружок к правому краю элемента меню */
  }
-.table-cart{
+
+.table-container {
     width: 63.36%;
+    overflow-y: auto;
+    max-height: 600px; /* Adjust the height as needed */
+    scrollbar-width: none; /* for Firefox */
+    -ms-overflow-style: none;  /* for Internet Explorer, Edge */
 }
+
+.table-container::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.table-cart {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-cart thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #F5F5F5;
+}
+
 
 @media (max-width: 1000px) {
         body{
@@ -886,6 +908,9 @@
             margin-right: auto;
             margin-left: auto;
         }
+        .table-container{
+            width: 100%;
+        }
 
 
     }
@@ -929,7 +954,7 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: block; width: 20%;">
+        <ul class="menu__box" style="display: none; width: 20%;">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
@@ -949,45 +974,49 @@
 
 
 <div class="cart-total" style=" justify-content: space-between">
-    <table class="table-cart" style="">
-        <tr style="font-family: 'Gropled', sans-serif; font-weight: 700; font-size: 22px; line-height: 80%; color: #585858;">
-            <th style="width: 10%;">Товар</th>
-            <th style="width: 25%;">Название</th>
-            <th style="width: 10%;">Цена</th>
-            <th style="width: 15%;">Кол-во</th>
-            <th style="width: 10%;">Сумма</th>
-        </tr>
-        {% for item in cart_items %}
-        <tr data-product-id="{{ item.product.id }}" style="height: 140px;">
-            <td style="display: flex; justify-content: center; align-items: center; height: 140px;">
-                <img src="{{ item.product.photo1.url }}" alt="{{ item.product.name }}" style="max-width:100%; max-height:120px;">
-            </td>
-            <td>
-                <div class="product-name">
-                    {{ item.product.brand }}<br>
-                    {{ item.product.name }}<br>
-                    <div class="text-info">Дозировка: {{ item.product.dosage }}</div>
-
-                </div>
-            </td>
-            <td class="unit-price">{{ item.unit_price }} ₽</td>
-            <td>
-                <div class="card-button">
-                   <div class="quantity-control" style="width: 100px;">
-                        <button class="decrease-quantity" onclick="decreaseQuantity('{{ item.product.id }}')">–</button>
-                        <span class="quantity">{{ item.quantity }}</span>
-                        <button class="increase-quantity" onclick="increaseQuantity('{{ item.product.id }}')">+</button>
-                    </div>
-                    <svg onclick="removeItem('{{ item.product.id }}')" style="cursor: pointer; margin-left: 35px" width="26" height="27" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18 3.2H13.6V2C13.6 1.46957 13.3893 0.960859 13.0142 0.585786C12.6391 0.210714 12.1304 0 11.6 0H6.8C6.26957 0 5.76086 0.210714 5.38579 0.585786C5.01071 0.960859 4.8 1.46957 4.8 2V3.2H0.4C0.293913 3.2 0.192172 3.24214 0.117157 3.31716C0.0421428 3.39217 0 3.49391 0 3.6C0 3.70609 0.0421428 3.80783 0.117157 3.88284C0.192172 3.95786 0.293913 4 0.4 4H1.6V18.8C1.6 19.1183 1.72643 19.4235 1.95147 19.6485C2.17652 19.8736 2.48174 20 2.8 20H15.6C15.9183 20 16.2235 19.8736 16.4485 19.6485C16.6736 19.4235 16.8 19.1183 16.8 18.8V4H18C18.1061 4 18.2078 3.95786 18.2828 3.88284C18.3579 3.80783 18.4 3.70609 18.4 3.6C18.4 3.49391 18.3579 3.39217 18.2828 3.31716C18.2078 3.24214 18.1061 3.2 18 3.2ZM5.6 2C5.6 1.68174 5.72643 1.37652 5.95147 1.15147C6.17652 0.926428 6.48174 0.8 6.8 0.8H11.6C11.9183 0.8 12.2235 0.926428 12.4485 1.15147C12.6736 1.37652 12.8 1.68174 12.8 2V3.2H5.6V2ZM16 18.8C16 18.9061 15.9579 19.0078 15.8828 19.0828C15.8078 19.1579 15.7061 19.2 15.6 19.2H2.8C2.69391 19.2 2.59217 19.1579 2.51716 19.0828C2.44214 19.0078 2.4 18.9061 2.4 18.8V4H16V18.8ZM7.2 8.4V14.8C7.2 14.9061 7.15786 15.0078 7.08284 15.0828C7.00783 15.1579 6.90609 15.2 6.8 15.2C6.69391 15.2 6.59217 15.1579 6.51716 15.0828C6.44214 15.0078 6.4 14.9061 6.4 14.8V8.4C6.4 8.29391 6.44214 8.19217 6.51716 8.11716C6.59217 8.04214 6.69391 8 6.8 8C6.90609 8 7.00783 8.04214 7.08284 8.11716C7.15786 8.19217 7.2 8.29391 7.2 8.4ZM12 8.4V14.8C12 14.9061 11.9579 15.0078 11.8828 15.0828C11.8078 15.1579 11.7061 15.2 11.6 15.2C11.4939 15.2 11.3922 15.1579 11.3172 15.0828C11.2421 15.0078 11.2 14.9061 11.2 14.8V8.4C11.2 8.29391 11.2421 8.19217 11.3172 8.11716C11.3922 8.04214 11.4939 8 11.6 8C11.7061 8 11.8078 8.04214 11.8828 8.11716C11.9579 8.19217 12 8.29391 12 8.4Z" fill="#F22D3E" />
-                    </svg>
-                </div>
-            </td>
-            <td class="total-price">{{ item.total_price }} ₽</td>
-        </tr>
-        {% endfor %}
-
-    </table>
+    <div class="table-container">
+        <table class="table-cart">
+            <thead>
+                <tr style="font-family: 'Gropled', sans-serif; font-weight: 700; font-size: 22px; line-height: 80%; color: #585858;">
+                    <th style="width: 10%;">Товар</th>
+                    <th style="width: 25%;">Название</th>
+                    <th style="width: 10%;">Цена</th>
+                    <th style="width: 15%;">Кол-во</th>
+                    <th style="width: 10%;">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr data-product-id="{{ item.product.id }}" style="height: 140px;">
+                    <td style="display: flex; justify-content: center; align-items: center; height: 140px;">
+                        <img src="{{ item.product.photo1.url }}" alt="{{ item.product.name }}" style="max-width:100%; max-height:120px;">
+                    </td>
+                    <td>
+                        <div class="product-name">
+                            {{ item.product.brand }}<br>
+                            {{ item.product.name }}<br>
+                            <div class="text-info">Дозировка: {{ item.product.dosage }}</div>
+                        </div>
+                    </td>
+                    <td class="unit-price">{{ item.unit_price }} ₽</td>
+                    <td>
+                        <div class="card-button">
+                            <div class="quantity-control" style="width: 100px;">
+                                <button class="decrease-quantity" onclick="decreaseQuantity('{{ item.product.id }}')">–</button>
+                                <span class="quantity">{{ item.quantity }}</span>
+                                <button class="increase-quantity" onclick="increaseQuantity('{{ item.product.id }}')">+</button>
+                            </div>
+                            <svg onclick="removeItem('{{ item.product.id }}')" style="cursor: pointer; margin-left: 35px" width="26" height="27" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 3.2H13.6V2C13.6 1.46957 13.3893 0.960859 13.0142 0.585786C12.6391 0.210714 12.1304 0 11.6 0H6.8C6.26957 0 5.76086 0.210714 5.38579 0.585786C5.01071 0.960859 4.8 1.46957 4.8 2V3.2H0.4C0.293913 3.2 0.192172 3.24214 0.117157 3.31716C0.0421428 3.39217 0 3.49391 0 3.6C0 3.70609 0.0421428 3.80783 0.117157 3.88284C0.192172 3.95786 0.293913 4 0.4 4H1.6V18.8C1.6 19.1183 1.72643 19.4235 1.95147 19.6485C2.17652 19.8736 2.48174 20 2.8 20H15.6C15.9183 20 16.2235 19.8736 16.4485 19.6485C16.6736 19.4235 16.8 19.1183 16.8 18.8V4H18C18.1061 4 18.2078 3.95786 18.2828 3.88284C18.3579 3.80783 18.4 3.70609 18.4 3.6C18.4 3.49391 18.3579 3.39217 18.2828 3.31716C18.2078 3.24214 18.1061 3.2 18 3.2ZM5.6 2C5.6 1.68174 5.72643 1.37652 5.95147 1.15147C6.17652 0.926428 6.48174 0.8 6.8 0.8H11.6C11.9183 0.8 12.2235 0.926428 12.4485 1.15147C12.6736 1.37652 12.8 1.68174 12.8 2V3.2H5.6V2ZM16 18.8C16 18.9061 15.9579 19.0078 15.8828 19.0828C15.8078 19.1579 15.7061 19.2 15.6 19.2H2.8C2.69391 19.2 2.59217 19.1579 2.51716 19.0828C2.44214 19.0078 2.4 18.9061 2.4 18.8V4H16V18.8ZM7.2 8.4V14.8C7.2 14.9061 7.15786 15.0078 7.08284 15.0828C7.00783 15.1579 6.90609 15.2 6.8 15.2C6.69391 15.2 6.59217 15.1579 6.51716 15.0828C6.44214 15.0078 6.4 14.9061 6.4 14.8V8.4C6.4 8.29391 6.44214 8.19217 6.51716 8.11716C6.59217 8.04214 6.69391 8 6.8 8C6.90609 8 7.00783 8.04214 7.08284 8.11716C7.15786 8.19217 7.2 8.29391 7.2 8.4ZM12 8.4V14.8C12 14.9061 11.9579 15.0078 11.8828 15.0828C11.8078 15.1579 11.7061 15.2 11.6 15.2C11.4939 15.2 11.3922 15.1579 11.3172 15.0828C11.2421 15.0078 11.2 14.9061 11.2 14.8V8.4C11.2 8.29391 11.2421 8.19217 11.3172 8.11716C11.3922 8.04214 11.4939 8 11.6 8C11.7061 8 11.8078 8.04214 11.8828 8.11716C11.9579 8.19217 12 8.29391 12 8.4Z" fill="#F22D3E" />
+                            </svg>
+                        </div>
+                    </td>
+                    <td class="total-price">{{ item.total_price }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <div class="cart-block">
         <div class="total-fl" style="margin-bottom: 36px">
@@ -1087,6 +1116,7 @@
     </ul>
 </div>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     if (!window.location.search) {  // Проверяем, есть ли уже параметры в URL
@@ -1163,8 +1193,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 var wrapperMenu = document.querySelector('.wrapper-menu');
 var fullScreenMenu = document.querySelector('.full-screen-menu');
-var header = document.querySelector('.header'); // Получаем элемент header
+var menuBox = document.querySelector('.header .full-screen-menu ul'); // Get the menu box element
+var header = document.querySelector('.header');
 var body = document.body;
+
 
 wrapperMenu.addEventListener('click', function() {
   wrapperMenu.classList.toggle('open');
@@ -1172,11 +1204,13 @@ wrapperMenu.addEventListener('click', function() {
         wrapperMenu.style.height = '33px';
         fullScreenMenu.style.opacity='90%'
         fullScreenMenu.style.top = '112px'; // Показать меню
+        menuBox.style.display = 'block';
         body.style.overflow = 'hidden'; // Отключить прокрутку
         header.style.width = '100%'; // Устанавливаем ширину header на 100%
         header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
         header.style.top="0";
         header.style.marginTop="0";
+
   } else {
         wrapperMenu.style.height  = '25px';
         fullScreenMenu.style.top = '-100%'; // Скрыть меню
@@ -1186,6 +1220,7 @@ wrapperMenu.addEventListener('click', function() {
         fullScreenMenu.style.opacity='0%'
         header.style.top="10";
         header.style.marginTop="10px";
+        menuBox.style.display = 'none';
   }
 });
 </script>

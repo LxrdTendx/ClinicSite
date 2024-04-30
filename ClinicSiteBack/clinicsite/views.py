@@ -1,10 +1,64 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
 from math import ceil
-from .models import Product, Scientific, Certificates, Service
+from .models import Product, Scientific, Certificates, Service, Profile, Note, Event
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.utils import timezone
+from django.db.models import Q
+from .forms import ProfileForm
+from django.contrib import messages
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('auth')
+
+def auth_view(request):
+    if request.user.is_authenticated:
+        return redirect('profile')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('profile')
+        else:
+            return render(request, 'auth.html', {'error_message': 'Invalid login credentials'})
+
+    return render(request, 'auth.html')
+
+@login_required
+def profile_view(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = None
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Профиль успешно обновлен!')
+            return redirect('profile')  # Перенаправление обратно на страницу профиля
+    else:
+        form = ProfileForm(instance=profile)
+
+    notes = Note.objects.filter(user=request.user)
+    events = Event.objects.filter(user=request.user).order_by('date', 'time')
+    return render(request, 'profile.html', {
+        'profile': profile,
+        'form': form,
+        'notes': notes,
+        'events': events
+    })
 
 def login_view(request):
     return render(request, 'login.html')

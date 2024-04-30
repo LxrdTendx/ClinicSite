@@ -1,3 +1,5 @@
+
+
 {% load static %}
 {% block content %}
 <style>
@@ -179,391 +181,7 @@
         color: var(--main-grey, #232323); /* Цвет текста для активного пункта */
     }
 
-    .main-page-sector{
-        background-size: cover;
-        background-repeat: no-repeat;
-        border-radius: 20px;
-        width: 73.75%;
-        height: 686px;
-        background-image: url("static/layoyt_main.png");
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 100px;
-    }
-    .main-page-text{
-        color: var(--main-white, #F5F5F5);
-        leading-trim: both;
-        text-edge: cap;
-        font-family: Gropled,sans-serif;
-        font-size: 96px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 80%;
-        margin-left: 79px;
-        padding-top: 80px;
-        width: 397px;
-        height: 141px;
-    }
-    .second-page-text{
-        width: 320px;
-        color: #000;
-        text-align: right;
-        /* main text */
-        font-family: TT Fors,sans-serif;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 280;
-        line-height: 100%; /* 20px */
-        margin-left: auto;
-        margin-right: 80px;
-        margin-top: 285px;
-    }
-    .slider-page-block{
-        margin-top: 200px;
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1180px;
-        height: 527px;
-    }
-    .slider-page-block .block-container {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
 
-    .slider-page-block .text-box {
-        position: absolute;
-        word-wrap: break-word;
-        font-family: 'TT Fors', sans-serif;
-        line-height: 18px;
-    }
-
-    .slider-page-block .text-box-1 {
-        width: 340px;
-        right: 0;
-        top: 96px;
-        color: #000;
-        font-family: TT Fors,sans-serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 280;
-        line-height: 100%;
-    }
-
-    .slider-page-block .text-box-2 {
-        width: 344px;
-        left: 0;
-        top: 253px;
-        color: var(--main-grey, #232323);
-        text-align: right;
-        leading-trim: both;
-        text-edge: cap;
-        font-family: Gropled,sans-serif;
-        font-size: 34px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 80%; /* 27.2px */
-    }
-
-    .slider-page-block .card-container {
-        width: 650px;
-        height: 527px;
-        left: 22.45%;
-        top: 0;
-        position: absolute;
-    }
-
-    .slider-page-block .card {
-        position: absolute;
-        border-radius: 20px;
-    }
-
-    .slider-page-block .card-red {
-        width: 268px;
-        height: 201px;
-        left: 382px;
-        top: 326px;
-        background: #F22D3E;
-    }
-
-    .slider-page-block .card-purple {
-        width: 268px;
-        height: 201px;
-        left: 0;
-        top: 0;
-        background: #A673D8;
-    }
-
-    .slider-page-block .number-box {
-        padding: 11px 20px;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px #F5F5F5 solid;
-        justify-content: center;
-        align-items: center;
-        display: inline-flex;
-        position: absolute;
-        color: #F5F5F5;
-        font-size: 16px;
-        font-weight: 280;
-        font-family: TT Fors,sans-serif;
-        font-style: normal;
-        line-height: 100%;
-    }
-
-    .slider-page-block .number-1 {
-        margin-left: 18.71px;
-        margin-top: 19.32px;
-    }
-
-    .slider-page-block .service-card {
-        width: 458.82px;
-        height: 342.21px;
-        left: 95.59px;
-        top: 82.21px;
-        position: absolute;
-    }
-
-    .slider-page-block .card-black {
-        width: 458.82px;
-        height: 342.21px;
-        left: 95.59px;
-        top: 82.21px;
-        position: absolute;
-        background: #232323;
-        border-radius: 20px;
-    }
-
-    .slider-page-block .number-box-service {
-        padding: 11px 20px;
-        margin-left: 19.12px;
-        margin-top: 19.12px;
-        gap: 10px;
-    }
-
-
-
-    .slider-page-block .number-3 {
-        margin-top: 149px;
-        margin-left: 207px;
-    }
-
-    @keyframes arrow-bounce {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(10px);
-      }
-    }
-
-    .arrow-svg {
-      animation: arrow-bounce 1s infinite;
-      cursor: pointer;
-      position: absolute;
-      bottom: 74px;
-      left: 95.59px;
-    }
-
-    .trust-block{
-        width: 1180px;
-        height: 362px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 200px;
-    }
-
-
-    .slider-page-block .card {
-      transition: all 0.5s ease; /* Плавный переход всех свойств за 0.5 секунд */
-    }
-
-    .card-red, .card-purple, .card-black {
-      transition: all 0.5s ease;
-      position: absolute;
-      border-radius: 20px;
-    }
-
-    /* Значение z-index для карточек по бокам меньше, чем у центральной карточки */
-    .card-red, .card-purple {
-      z-index: 1;
-    }
-
-    /* У центральной карточки самое высокое значение z-index */
-    .card-black {
-      z-index: 2;
-    }
-    .trust-block-pointer:hover .trust-block-number {
-        color: #A673D8; /* Цвет цифры */
-
-        transition: all 0.5s ease;
-    }
-
-    .trust-block-pointer:hover .trust-block-title {
-        background-size: 100% 2px;
-        color: #A673D8;;
-    }
-    .trust-block-title, .trust-block-text{
-        color: #232323;
-    }
-    .trust-block-title{
-        background-image: linear-gradient(to right, #A673D8, #A673D8); /* Параметры градиента */
-        background-repeat: no-repeat; /* Фон не повторяется */
-        background-size: 10px 2px; /* Линия будет шириной 10px и высотой 2px */
-        background-position: left bottom; /* Положение в левом нижнем углу */
-        padding-bottom: 2px; /* Расстояние от текста до линии */
-        text-decoration: none; /* Убираем подчёркивание */
-        transition: 0.3s;
-    }
-    .trust-block-number{
-        color: #585858;
-    }
-    .consultation{
-        margin-top: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1180px;
-        height: 500px;
-        display: flex;
-        gap: 20px;
-    }
-    .cons-wrapper{
-        width: 380px;
-        height: 500px;
-        background-image: url("static/consultation.png");
-    }
-    .cons-form{
-        width: 780px;
-        height: 500px;
-        flex-shrink: 0;
-        border-radius: 20px;
-        background: var(--main-grey, #232323);
-    }
-    .cons-form-title{
-        margin: 40px 0 0 40px;
-        width: 600px;
-        color: var(--main-white, #F5F5F5);
-        leading-trim: both;
-        text-edge: cap;
-        font-family: Gropled,sans-serif;
-        font-size: 52px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 80%; /* 41.6px */
-    }
-    .cons-form-subtitle{
-        width: 638px;
-        color: var(--main-white, #F5F5F5);
-        font-family: TT Fors,sans-serif;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 280;
-        line-height: 100%; /* 20px */
-        margin: 30px 0 0 40px;
-    }
-    .cons-input-form {
-        flex-direction: column;
-        gap: 15px;
-        margin: 40px;
-    }
-
-    .cons-input-field,
-    .cons-textarea-field {
-        width: 340px;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #585858;
-        color: #F5F5F5;
-        font-family: 'TT Fors', sans-serif;
-        font-size: 16px;
-        padding: 10px 0;
-    }
-
-    .cons-input-field::placeholder,
-    .cons-textarea-field::placeholder {
-        color: #585858;
-        font-style: italic;
-    }
-
-    .cons-textarea-field {
-        margin-top: 50px;
-        width: 700px;
-        height: 39px; /* или другая высота по желанию */
-        resize: none; /* Запрещаем изменение размера */
-    }
-
-    .cons-submit-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 406px;
-        background: #F5F5F5;
-        border-radius: 20px;
-        color: #232323;
-        font-size: 18px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-    }
-
-    .cons-submit-btn:hover {
-        background-color: #A673D8; /* или другой цвет при наведении */
-    }
-
-    .cons-social-link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 237px;
-        border-radius: 20px;
-        border: 1px solid #585858;
-        color: #585858;
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .cons-social-link:hover {
-        background-color: #A673D8; /* или другой цвет при наведении */
-        border: 1px solid #A673D8;
-    }
-    .cons-social-link:hover .text-button2 {
-        color: var(--main-grey, #232323); /* Цвет текста при наведении */
-    }
-    .text-button{
-        margin: 0;
-        padding: 0;
-        color: var(--main-grey, #232323);
-        text-align: center;
-        leading-trim: both;
-        text-edge: cap;
-        font-family: TT Fors,sans-serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-    }
-    .text-button2{
-        margin: 0;
-        padding: 0;
-        color: var(--main-light-grey, #585858);
-        text-align: center;
-        leading-trim: both;
-        text-edge: cap;
-        font-family: TT Fors,sans-serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 280;
-        line-height: normal;
-    }
-    .cons-input-row {
-        display: flex; /* Применяем flexbox */
-        justify-content: space-between; /* Распределяем пространство между элементами */
-        gap: 30px; /* Расстояние между полями ввода */
-    }
     .footer{
         margin-top: 175px;
         margin-left: auto;
@@ -1092,6 +710,237 @@
     margin-top: 80px;
     max-width: 1180px;
 }
+.title-page{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    width: 73.75%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.title-page-text{
+    width: 316px;
+    color: var(--main-grey, #232323);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Gropled,sans-serif;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 80%; /* 76.8px */
+}
+.button-title{
+    display: flex;
+    gap: 20px;
+}
+.question-button{
+    border: 1px solid #585858;
+    border-radius: 20px;
+    padding: 11px 20px;
+    width: 280px;
+    height: 60px;
+    font-family: "TT Fors", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    text-align: center;
+    color: #585858;
+    background: #f5f5f5;
+}
+.record-button{
+    background: #232323;
+    border-radius: 20px;
+    padding: 11px 20px;
+    width: 280px;
+    height: 60px;
+    font-family: "TT Fors", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    text-align: center;
+    color: #f5f5f5;
+}
+.service-page{
+    margin-top: 100px;
+    width: 73.75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.service-card{
+    display: flex;
+    height: 270px;
+    width: 100%;
+}
+.service-card-photo{
+    border-radius: 20px;
+    min-width: 380px;
+    width: 380px;
+    height: 270px;
+    background: #1b1b1b;
+}
+.service-card-price{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.service-card-price-name,.service-card-price-name2{
+    margin-left: 20px;
+    font-family: "Gropled", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 80%;
+    color: #232323;
+}
+.service-card-price-name2{
+    margin-left: 0;
+    margin-right: 20px;
+}
+.service-card-price-price{
+    font-family: "TT Fors", sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #a673d8;
+}
+.service-card-tag, .service-card-tag2{
+    display: inline-flex; /* Или inline-block в зависимости от того, как вы хотите управлять внутренним выравниванием */
+    align-items: center; /* Для вертикального центрирования текста, если используется inline-flex */
+    justify-content: center; /* Для горизонтального центрирования текста, если используется inline-flex */
+    border: 2px solid #f22d3e;
+    border-radius: 50px;
+    padding: 13px 20px;
+    font-family: "TT Fors", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    color: #f22d3e;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.service-card-tag2 {
+    margin-left: 0;
+    display: inline-block; /* или inline-flex, если нужно выравнивать содержимое внутри */
+    border: 2px solid #f22d3e;
+    border-radius: 50px;
+    padding: 13px 20px;
+    font-family: "TT Fors", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    color: #f22d3e;
+    margin-top: 20px;
+    margin-right: 20px; /* Отступ справа */
+}
+.service-card-text, .service-card-text2{
+    margin-left: 20px;
+    margin-top: 40px;
+    font-family: "TT Fors", sans-serif;
+    font-weight: 280;
+    font-size: 20px;
+    line-height: 100%;
+    color: #000;
+
+}
+.service-card-text2{
+    margin-left: 0;
+    margin-right: 20px;
+}
+    .profile-svg{
+        fill: #ffffff; /* Default color */
+        transition: fill 0.3s;
+        cursor: pointer;
+    }
+    .profile-svg:hover{
+        fill: #ffffff;
+    }
+
+    .login {
+        margin-right: auto;
+        margin-left: auto;
+      overflow: hidden;
+      background-color: white;
+      padding: 40px 30px 30px 30px;
+      border-radius: 10px;
+      width: 400px;
+      transform: translate(0%, 0%);
+      transition: transform 300ms, box-shadow 300ms;
+      box-shadow: 5px 10px 10px rgba(166, 115, 215, 0.2);
+    }
+
+    .login::before, .login::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-top-left-radius: 40%;
+      border-top-right-radius: 45%;
+      border-bottom-left-radius: 35%;
+      border-bottom-right-radius: 40%;
+      z-index: -1;
+    }
+
+    .login::before {
+      left: 40%;
+      bottom: -130%;
+      background-color: #A673D8;
+      animation: waves 6s infinite linear;
+    }
+
+    .login::after {
+      left: 35%;
+      bottom: -125%;
+      background-color: rgba(166, 115, 215, 0.5);
+      animation: waves 7s infinite linear;
+    }
+
+    .login > input {
+      font-family: "TT Fors", sans-serif;
+      display: block;
+      border-radius: 5px;
+      font-size: 16px;
+      background: white;
+      width: 100%;
+      border: 0;
+      padding: 10px 10px;
+      margin: 15px -10px;
+    }
+
+    .login > button {
+      font-family: "TT Fors", sans-serif;
+      cursor: pointer;
+      color: #000000;
+      font-size: 16px;
+      text-transform: uppercase;
+      width: 80px;
+      border: 0;
+      padding: 10px 0;
+      margin-top: 10px;
+      margin-left: -5px;
+      border-radius: 5px;
+      background-color: var(--red-fire);
+      transition: background-color 300ms;
+    }
+
+    .login > button:hover {
+      background-color: #A673D8; /* slightly darker shade of red fire */
+    }
+
+    @keyframes waves {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+    .auth-container{
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 73.75%;
+    }
+
+
 
 @media (max-width: 1000px) {
 
@@ -1407,6 +1256,41 @@
             font-size: 24px;
             width: inherit;
         }
+        .button-title{
+            display: none;
+        }
+        .service-page{
+            width: 90%;
+        }
+        .service-card-photo{
+            min-width: 300px;
+            height: 300px;
+        }
+        .service-card{
+            height: 370px;
+        }
+        .service-card-text, .service-card-text2{
+            font-size: 24px;
+        }
+        .service-card-tag, .service-card-tag2{
+            font-size: 22px;
+        }
+        .profile-svg{
+            display: none;
+        }
+        .auth-container{
+            width: 90%;
+        }
+        .login{
+            width: 90%;
+        }
+        .login > button{
+            font-size: 24px;
+            width: 120px;
+        }
+        .login > input {
+            font-size: 24px;
+        }
 
 
     }
@@ -1421,8 +1305,7 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
-
-<title>{{object.name}}</title>
+<title>Авторизация</title>
 <div class="header" style="display: flex; justify-content: space-between;">
     <div class="logo">
         <a href="{% url 'login' %}"><img src="">clinic slimness</a>
@@ -1430,12 +1313,13 @@
     <div class="navbar">
         <ul class="menu__box">
             <li><a href="{% url 'login' %}">главная</a></li>
-            <li><a class="active" href="{% url 'market' %}">аптека</a></li>
+            <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
             <li><a href="{% url 'service'%}">услуги</a></li>
             <li><a href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge" style="display: none;">0</span></a></li>
         </ul>
     </div>
+    <svg class="profile-svg" onclick="handleProfileRedirect()" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" x="0" y="0" viewBox="0 0 512 512"  xml:space="preserve"><g><path d="M437.02 74.98C388.668 26.63 324.379 0 256 0S123.332 26.629 74.98 74.98C26.63 123.332 0 187.621 0 256s26.629 132.668 74.98 181.02C123.332 485.37 187.621 512 256 512s132.668-26.629 181.02-74.98C485.37 388.668 512 324.379 512 256s-26.629-132.668-74.98-181.02zM111.105 429.297c8.454-72.735 70.989-128.89 144.895-128.89 38.96 0 75.598 15.179 103.156 42.734 23.281 23.285 37.965 53.687 41.742 86.152C361.641 462.172 311.094 482 256 482s-105.637-19.824-144.895-52.703zM256 269.507c-42.871 0-77.754-34.882-77.754-77.753C178.246 148.879 213.13 114 256 114s77.754 34.879 77.754 77.754c0 42.871-34.883 77.754-77.754 77.754zm170.719 134.427a175.9 175.9 0 0 0-46.352-82.004c-18.437-18.438-40.25-32.27-64.039-40.938 28.598-19.394 47.426-52.16 47.426-89.238C363.754 132.34 315.414 84 256 84s-107.754 48.34-107.754 107.754c0 37.098 18.844 69.875 47.465 89.266-21.887 7.976-42.14 20.308-59.566 36.542-25.235 23.5-42.758 53.465-50.883 86.348C50.852 364.242 30 312.512 30 256 30 131.383 131.383 30 256 30s226 101.383 226 226c0 56.523-20.86 108.266-55.281 147.934zm0 0" opacity="1" data-original="#585858"></path></g></svg>
     <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
         <a href="{% url 'cart' %}">
             <div class="market-logo">
@@ -1452,7 +1336,7 @@
         </div>
     </div>
     <div class="full-screen-menu" data-aos="fade-down-left" data-aos-duration="800" data-aos-once="true">
-        <ul class="menu__box" style="display: none; width: 20%">
+        <ul class="menu__box" style=" width: 20%; display: none">
             <li><a href="{% url 'login' %}">главная</a></li>
             <li><a href="{% url 'market' %}">аптека</a></li>
             <li><a href="{% url 'about' %}">о нас</a></li>
@@ -1463,186 +1347,15 @@
 
 </div>
 
-<div class="market-link"><a href="{% url 'market' %}">Аптека > </a>{{object.brand}} {{object.name}}</div>
-<div class="product-block" data-product-id="{{ object.id }}">
-    <div class="photo-preview-block">
-        {% if object.photo1 %}
-        <a href="{{ object.photo1.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="photo-preview">
-                <img src="{{ object.photo1.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-        {% if object.photo2 %}
-        <a href="{{ object.photo2.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="photo-preview">
-                <img src="{{ object.photo2.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-        {% if object.photo3 %}
-        <a href="{{ object.photo3.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="photo-preview">
-                <img src="{{ object.photo3.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-        {% if object.photo4 %}
-        <a href="{{ object.photo4.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="photo-preview">
-                <img src="{{ object.photo4.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-        {% if object.photo5 %}
-        <a href="{{ object.photo5.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="photo-preview">
-                <img src="{{ object.photo5.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-
-    </div>
-    <div class="main-photo">
-        {% if object.photo1 %}
-        <a href="{{ object.photo1.url }}" data-lightbox="product-gallery" data-title="{{ object.name }}">
-            <div class="main-photo-review">
-                <img id="mainPhoto" src="{{ object.photo1.url }}" alt="{{ object.name }}">
-            </div>
-        </a>
-        {% endif %}
-    </div>
-    <div class="product-info-name" >
-        <div class="product-name">
-            {{object.brand}}<br>
-            {{object.name}}
-        </div>
-        <div style="display: flex; margin-top: 20px; align-items: center;">
-            <div class="country">{{object.country_of_origin}}</div>
-            <div class="company">{{object.brand}}, Inc.</div>
-        </div>
-        <div class="product-info">
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Бренд:</div>
-                <div class="text-info-object">{{object.brand}}</div>
-            </div>
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Действующее вещество:</div>
-                <div class="text-info-object">{{object.active_substance}}</div>
-            </div>
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Форма выпуска:</div>
-                <div class="text-info-object">{{object.release_form}}</div>
-            </div>
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Количество в упаковке:</div>
-                <div class="text-info-object">{{object.amount_in_a_package}} шт.</div>
-            </div>
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Дозировка:</div>
-                <div class="text-info-object">{{object.dosage}}</div>
-            </div>
-            <hr>
-            <div style="display: flex; gap: 20px; margin: 14px 0">
-                <div class="text-info">Назначение:</div>
-                <div class="text-info-object">{{object.purpose}}</div>
-            </div>
-            <hr>
-
-        </div>
-        <div class="price">
-            <span class="from">от </span>
-            <span class="amount">{{ object.price_with_discount }}</span>
-            <span class="currency">₽</span>
-        </div>
-        {% if object.discount_percent > 0 %}
-        <div class="price-text">
-            {{ object.price }}<span class="currency-price-text">₽</span>
-            <div class="strike-through"></div>
-        </div>
-        {% endif %}
-        <div class="card-button">
-            <button onclick="toggleAddToCartButton('{{ product.id }}')">в корзину</button>
-        </div>
-    </div>
-
+<div class="auth-container">
+    <form class="login" method="post" action="{% url 'auth' %}">
+        {% csrf_token %}
+        <input type="text" name="username" id="username" placeholder="Логин" required>
+        <input type="password" name="password" id="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
 </div>
-<div class="instruction">
-    <div class="instruction-title" style="">
-        <div style="font-weight: 700;font-size: 52px;line-height: 80%; color: #F22D3E; font-family: Gropled, sans-serif;height: 77px;">
-            инструкция <br>по применению
-        </div>
-        <div class="experience-icon">
-           <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
-              <path d="M13.75 13.75C21.3529 6.14704 33.647 6.14704 41.25 13.75C48.8529 21.3529 48.8529 33.6471 41.25 41.25C33.647 48.853 21.3529 48.853 13.75 41.25C6.14703 33.6471 6.14703 21.3529 13.75 13.75ZM39.6323 39.6324C46.3456 32.9191 46.3456 22.0809 39.6323 15.3676C32.9191 8.6544 22.0809 8.6544 15.3676 15.3676C8.65438 22.0809 8.65438 32.9191 15.3676 39.6324C22.0809 46.3456 32.9191 46.3456 39.6323 39.6324Z" fill="#585858"/>
-              <path d="M19.4115 32.8387H32.8379L32.8379 19.4123L35.1027 19.4123L35.1026 35.1034L19.4115 35.1034V32.8387Z" fill="#585858"/>
-              <path d="M34.7793 33.1619L33.1616 34.7795L19.4116 21.0295L21.0293 19.4119L34.7793 33.1619Z" fill="#585858"/>
-           </svg>
-        </div>
-    </div>
-    <hr>
-    <div class="instruction-info">
-        <!-- First Section -->
-        <div class="first-section">
-            <div>
-                <div class="title-text">Предупреждение</div>
-                <div class="text">{{ object.warning }}</div>
-            </div>
-            <div>
-                <div class="title-text">Состав</div>
-                <div class="text">{{ object.compound }}</div>
-            </div>
-            <div>
-                <div class="title-text">Описание</div>
-                <div class="text">{{ object.description }}</div>
-            </div>
-            <div>
-                <div class="title-text">Фармакологический эффект</div>
-                <div class="text">{{ object.pharmachologic_effect }}</div>
-            </div>
-        </div>
 
-        <!-- Second Section -->
-        <div class="second-section">
-            <div>
-                <div class="title-text">Показания к применению</div>
-                <div class="text">{{ object.indications_for_use }}</div>
-            </div>
-            <div>
-                <div class="title-text">Противопоказания</div>
-                <div class="text">{{ object.contraindications }}</div>
-            </div>
-            <div>
-                <div class="title-text">Побочные действия</div>
-                <div class="text">{{ object.side_effects }}</div>
-            </div>
-            <div>
-                <div class="title-text">Курс приема и дозировка</div>
-                <div class="text">{{ object.course_of_administration_and_dosage }}</div>
-            </div>
-            <div>
-                <div class="title-text">Условия отпуска из аптек</div>
-                <div class="text">{{ object.conditions_for_dispensing_from_pharmacies }}</div>
-            </div>
-            <div>
-                <div class="title-text">Условия хранения</div>
-                <div class="text">{{ object.storage_conditions }}</div>
-            </div>
-            <div>
-                <div class="title-text">Специальные указания</div>
-                <div class="text">{{ object.special_instructions }}</div>
-            </div>
-        </div>
-
-    </div>
-
-
-</div>
 
 <div class="footer">
     <div class="footer-content">
@@ -1944,3 +1657,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 {% endblock %}
+
+

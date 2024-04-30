@@ -1906,8 +1906,10 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 var wrapperMenu = document.querySelector('.wrapper-menu');
 var fullScreenMenu = document.querySelector('.full-screen-menu');
-var header = document.querySelector('.header'); // Получаем элемент header
+var menuBox = document.querySelector('.header .full-screen-menu ul'); // Get the menu box element
+var header = document.querySelector('.header');
 var body = document.body;
+
 
 wrapperMenu.addEventListener('click', function() {
   wrapperMenu.classList.toggle('open');
@@ -1915,11 +1917,13 @@ wrapperMenu.addEventListener('click', function() {
         wrapperMenu.style.height = '33px';
         fullScreenMenu.style.opacity='90%'
         fullScreenMenu.style.top = '112px'; // Показать меню
+        menuBox.style.display = 'block';
         body.style.overflow = 'hidden'; // Отключить прокрутку
         header.style.width = '100%'; // Устанавливаем ширину header на 100%
         header.style.borderRadius = '0'; // Устанавливаем border-radius header на 0
         header.style.top="0";
         header.style.marginTop="0";
+
   } else {
         wrapperMenu.style.height  = '25px';
         fullScreenMenu.style.top = '-100%'; // Скрыть меню
@@ -1929,6 +1933,7 @@ wrapperMenu.addEventListener('click', function() {
         fullScreenMenu.style.opacity='0%'
         header.style.top="10";
         header.style.marginTop="10px";
+        menuBox.style.display = 'none';
   }
 });
 </script>

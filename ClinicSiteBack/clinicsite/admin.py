@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Scientific, Certificates, Service
+from .models import Product, Scientific, Certificates, Service, Profile, Event, Note, TreatmentCourse
 
 
 @admin.register(Service)
@@ -25,3 +25,18 @@ class ScientificAdmin(admin.ModelAdmin):
 class CertificatesAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']
     list_filter = ['title']
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'full_name']
+
+@admin.register(Note)
+class NotesAdmin(admin.ModelAdmin):
+    list_display = ['user']
+
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['user', ]
+
+admin.site.register(TreatmentCourse)
