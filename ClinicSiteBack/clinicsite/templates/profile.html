@@ -1029,6 +1029,9 @@
         line-height: 100%;
         color: #232323;
     }
+    .session-point-mark{
+         height: 93px;
+    }
 
 
 
@@ -1460,6 +1463,9 @@
             font-size: 24px;
             max-height: 300px;
         }
+        .session-point-mark{
+            height: 120px;
+        }
 
 
 
@@ -1520,7 +1526,7 @@
 
 <div class="profile-user">
     <div>
-        <div class="profile-photo" {% if profile.photo %}style="background-image: url('{{ profile.photo.url }}');"{% else %}style="background-image: url('{% static 'default_profile.jpg' %}');"{% endif %}></div>
+        <div class="profile-photo" {% if profile.photo %}style="background-position: center; background-image: url('{{ profile.photo.url }}');"{% else %}style="background-image: url('{% static 'default_profile.jpg' %}');"{% endif %}></div>
         <form method="post" enctype="multipart/form-data" style="margin-top: 10px;">
             {% csrf_token %}
             {{ form.photo }}
@@ -1599,7 +1605,7 @@
         <div style="margin-top: 40px">
             {% for event in events %}
             <div class="session-point">
-                <div style="border-radius: 20px; width: 41px; height: 120px; background: {% if forloop.counter == 1 %}#f22d3e{% elif forloop.counter == 2 %}rgba(166, 115, 216, 0.58){% else %}#a673d8{% endif %}; margin-right: 10px"></div>
+                <div class="session-point-mark" style="border-radius: 20px; width: 41px; background: {% if forloop.counter == 1 %}#f22d3e{% elif forloop.counter == 2 %}rgba(166, 115, 216, 0.58){% else %}#a673d8{% endif %}; margin-right: 10px"></div>
                 <div style="border: 1px solid #232323; border-radius: 20px; width: 100%; background: #F5F5F5">
                     <div style="justify-content: space-between; width: 95%; margin-left: 20px; margin-top: 20px; display: flex;">
                         <div class="doctor-date">{{ event.date|date:"j F, l" }}</div>
