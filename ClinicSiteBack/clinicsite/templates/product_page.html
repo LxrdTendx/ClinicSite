@@ -1093,6 +1093,7 @@
     max-width: 1180px;
 }
 .profile-svg{
+    min-width: 45px;
     fill: #585858; /* Default color */
     transition: fill 0.3s;
     cursor: pointer;
@@ -1100,6 +1101,12 @@
 .profile-svg:hover{
     fill: #ffffff;
 }
+@media (max-width: 1100px){
+        .navbar{
+            margin-right: 40px;
+        }
+      }
+
 
 @media (max-width: 1000px) {
 
@@ -1871,7 +1878,9 @@ function showQuantityControl(productId, quantity) {
         currentQuantity++;
         quantitySpan.innerText = currentQuantity;
         localStorage.setItem(`product_${productId}`, currentQuantity);
+        updateProductCount();
     });
+
 
     decreaseButton.addEventListener('click', () => {
         let currentQuantity = parseInt(quantitySpan.innerText);
@@ -1883,6 +1892,7 @@ function showQuantityControl(productId, quantity) {
             cardButtonDiv.innerHTML = `<button onclick="toggleAddToCartButton('${productId}')">в корзину</button>`;
             localStorage.removeItem(`product_${productId}`);
         }
+        updateProductCount();
     });
 }
 
@@ -1894,6 +1904,7 @@ function toggleAddToCartButton(productId) {
         showQuantityControl(productId, 1);
         localStorage.setItem(`product_${productId}`, 1);
     }
+    updateProductCount();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -892,6 +892,7 @@
     left: 50px; /* Сдвигает кружок к правому краю элемента меню */
  }
     .profile-svg{
+        min-width: 45px;
         fill: #585858; /* Default color */
         transition: fill 0.3s;
         cursor: pointer;
@@ -900,6 +901,11 @@
         fill: #ffffff;
     }
 
+@media (max-width: 1100px){
+        .navbar{
+            margin-right: 40px;
+        }
+      }
 
 @media (max-width: 1000px) {
 

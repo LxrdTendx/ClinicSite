@@ -39,4 +39,7 @@ class NotesAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['user', ]
 
-admin.site.register(TreatmentCourse)
+
+@admin.register(TreatmentCourse)
+class TreatmentCourseAdmin(admin.ModelAdmin):
+    list_display = ['user']

@@ -780,6 +780,7 @@
 
 
     .profile-svg{
+        min-width: 45px;
         fill: #ffffff; /* Default color */
         transition: fill 0.3s;
         cursor: pointer;
@@ -812,7 +813,6 @@
         margin-left: 20px;
     }
     .user-name{
-        width: 650px;
         font-family: "Gropled", sans-serif;
         font-weight: 700;
         font-size: 52px;
@@ -870,7 +870,7 @@
         width: 57.25%;
     }
     .doctor-session{
-        width: 40.7%;
+        width: 41.7%;
     }
     .point-title{
         font-family: "Gropled", sans-serif;
@@ -932,13 +932,111 @@
         color: #a673d8;
     }
     .profile-svg{
-        fill: #585858; /* Default color */
+        fill: #fff; /* Default color */
         transition: fill 0.3s;
         cursor: pointer;
     }
     .profile-svg:hover{
-        fill: #ffffff;
+        fill: #a673d8;
     }
+    .treatment{
+        margin-top: 85px;
+        width: 73.75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .treatment-title{
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 80%;
+        color: #f22d3e;
+    }
+    .card-container{
+        gap: 20px;
+        display: flex;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+    .card{
+        display: flex;
+        border: 1px solid #232323;
+        border-radius: 20px;
+        width: 380px;
+        height: 198px;
+        align-items: center;
+        gap: 20px;
+        transition: easy 0.2s;
+
+    }
+    .card:hover{
+        border: 1px solid #a673d8;
+    }
+    .card:hover .card-svg {
+        animation: arrow-bounce 1.5s infinite;
+        fill: #a673d8; /* Изменение цвета SVG */
+        color: #A673D8;
+    }
+
+    .card-svg {
+        fill: #232323; /* Начальный цвет SVG */
+        transition: fill 0.3s; /* Плавное изменение цвета */
+    }
+    @keyframes arrow-bounce {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(5px);
+      }
+    }
+    .card-photo{
+        margin-left: 20px;
+        margin-top: 27px;
+        width: 80px;
+        height: 143px;
+    }
+    .card-photo img {
+        width: 100%;      /* Заставляет изображение заполнять доступную ширину контейнера */
+        height: 100%;     /* Поддерживает пропорции изображения */
+        max-height: 100%; /* Ограничивает высоту изображения рамками контейнера */
+        object-fit: cover; /* Обрезает изображение, чтобы оно покрывало контейнер без искажения */
+    }
+    .card-info{
+        width: 240px;
+        height: 145px;
+    }
+    .card-name{
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 80%;
+        color: #232323;
+    }
+    .card-dosage{
+        margin-top: 16px;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #232323;
+    }
+    .card-instruction{
+        margin-top: 37px;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #232323;
+    }
+
+
+
+@media (max-width: 1100px){
+        .navbar{
+            margin-right: 40px;
+        }
+      }
 
 @media (max-width: 1000px) {
 
@@ -1276,6 +1374,73 @@
         .profile-svg{
             display: none;
         }
+        .profile-user{
+            display: block;
+            width: 90%;
+        }
+        .profile-data{
+            margin: 0;
+        }
+        .profile-photo{
+            background-position: unset;
+        }
+        form, form input, form button{
+            font-size: 24px;
+        }
+        .user-age, .user-city, .profile-point, .profile-point-text{
+            font-size: 24px;
+        }
+        .user-age{
+            height: 25px;
+        }
+        .doctor{
+            display: block;
+            width: 90%;
+        }
+        .doctor-point, .doctor-session{
+            width: 100%;
+        }
+        .doctor-session{
+            margin-top: 50px;
+        }
+        .doctor-time{
+            font-size: 22px;
+        }
+        .session-text{
+            width: 95%;
+            font-size: 22px;
+        }
+        .treatment{
+            width: 90%;
+        }
+        .card-svg{
+            display: none;
+        }
+        .card-info{
+            width: 95%;
+            height: 180px;
+        }
+        .card-photo{
+            margin-top: unset;
+            height: 180px;
+            width: 120px;
+        }
+        .card-link{
+            width: 100%;
+        }
+        .card{
+            width: 100%;
+            height: 230px;
+        }
+        .card-dosage, .card-instruction{
+            font-size: 22px;
+        }
+        .card-container{
+
+        }
+        .card-instruction{
+            margin-top: 30px;
+        }
 
 
 
@@ -1305,7 +1470,7 @@
             <li><a href="{% url 'cart' %}" style="height: 25px">корзина<span class="badge" style="display: none;">0</span></a></li>
         </ul>
     </div>
-    <svg class="profile-svg" onclick="handleProfileRedirect()" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" x="0" y="0" viewBox="0 0 512 512"  xml:space="preserve"><g><path d="M437.02 74.98C388.668 26.63 324.379 0 256 0S123.332 26.629 74.98 74.98C26.63 123.332 0 187.621 0 256s26.629 132.668 74.98 181.02C123.332 485.37 187.621 512 256 512s132.668-26.629 181.02-74.98C485.37 388.668 512 324.379 512 256s-26.629-132.668-74.98-181.02zM111.105 429.297c8.454-72.735 70.989-128.89 144.895-128.89 38.96 0 75.598 15.179 103.156 42.734 23.281 23.285 37.965 53.687 41.742 86.152C361.641 462.172 311.094 482 256 482s-105.637-19.824-144.895-52.703zM256 269.507c-42.871 0-77.754-34.882-77.754-77.753C178.246 148.879 213.13 114 256 114s77.754 34.879 77.754 77.754c0 42.871-34.883 77.754-77.754 77.754zm170.719 134.427a175.9 175.9 0 0 0-46.352-82.004c-18.437-18.438-40.25-32.27-64.039-40.938 28.598-19.394 47.426-52.16 47.426-89.238C363.754 132.34 315.414 84 256 84s-107.754 48.34-107.754 107.754c0 37.098 18.844 69.875 47.465 89.266-21.887 7.976-42.14 20.308-59.566 36.542-25.235 23.5-42.758 53.465-50.883 86.348C50.852 364.242 30 312.512 30 256 30 131.383 131.383 30 256 30s226 101.383 226 226c0 56.523-20.86 108.266-55.281 147.934zm0 0" opacity="1" data-original="#585858"></path></g></svg>
+    <a href="{% url 'logout' %}"><svg class="profile-svg" href="{% url 'logout' %}" xmlns="http://www.w3.org/2000/svg"  width="45px" viewBox="2.200000047683716 1.2000007629394531 96.50000762939453 97.60000610351562"><g><g><path d="M13.2 50c0-20.8 16.9-37.8 37.8-37.8v-11C24.1 1.2 2.2 23.1 2.2 50S24.1 98.8 51 98.8v-11c-20.8 0-37.8-17-37.8-37.8z"  opacity="1"></path><path d="M98.7 50 71.8 22.8c-2.3-2.3-6.1-2.3-8.5 0-2.3 2.3-2.3 6.1 0 8.5l12.6 12.8H45.5c-3.3 0-6 2.7-6 6s2.7 6 6 6H75.8L63.3 68.7c-2.3 2.3-2.3 6.1 0 8.5 2.3 2.3 6.1 2.3 8.5 0l26.9-27-.1-.1z"  opacity="1" ></path></g></g></svg></a>
     <div style="display: flex; gap: 25px; margin-right: 20px; align-items: center;">
         <a href="{% url 'cart' %}">
             <div class="market-logo">
@@ -1435,8 +1600,52 @@
 
 </div>
 
+<div class="treatment">
+    <div style="display: flex">
+        <div class="treatment-title">курс лечения</div>
+        <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.75 13.75C21.3529 6.14706 33.647 6.14706 41.25 13.75C48.8529 21.353 48.8529 33.6471 41.25 41.25C33.647 48.853 21.3529 48.853 13.75 41.25C6.14703 33.6471 6.14703 21.353 13.75 13.75ZM39.6323 39.6324C46.3456 32.9191 46.3456 22.0809 39.6323 15.3677C32.9191 8.65442 22.0809 8.65442 15.3676 15.3677C8.65438 22.0809 8.65438 32.9191 15.3676 39.6324C22.0809 46.3456 32.9191 46.3456 39.6323 39.6324Z" fill="#585858" />
+          <path d="M19.4115 32.8387H32.8379L32.8379 19.4123L35.1027 19.4123L35.1026 35.1035L19.4115 35.1035V32.8387Z" fill="#585858" />
+          <path d="M34.7793 33.1619L33.1616 34.7796L19.4116 21.0296L21.0293 19.4119L34.7793 33.1619Z" fill="#585858" />
+        </svg>
+    </div>
+    <hr style="border: 1px solid #b5b5b5;height: 0px; margin:0;">
 
-<a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    <div class="card-container">
+        {% for product in products %}
+        <a href="{{ product.get_absolute_url }}" class="card-link">
+            <div class="card">
+                <div class="card-photo">
+                    {% if product.photo1 %}
+                    <img src="{{ product.photo1.url }}" alt="Фото продукта">
+                    {% endif %}
+                </div>
+                <div class="card-info">
+                    <div style="display: flex; justify-content: space-between">
+                        <div class="card-name">{{ product.brand }}<br>{{ product.name }}</div>
+                        <svg class="card-svg" width="20" height="20" viewBox="0 0 20 20"  xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 10C0 4.4706 4.47059 1.52588e-05 10 1.52588e-05C15.5294 1.52588e-05 20 4.4706 20 10C20 15.5294 15.5294 20 10 20C4.47059 20 0 15.5294 0 10ZM18.8235 10C18.8235 5.11766 14.8824 1.17649 10 1.17649C5.11765 1.17649 1.17647 5.11766 1.17647 10C1.17647 14.8824 5.11765 18.8235 10 18.8235C14.8824 18.8235 18.8235 14.8824 18.8235 10Z" />
+                          <path d="M8.99989 14.8826L13.8822 10.0002L8.99989 5.11786L9.82342 4.29433L15.5293 10.0002L9.82342 15.7061L8.99989 14.8826Z"  />
+                          <path d="M14.7061 9.41181V10.5883H4.70605V9.41181H14.7061Z"  />
+                        </svg>
+                    </div>
+                    <div class="card-dosage">Дозировка: {{ product.dosage }}</div>
+                    <div class="card-instruction">{{ product.course_of_administration_and_dosage }}</div>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+        <div>Нет доступных продуктов.</div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+
+
+
+
 
 <div class="footer">
     <div class="footer-content">
@@ -1749,6 +1958,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 </script>
+
 {% endblock %}
 
 

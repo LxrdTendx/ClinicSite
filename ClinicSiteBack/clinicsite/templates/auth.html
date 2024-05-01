@@ -850,6 +850,7 @@
     margin-right: 20px;
 }
     .profile-svg{
+        min-width: 45px;
         fill: #ffffff; /* Default color */
         transition: fill 0.3s;
         cursor: pointer;
@@ -940,15 +941,19 @@
         width: 73.75%;
     }
     .profile-svg{
-        fill: #585858; /* Default color */
+        fill: #fff; /* Default color */
         transition: fill 0.3s;
         cursor: pointer;
     }
     .profile-svg:hover{
-        fill: #ffffff;
+        fill: #a673d8;
     }
 
-
+@media (max-width: 1100px){
+        .navbar{
+            margin-right: 40px;
+        }
+      }
 
 @media (max-width: 1000px) {
 
@@ -1356,6 +1361,9 @@
         </ul>
     </div>
 
+</div>
+<div class="title-page">
+    <div class="title-page-text">Авторизация</div>
 </div>
 
 <div class="auth-container">

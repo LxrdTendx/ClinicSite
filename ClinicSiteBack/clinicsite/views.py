@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
 from math import ceil
-from .models import Product, Scientific, Certificates, Service, Profile, Note, Event
+from .models import Product, Scientific, Certificates, Service, Profile, Note, Event, TreatmentCourse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.utils import timezone
@@ -39,15 +39,20 @@ def auth_view(request):
 def profile_view(request):
     try:
         profile = request.user.profile
+        # Получаем курсы лечения для пользователя
+        treatment_courses = TreatmentCourse.objects.filter(user=request.user)
+        # Извлекаем все продукты из этих курсов лечения
+        products = Product.objects.filter(treatmentcourse__in=treatment_courses).distinct()
     except Profile.DoesNotExist:
         profile = None
+        products = None
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Профиль успешно обновлен!')
-            return redirect('profile')  # Перенаправление обратно на страницу профиля
+            return redirect('profile')  # Убедитесь, что у вас есть URL с именем 'profile'
     else:
         form = ProfileForm(instance=profile)
 
@@ -57,7 +62,8 @@ def profile_view(request):
         'profile': profile,
         'form': form,
         'notes': notes,
-        'events': events
+        'events': events,
+        'products': products  # Передаем продукты в контекст
     })
 
 def login_view(request):
