@@ -1397,6 +1397,9 @@
             display: block;
             width: 90%;
         }
+        .doctor-date{
+            font-size: 26px;
+        }
         .doctor-point, .doctor-session{
             width: 100%;
         }
@@ -1406,9 +1409,12 @@
         .doctor-time{
             font-size: 22px;
         }
+        .session-point {
+            height: 120px;
+        }
         .session-text{
             width: 95%;
-            font-size: 22px;
+            font-size: 24px;
         }
         .treatment{
             width: 90%;
@@ -1432,8 +1438,11 @@
             width: 100%;
             height: 230px;
         }
+        .card-name{
+            font-size: 26px;
+        }
         .card-dosage, .card-instruction{
-            font-size: 22px;
+            font-size: 24px;
         }
         .card-container{
 
@@ -1443,6 +1452,13 @@
         }
         .profile-photo{
             height: 650px;
+        }
+        .point-title {
+            font-size: 26px;
+        }
+        .point-text {
+            font-size: 24px;
+            max-height: 300px;
         }
 
 
@@ -1583,7 +1599,7 @@
         <div style="margin-top: 40px">
             {% for event in events %}
             <div class="session-point">
-                <div style="border-radius: 20px; width: 41px; height: 93px; background: {% if forloop.counter == 1 %}#f22d3e{% elif forloop.counter == 2 %}rgba(166, 115, 216, 0.58){% else %}#a673d8{% endif %}; margin-right: 10px"></div>
+                <div style="border-radius: 20px; width: 41px; height: 120px; background: {% if forloop.counter == 1 %}#f22d3e{% elif forloop.counter == 2 %}rgba(166, 115, 216, 0.58){% else %}#a673d8{% endif %}; margin-right: 10px"></div>
                 <div style="border: 1px solid #232323; border-radius: 20px; width: 100%; background: #F5F5F5">
                     <div style="justify-content: space-between; width: 95%; margin-left: 20px; margin-top: 20px; display: flex;">
                         <div class="doctor-date">{{ event.date|date:"j F, l" }}</div>
