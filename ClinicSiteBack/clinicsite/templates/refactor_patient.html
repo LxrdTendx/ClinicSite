@@ -211,7 +211,7 @@ $(document).ready(function() {
 
 <script>
 function deleteNote(button) {
-    var noteDiv = button.parentNode;
+    var noteDiv = button.closest('.note-item');  // Находим ближайший родительский элемент с классом 'note-item'
     var noteId = noteDiv.querySelector('input[name="note_ids"]').value;
     if (noteId) {  // Если у заметки есть ID, добавляем его в список для удаления
         var deleteField = document.createElement('input');
