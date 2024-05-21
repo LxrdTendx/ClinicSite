@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Scientific, Certificates, Service, Profile, Event, Note, TreatmentCourse
+from .models import Product, Scientific, Certificates, Service, Profile, Event, Note, TreatmentCourse, Organ
 
 
 @admin.register(Service)
@@ -37,9 +37,13 @@ class NotesAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['user', ]
+    list_display = ['user']
 
 
 @admin.register(TreatmentCourse)
 class TreatmentCourseAdmin(admin.ModelAdmin):
     list_display = ['user']
+
+@admin.register(Organ)
+class OrganAdmin(admin.ModelAdmin):
+    list_display = ['name']

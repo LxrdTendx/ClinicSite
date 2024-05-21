@@ -1395,9 +1395,9 @@
         <div class="footer-section">
             <h3 class="footer-heading">компания</h3>
             <ul class="footer-list">
-                <li class="footer-item">о нас</li>
-                <li class="footer-item">аптека</li>
-                <li class="footer-item">контакты</li>
+                <li class="footer-item"><a href="{% url 'about' %}" style="color: black">о нас</a></li>
+                <li class="footer-item"><a href="{% url 'market' %}" style="color: black">аптека</a></li>
+                <li class="footer-item"><a href="{% url 'cart' %}" style="color: black">корзина</a></li>
             </ul>
         </div>
         <div style="width: 0px;height: 122px; border: 1px #232323 solid"></div>
@@ -1419,6 +1419,7 @@
         </div>
     </div>
 </div>
+
 <div class="footer-mobile">
     <a href="#main-sector">
         <svg style="display: block; margin-left: auto; animation: arrow-bounce-up 1s infinite; cursor: pointer;" width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

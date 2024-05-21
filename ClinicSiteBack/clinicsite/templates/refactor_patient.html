@@ -1,0 +1,283 @@
+<style>
+
+    body{
+        /*background: gray;*/
+        margin: 0;
+        padding: 0;
+        background: var(--main-white, #F5F5F5)
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
+    .point-in-form{
+        margin-top: 50px;
+        flex-wrap: wrap;
+        margin-bottom: 38px;
+        display: flex;
+        gap: 60px;
+    }
+    .title-style{
+        width: 340px;
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+        color: #2a2a28;
+        margin-bottom: 5px;
+    }
+    input:focus {
+        outline: none;  /* Убирает стандартное выделение */
+    }
+    input, select, textarea{
+        border: 1px solid #a5a5a5;
+        border-radius: 15px;
+        padding: 10px;
+        width: 340px;
+        height: 45px;
+        backdrop-filter: blur(50px);
+        box-shadow: inset 0 0 20px -3px rgba(255, 255, 255, 0.1);
+        background: #fff;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 140%;
+        color: #2a2a28;
+    }
+    textarea{
+        resize: none;
+    }
+
+    button{
+        cursor: pointer;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+        color: #fff;
+        border-radius: 15px;
+        padding: 0 20px;
+        height: 45px;
+        backdrop-filter: blur(50px);
+        box-shadow: inset 0 0 20px -3px rgba(255, 255, 255, 0.1);
+        background: #a673d8;
+        border: none;
+        transition: all 0.3s;
+    }
+    button:hover{
+        background: #2a2a28;
+        border: none;
+    }
+
+    .title-style button:hover{
+        background: red;
+        border: none;
+    }
+    .custom-checkbox{
+        accent-color: #a673d8;
+    }
+    .back-link{
+        text-decoration: none;
+        margin-right: auto;
+        margin-left: auto;
+
+
+    }
+    .back-link a{
+        font-family: 'TT Fors',sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #585858;
+        transition: all 0.3s;
+    }
+    .back-link a:hover{
+        color: #A673D8;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 45px !important;
+        border-radius: 15px !important;
+    }
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+        height: 30px !important;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable, .select2-results__option--selectable {
+        font-family: "TT Fors", sans-serif !important;
+        font-weight: 200 !important;
+        font-size: 16px !important;
+        line-height: 140% !important;
+        color: #2a2a28 !important;
+    }
+    .title-style span{
+        font-weight: 300 !important;
+        font-family: "TT Fors", sans-serif !important;
+        font-size: 18px !important;
+    }
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-top: 7px;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: #A673D8 !important;
+    }
+
+</style>
+
+<title>Редактирование пациента</title>
+
+<form method="post" style="width: 73.75%; margin-left: auto; margin-right: auto; margin-top: 100px">
+    {% csrf_token %}
+    <div class="back-link"><a href="{% url 'profile' %}">Назад к панели управления</a></div>
+    <button type="submit" style="margin-top: 20px;">Сохранить информацию</button>
+    <div class="point-in-form">
+        <label class="title-style">Выберите пациента<br>
+            <select name="patient_id" required onchange="updateFields(this.value)">
+                {% for profile in profiles %}
+                <option value="{{ profile.id }}">{{ profile.full_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="title-style">ФИО<br>
+             <input type="text" name="full_name" value="{{ selected_profile.full_name }}">
+        </label>
+        <label class="title-style">Диагноз<br>
+             <input type="text" name="diagnosis" value="{{ selected_profile.diagnosis }}">
+        </label>
+    </div>
+
+    <div class="point-in-form">
+        <label class="title-style" style="width: auto">Заметки<br>
+            <div style="display: flex; flex-direction: column; gap: 20px" id="notesContainer">
+            {% for note in selected_profile.user.note_set.all %}
+                <div class="note-item">
+                    <input type="hidden" name="note_ids" value="{{ note.id }}">
+                    <div style="display: flex; gap: 20px">
+                        <input type="text" name="note_titles" value="{{ note.title }}">
+                        <button type="button"  onclick="deleteNote(this)">Удалить</button>
+                    </div>
+
+                    <textarea name="note_descriptions" style="width: 100%; height:400px; border: unset; margin-top: 10px">{{ note.note_description }}</textarea>
+
+                </div>
+            {% endfor %}
+            </div>
+
+        </label>
+        <label class="title-style">
+            Пораженные органы<br>
+            {% for organ in organs %}
+            <div style="display: flex; width: 110px; font-family: 'TT Fors', sans-serif; font-weight: 100;">
+                {{ organ.name }}<input type="checkbox" class="custom-checkbox" style="width: unset; height: unset; font-weight: unset; cursor: pointer; " name="organs" value="{{ organ.id }}" {% if organ in selected_profile.organs.all %}checked{% endif %}>
+            </div>
+            {% endfor %}
+        </label>
+    </div>
+    <button type="button" onclick="addNote()">Добавить заметку</button>
+
+</form>
+
+
+
+<!-- Подключение CSS для Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Подключение jQuery, так как Select2 зависит от него -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Подключение JavaScript для Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('select').select2({
+
+        allowClear: true // Разрешает очищать выбор
+    });
+});
+</script>
+
+
+<script>
+function deleteNote(button) {
+    var noteDiv = button.parentNode;
+    var noteId = noteDiv.querySelector('input[name="note_ids"]').value;
+    if (noteId) {  // Если у заметки есть ID, добавляем его в список для удаления
+        var deleteField = document.createElement('input');
+        deleteField.type = 'hidden';
+        deleteField.name = 'delete_note_ids';
+        deleteField.value = noteId;
+        document.forms[0].appendChild(deleteField);
+    }
+    noteDiv.remove();  // Удаление элемента из DOM
+}
+function addNote() {
+    const notesContainer = document.getElementById('notesContainer');
+    const noteDiv = document.createElement('div');
+    noteDiv.className = 'note-item';
+    noteDiv.innerHTML = `
+                    <input type="hidden" name="note_ids" value="{{ note.id }}">
+                    <div style="display: flex; gap: 20px">
+                        <input type="text" name="note_titles" value="{{ note.title }}">
+                        <button type="button"  onclick="deleteNote(this)">Удалить</button>
+                    </div>
+
+                    <textarea name="note_descriptions" style="width: 100%; height:400px; border: unset; margin-top: 10px">{{ note.note_description }}</textarea>
+    `;
+    notesContainer.appendChild(noteDiv);
+}
+function updateFields(patientId) {
+    if (!patientId) return; // Если пациент не выбран, ничего не делаем
+
+    fetch(`/get-patient-data/?patient_id=${patientId}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert('Профиль не найден.');
+            return;
+        }
+        // Обновление полей формы
+        document.querySelector('input[name="full_name"]').value = data.full_name || ''; // Установка ФИО
+        document.querySelector('input[name="diagnosis"]').value = data.diagnosis || ''; // Установка диагноза
+
+        // Обновление заметок
+        const notesContainer = document.querySelector('.point-in-form .title-style div');
+        notesContainer.innerHTML = ''; // Очистка текущих заметок
+        data.notes.forEach(note => {
+            const noteDiv = document.createElement('div');
+            noteDiv.className = 'note-item';
+            noteDiv.innerHTML = `<input type="hidden" name="note_ids" value="${note.id}">
+                                <div style="display: flex; gap: 20px">
+                                    <input type="text" name="note_titles" value="${note.title}">
+                                    <button type="button"  onclick="deleteNote(this)">Удалить</button>
+                                </div>
+
+                                <textarea name="note_descriptions" style="width: 100%; height:400px; border: unset; margin-top: 10px">${note.note_description}</textarea>
+                                `;
+
+            notesContainer.appendChild(noteDiv);
+        });
+
+        // Обновление чекбоксов органов
+        document.querySelectorAll('input[name="organs"]').forEach(checkbox => {
+            checkbox.checked = data.organs.includes(parseInt(checkbox.value));
+        });
+    })
+    .catch(error => {
+        console.error('Ошибка при получении данных пациента:', error);
+    });
+}
+
+
+</script>

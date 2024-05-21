@@ -1,0 +1,299 @@
+<style>
+
+    body{
+        /*background: gray;*/
+        margin: 0;
+        padding: 0;
+        background: var(--main-white, #F5F5F5)
+    }
+    @font-face {
+        font-family: 'Gropled';
+        src: url('/static/fonts/Gropled-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'TT Fors';
+        src: url('/static/fonts/TT Fors Trial Variable.ttf') format('truetype');
+        font-weight: 400; /* Normal */
+        font-style: normal;
+    }
+    @media (min-width: 1920px) {
+        body {
+            zoom: 100%;
+        }
+    }
+    .point-in-form{
+        margin-top: 50px;
+        flex-wrap: wrap;
+        margin-bottom: 38px;
+        display: flex;
+        gap: 60px;
+    }
+    .title-style{
+        width: 340px;
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+        color: #2a2a28;
+        margin-bottom: 5px;
+    }
+    input:focus {
+        outline: none;  /* Убирает стандартное выделение */
+    }
+    input, select, textarea{
+        border: 1px solid #a5a5a5;
+        border-radius: 15px;
+        padding: 10px;
+        width: 340px;
+        height: 45px;
+        backdrop-filter: blur(50px);
+        box-shadow: inset 0 0 20px -3px rgba(255, 255, 255, 0.1);
+        background: #fff;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 140%;
+        color: #2a2a28;
+    }
+    textarea{
+        resize: none;
+    }
+
+    button{
+        cursor: pointer;
+        font-family: "TT Fors", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+        color: #fff;
+        border-radius: 15px;
+        padding: 0 20px;
+        height: 45px;
+        backdrop-filter: blur(50px);
+        box-shadow: inset 0 0 20px -3px rgba(255, 255, 255, 0.1);
+        background: #a673d8;
+        border: none;
+        transition: all 0.3s;
+    }
+    button:hover{
+        background: #2a2a28;
+        border: none;
+    }
+
+    .title-style button:hover{
+        background: red;
+        border: none;
+    }
+    .custom-checkbox{
+        accent-color: #a673d8;
+    }
+    .back-link{
+        text-decoration: none;
+        margin-right: auto;
+        margin-left: auto;
+
+
+    }
+    .back-link a{
+        font-family: 'TT Fors',sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #585858;
+        transition: all 0.3s;
+    }
+    .back-link a:hover{
+        color: #A673D8;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 45px !important;
+        border-radius: 15px !important;
+    }
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+        height: 30px !important;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable, .select2-results__option--selectable {
+        font-family: "TT Fors", sans-serif !important;
+        font-weight: 200 !important;
+        font-size: 16px !important;
+        line-height: 140% !important;
+        color: #2a2a28 !important;
+    }
+    .title-style span{
+        font-weight: 300 !important;
+        font-family: "TT Fors", sans-serif !important;
+        font-size: 18px !important;
+    }
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-top: 7px;
+    }
+    .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: #A673D8 !important;
+    }
+
+    .session-point{
+        gap: 10px;
+        margin-bottom: 20px;
+        height: 93px;
+        display: flex;
+    }
+    .doctor-date{
+        font-family: "Gropled", sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 80%;
+        color: #232323;
+    }
+    .doctor-time{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 100%;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        color: #f22d3e;
+        margin-right: 11px
+    }
+    .session-text{
+        font-family: "TT Fors", sans-serif;
+        font-weight: 280;
+        font-size: 16px;
+        line-height: 100%;
+        color: #232323;
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+    .delete-event-btn{
+        background: black;
+    }
+    .delete-event-btn:hover{
+        background: red;
+        border: none;
+    }
+
+</style>
+
+<title>Создание события</title>
+
+<form method="post" style="width: 73.75%; margin-left: auto; margin-right: auto; margin-top: 100px">
+    {% csrf_token %}
+    <div class="back-link"><a href="{% url 'profile' %}">Назад к панели управления</a></div>
+
+    <div class="point-in-form">
+        <label class="title-style">Выберите пациента<br>
+            <select name="patient_id" required onchange="updateFields(this.value)">
+                {% for profile in profiles %}
+                <option value="{{ profile.id }}">{{ profile.full_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="title-style">Диагноз<br>
+            <input type="text" name="diagnosis" value="" readonly>
+        </label>
+    </div>
+    <div class="point-in-form">
+        <label class="title-style">Название события<br>
+            <input type="text" name="name">
+        </label>
+        <label class="title-style">Дата<br>
+            <input type="date" name="date">
+        </label>
+        <label class="title-style">Время<br>
+            <input type="time" name="time">
+        </label>
+        <label class="title-style">Описание<br>
+            <textarea name="description" style="width: 100%; height: 100px;"></textarea>
+        </label>
+    </div>
+    <div class="point-in-form" style="display: block; width: 650px">
+        <label class="title-style" style="height: 30px">Текущие события<br></label>
+        <div id="current-events" style="margin-top: 40px">
+            <div class="session-point">
+                Нет текущих событий.
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" style="margin-top: 20px;">Добавить событие</button>
+</form>
+
+
+
+<!-- Подключение CSS для Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Подключение jQuery, так как Select2 зависит от него -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Подключение JavaScript для Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<<script>
+$(document).ready(function() {
+    $('select').select2({
+        allowClear: true // Разрешает очищать выбор
+    });
+    // Автоматически загружаем данные первого пациента в списке
+    updateFields($('select[name="patient_id"]').val());
+});
+
+function updateFields(patientId) {
+    if (patientId) {
+        $.ajax({
+            url: '{% url "get-patient-data" %}',
+            data: {
+                'patient_id': patientId
+            },
+            success: function(data) {
+                if (data.diagnosis) {
+                    $('input[name="diagnosis"]').val(data.diagnosis);
+                }
+
+                // Обновляем список текущих событий
+                var eventsContainer = $('#current-events');
+                eventsContainer.empty();  // Очищаем контейнер перед добавлением новых данных
+                if (data.events && data.events.length > 0) {
+                    data.events.forEach(function(event, index) {
+                        eventsContainer.append(
+                            '<div class="session-point">' +
+                                '<div class="session-point-mark" style="border-radius: 20px; width: 41px; background: ' + (index == 0 ? '#f22d3e' : (index == 1 ? 'rgba(166, 115, 216, 0.58)' : '#a673d8')) + ';"></div>' +
+                                '<div style="border: 1px solid #232323; border-radius: 20px; width: 100%; background: #F5F5F5; min-width: 400px ">' +
+                                    '<div style="justify-content: space-between; width: 95%; margin-left: 20px; margin-top: 20px; display: flex;">' +
+                                        '<div class="doctor-date">' + new Date(event.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'long' }) + '</div>' +
+                                        '<div class="doctor-time">' + event.time.substring(0, 5) + '</div>' +
+                                    '</div>' +
+                                    '<div class="session-text">' + event.description + '</div>' +
+                                '</div>' +
+                                '<button onclick="deleteEvent(' + event.id + ')" class="delete-event-btn">Х</button>' +
+                            '</div>'
+                        );
+                    });
+                } else {
+                    eventsContainer.append('<div class="session-point">Нет текущих событий.</div>');
+                }
+            }
+        });
+    } else {
+        $('input[name="diagnosis"]').val('');
+        $('#current-events').empty().append('<div class="session-point">Нет текущих событий.</div>');  // Очищаем контейнер, если пациент не выбран
+    }
+}
+
+function deleteEvent(eventId) {
+    if (confirm('Вы уверены, что хотите удалить это событие?')) {
+        $.ajax({
+            url: '{% url "delete-event" %}',
+            method: 'POST',
+            data: {
+                'event_id': eventId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function() {
+                updateFields($('select[name="patient_id"]').val());  // Обновляем список событий после удаления
+            }
+        });
+    }
+}
+</script>

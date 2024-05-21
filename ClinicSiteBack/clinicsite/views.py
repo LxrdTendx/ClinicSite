@@ -1,11 +1,11 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import DetailView
 from math import ceil
-from .models import Product, Scientific, Certificates, Service, Profile, Note, Event, TreatmentCourse
+from .models import Product, Scientific, Certificates, Service, Profile, Note, Event, TreatmentCourse, Organ
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.utils import timezone
@@ -21,7 +21,10 @@ def logout_view(request):
 
 def auth_view(request):
     if request.user.is_authenticated:
-        return redirect('profile')
+        if request.user.is_staff:
+            return redirect('profile-admin')  # Перенаправляем персонал на страницу администрирования
+        else:
+            return redirect('profile')  # Обычные пользователи попадают на свой профиль
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -29,7 +32,10 @@ def auth_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            if user.is_staff:
+                return redirect('profile-admin')
+            else:
+                return redirect('profile')
         else:
             return render(request, 'auth.html', {'error_message': 'Invalid login credentials'})
 
@@ -37,6 +43,9 @@ def auth_view(request):
 
 @login_required
 def profile_view(request):
+    if request.user.is_staff:
+        return redirect('profile-admin')
+
     try:
         profile = request.user.profile
         # Получаем курсы лечения для пользователя
@@ -66,12 +75,23 @@ def profile_view(request):
         'products': products  # Передаем продукты в контекст
     })
 
+
+@login_required
+def profile_admin_view(request):
+    if not request.user.is_staff:
+        return redirect('profile')  # Не-персонал перенаправляется на обычную страницу профиля
+    profile = request.user.profile
+    # Здесь реализация страницы для персонала
+    return render(request, 'profile-admin.html', {'profile': profile})
+
 def login_view(request):
     return render(request, 'login.html')
 
 def service_view(request):
     services = Service.objects.all()
     return render(request, 'services.html', {'services': services})
+
+
 
 def cart_view(request):
     product_ids = request.GET.get('ids', '')
@@ -187,8 +207,127 @@ def market_view(request):
     }
     return render(request, 'market.html', context)
 
+@login_required
+def refactor_patient_view(request):
+    if not request.user.is_staff:
+        return redirect('profile')
+
+    profiles = Profile.objects.filter(user__is_staff=False)
+    organs = Organ.objects.all()
+    selected_profile = None
+
+    if request.method == 'POST':
+        patient_id = request.POST.get('patient_id')
+        full_name = request.POST.get('full_name')
+        diagnosis = request.POST.get('diagnosis')
+        organs_ids = request.POST.getlist('organs')
+        note_ids = request.POST.getlist('note_ids')
+        note_titles = request.POST.getlist('note_titles')
+        note_descriptions = request.POST.getlist('note_descriptions')
+        delete_note_ids = request.POST.getlist('delete_note_ids')
+
+        profile = get_object_or_404(Profile, id=patient_id)
+        profile.full_name = full_name
+        profile.diagnosis = diagnosis
+        profile.organs.clear()
+        profile.organs.add(*organs_ids)
+        profile.save()
+
+        for note_id in delete_note_ids:
+            Note.objects.filter(id=note_id).delete()
+
+        # Обработка заметок
+        for note_id, title, description in zip(note_ids, note_titles, note_descriptions):
+            if note_id:
+                note = Note.objects.get(id=note_id)
+                note.title = title
+                note.note_description = description
+                note.save()
+            else:
+                # Создание новой заметки, если id пуст
+                if title or description:
+                    Note.objects.create(user=profile.user, title=title, note_description=description)
+
+        return redirect('refactor_patient')  # или другой URL для результата
+    elif request.method == 'GET' and request.GET.get('patient_id'):
+        selected_profile = get_object_or_404(Profile, id=request.GET['patient_id'])
+
+    return render(request, 'refactor_patient.html', {
+        'profiles': profiles,
+        'organs': organs,
+        'selected_profile': selected_profile or profiles.first() if profiles.exists() else None
+    })
+
+
+@login_required
+def get_patient_data(request):
+    if not request.user.is_staff:
+        return redirect('profile')
+    patient_id = request.GET.get('patient_id')
+    if patient_id:
+        profile = Profile.objects.filter(id=patient_id).select_related('user').first()
+        if profile:
+            organs = profile.organs.values_list('id', flat=True)
+            notes = list(profile.user.note_set.values('id', 'title', 'note_description'))  # Убедитесь, что включает 'id'
+            events = list(Event.objects.filter(user=profile.user).order_by('date', 'time').values('id', 'name', 'date', 'time', 'description'))
+            return JsonResponse({
+                'full_name': profile.full_name,
+                'diagnosis': profile.diagnosis,
+                'organs': list(organs),
+                'notes': notes,
+                'events': events,  # Добавляем события
+            })
+    return JsonResponse({'error': 'Profile not found'}, status=404)
+
+
+@login_required
+def add_event_view(request):
+    if not request.user.is_staff:
+        return redirect('profile')
+    profiles = Profile.objects.filter(user__is_staff=False)
+
+    if request.method == 'POST':
+        patient_id = request.POST.get('patient_id')
+        name = request.POST.get('name')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        description = request.POST.get('description')
+
+        if patient_id and name and date and time:
+            patient = Profile.objects.get(id=patient_id)
+            Event.objects.create(
+                user=patient.user,  # Здесь мы используем patient.user для привязки к пользователю
+                name=name,
+                date=date,
+                time=time,
+                description=description
+            )
+        return redirect('add_event')
+
+
+    return render(request, 'add_event.html', {
+        'profiles': profiles,
+    })
+
+@login_required
+def delete_event_view(request):
+    if not request.user.is_staff:
+        return redirect('profile')
+    if request.method == 'POST':
+        event_id = request.POST.get('event_id')
+        if event_id:
+            event = Event.objects.filter(id=event_id).first()
+            if event:
+                event.delete()
+                return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
+
+
+
 
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_page.html'
+
+

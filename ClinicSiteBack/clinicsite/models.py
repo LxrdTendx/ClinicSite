@@ -100,6 +100,16 @@ class Service(models.Model):
 
 
 
+class Organ(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Название органа")
+    description = models.TextField(verbose_name="Описание", blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Орган"
+        verbose_name_plural = "Органы"
+
+    def __str__(self):
+        return self.name
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
@@ -108,6 +118,7 @@ class Profile(models.Model):
     age = models.IntegerField(verbose_name="Возраст")
     city = models.CharField(max_length=100, verbose_name="Город проживания")
     diagnosis = models.TextField(verbose_name="Диагноз")
+    organs = models.ManyToManyField(Organ, verbose_name="Органы", blank=True)
 
     class Meta:
         verbose_name = "Профиль"
@@ -143,3 +154,4 @@ class TreatmentCourse(models.Model):
     class Meta:
         verbose_name = "Курс лечения"
         verbose_name_plural = "Курсы лечения"
+
