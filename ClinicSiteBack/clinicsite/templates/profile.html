@@ -1557,7 +1557,7 @@
                 <button>записаться на прием</button>
             </div>
             <div class="chat-button">
-                <button>чат поддержки</button>
+                <button id="open-chat">чат поддержки</button>
             </div>
         </div>
     </div>
@@ -1753,53 +1753,36 @@
   AOS.init();
 </script>
 
+<script src="//code.jivo.ru/widget/mPMUFVpm8A" async></script>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    function setJivoContactInfo() {
+        var userName = "{{ profile.full_name }}";
+        var userEmail = "{{ profile.email }}";
+        var userPhone = "{{ profile.phone }}";
 
-document.getElementById('filter-btn').addEventListener('click', function() {
-    var modal = document.querySelector('.market-sorting');
-    var body = document.body;
-    var overlay = document.querySelector('.market-sorting-overlay');
-    modal.style.display = 'block';
-    overlay.style.display = 'block';
-    body.style.overflow = 'hidden';
+        jivo_api.setContactInfo({
+            name: userName,
+            email: userEmail,
+            phone: userPhone
+        });
+    }
 
-    // Добавляем небольшую задержку перед анимацией
-    setTimeout(() => {
-        modal.style.opacity = 1;
-        modal.style.transform = 'scale(1)';
-        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    }, 300);
+    function startNewJivoSession() {
+        jivo_api.callApiMethod('forceSetNewSession');
+        setJivoContactInfo();
+    }
+
+    document.getElementById('open-chat').addEventListener('click', function() {
+        startNewJivoSession();
+        jivo_api.open();
+    });
+
+    // Когда профиль загружен, также обновляем информацию чата
+    setJivoContactInfo();
 });
-
-document.querySelector('.accept').addEventListener('click', function() {
-    var modal = document.querySelector('.market-sorting');
-    var body = document.body;
-    var overlay = document.querySelector('.market-sorting-overlay');
-    modal.style.opacity = 0;
-    modal.style.transform = 'scale(0.95)';
-    body.style.overflow = '';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-    setTimeout(() => {
-        modal.style.display = 'none';
-        overlay.style.display = 'none';
-    }, 300); // Задержка должна соответствовать продолжительности анимации
-});
-document.querySelector('.market-sorting-overlay').addEventListener('click', function() {
-    var modal = document.querySelector('.market-sorting');
-    var body = document.body;
-    var overlay = document.querySelector('.market-sorting-overlay');
-    modal.style.opacity = 0;
-    modal.style.transform = 'scale(0.95)';
-    body.style.overflow = '';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-    setTimeout(() => {
-        modal.style.display = 'none';
-        overlay.style.display = 'none';
-    }, 300);
-});
-
-
 </script>
+
 
 <script>
 // Этот код можно разместить в общем файле скриптов или в базовом шаблоне

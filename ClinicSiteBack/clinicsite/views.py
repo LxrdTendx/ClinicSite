@@ -268,14 +268,19 @@ def get_patient_data(request):
         profile = Profile.objects.filter(id=patient_id).select_related('user').first()
         if profile:
             organs = profile.organs.values_list('id', flat=True)
-            notes = list(profile.user.note_set.values('id', 'title', 'note_description'))  # Убедитесь, что включает 'id'
+            notes = list(profile.user.note_set.values('id', 'title', 'note_description'))
             events = list(Event.objects.filter(user=profile.user).order_by('date', 'time').values('id', 'name', 'date', 'time', 'description'))
+            treatment_course = TreatmentCourse.objects.filter(user=profile.user).first()
+            product_ids = treatment_course.products.values_list('id', flat=True) if treatment_course else []
             return JsonResponse({
                 'full_name': profile.full_name,
                 'diagnosis': profile.diagnosis,
                 'organs': list(organs),
                 'notes': notes,
-                'events': events,  # Добавляем события
+                'events': events,
+                'treatment_course': {
+                    'products': list(product_ids)
+                }
             })
     return JsonResponse({'error': 'Profile not found'}, status=404)
 
@@ -324,6 +329,30 @@ def delete_event_view(request):
 
 
 
+@login_required
+def refactor_course_view(request):
+    if not request.user.is_staff:
+        return redirect('profile')
+
+    profiles = Profile.objects.filter(user__is_staff=False)
+    products = Product.objects.all()  # Получение всех продуктов
+
+    if request.method == 'POST':
+        patient_id = request.POST.get('patient_id')
+        product_ids = request.POST.getlist('product_ids')
+
+        if patient_id:
+            patient = Profile.objects.get(id=patient_id)
+            treatment_course, created = TreatmentCourse.objects.get_or_create(user=patient.user)
+            treatment_course.products.set(product_ids)
+            treatment_course.save()
+
+        return redirect('refactor_course')
+
+    return render(request, 'refactor_course.html', {
+        'profiles': profiles,
+        'products': products
+    })
 
 
 class ProductDetailView(DetailView):

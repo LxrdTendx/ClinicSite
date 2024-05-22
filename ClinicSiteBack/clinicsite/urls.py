@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('add_event/', views.add_event_view, name='add_event'),
     path('delete_event/', views.delete_event_view, name='delete-event'),
+
+    path('refactor_course/', views.refactor_course_view, name='refactor_course')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

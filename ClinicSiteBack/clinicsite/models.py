@@ -119,6 +119,8 @@ class Profile(models.Model):
     city = models.CharField(max_length=100, verbose_name="Город проживания")
     diagnosis = models.TextField(verbose_name="Диагноз")
     organs = models.ManyToManyField(Organ, verbose_name="Органы", blank=True)
+    phone = models.CharField(max_length=20, verbose_name="Телефон", null=True, blank=True)  # Новое поле
+    email = models.EmailField(verbose_name="Email", null=True, blank=True)  # Новое поле
 
     class Meta:
         verbose_name = "Профиль"
